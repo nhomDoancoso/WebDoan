@@ -1,0 +1,104 @@
+﻿
+
+@{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="height: 233px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Dang xuat</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ActionLink("Đăng xuất", "Logout", "LoginAdmin", new { area = "" }, new { @class = "navbar-brand" })
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand ps-3" href="index.html">H | Lab</a>
+
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" style="display:none" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        @if (Session["TaiKhoan"] == null)
+        {
+            @Html.ActionLink("Đăng nhập", "DangNhap", "Admin/LoginAdmin", new { area = "" }, new { @class = "navbar-brand" })
+        }
+        else if (Session["Account"].Equals("111"))
+        {
+            @Html.ActionLink("Xin chào " + @Session["User"], "LstNhanVien", "Admin/LoginAdmin", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "navbar-brand" })
+        }
+        else
+        {
+            @Html.ActionLink("Xin chào " + @Session["User"], "LstNhanVien", "Admin/LoginAdmin", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "navbar-brand" })
+        }
+    </form>
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @if (Session["TaiKhoan"] == null)
+                {
+                    <i class="fas fa-user fa-fw"></i>
+                }
+                else
+                {
+                    <img style="width: 50px; object-fit: cover; height: 50px; border-radius: 50px;" src="@Session["Image"]" alt="Alternate Text" />
+                }
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li>
+                    @if (Session["TaiKhoan"] == null)
+                    {
+                        //@/Html.ActionLink("Đăng nhập", "DangNhap", "Admin/LoginAdmin", new { area = "" }, new { @class = "hoverc navbar-brand dropdown-item " })
+                    }
+                    else if (Session["Account"].Equals("Quản Lý"))
+                    {
+                        @Html.ActionLink("Xin chào " + @Session["User"], "LstNhanVien", "Admin/LstNhanVien", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "hoverc navbar-brand dropdown-item " })
+                    }
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                    @Html.ActionLink("Đăng xuất", "Logout", "Admin/LoginAdmin", new { area = "" }, new { @class = "hoverc navbar-brand dropdown-item " })
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    .imgh {
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+        background: #dfdfdf;
+    }
+</style>
+
+@*<script>
+        const image = document.querySelector("img"),
+            input = document.querySelector("input");
+        input.addEventListener("change", () => {
+            image.src = URL.createObjectURL(input.files[0]);
+        })
+    </script>*@

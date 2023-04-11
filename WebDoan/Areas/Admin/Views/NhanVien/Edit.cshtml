@@ -1,0 +1,219 @@
+﻿@model WebDoan.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class=" bg-image"
+             style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp'); height:100%">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-2">
+                                <h2 class="text-uppercase text-center">Chỉnh Sửa Nhân Viên</h2>
+
+                                <form>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example1cg">Hình Nhân Viên</label>
+                                        <a href="" style="display: none">
+                                            @Html.EditorFor(model => model.HinhNV, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                                        </a>
+                                        <div class="img-wrap" style="align-items:center">
+                                            <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                                            <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
+                                            <img style="width:44%" class="wrapper-img" src="" id="pictureUpload" />
+                                        </div>
+                                    </div>
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                                    @section upload
+            {
+                                        <script>
+                                            $(function () {
+                                                $('#btnUpload').click(function () {
+                                                    $('#fileUpload').trigger('click');
+                                                });
+                                            });
+                                            $('#fileUpload').change(function () {
+                                                if (window.FormData !== undefined) {
+                                                    var fileUpload = $('#fileUpload').get(0);
+                                                    var files = fileUpload.files;
+                                                    var formData = new FormData();
+                                                    formData.append('file', files[0]);
+
+                                                    $.ajax(
+                                                        {
+                                                            type: 'POST',
+                                                            url: '/NhanVien/ProcessUpload',
+                                                            contentType: false,
+                                                            processData: false,
+                                                            data: formData,
+                                                            success: function (urlImage) {
+                                                                $('#pictureUpload').attr('src', urlImage);
+                                                                $('#HinhNV').val(urlImage);
+                                                            },
+                                                            error: function (err) {
+                                                                alert('Error ', err.statusText);
+                                                            }
+                                                        });
+                                                }
+                                            });
+                                        </script>
+                                    }
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example1cg">Tên Nhân Viên</label>
+                                        @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+                                        @ViewData["Error"]
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example3cg">Số Điện Thoại</label>
+                                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                        @ViewData["NotNull"]
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4cg">Địa Chỉ</label>
+                                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4cg">Email</label>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        @ViewData["NotNull"]
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4cg">Tên Tài Khoản</label>
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4cg">Mât Khẩu</label>
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="MatKhauXacNhan">Mật khẩu xác nhận</label>
+                                        <input class="form-control" data-val="true" data-val-required="Phải nhập xác nhận mật khẩu" id="MatKhauXacNhan" name="MatKhauXacNhan" type="password" value="" aria-describedby="MatKhauXacNhan-error" aria-invalid="true" />
+                                        @ViewData["NhapMKXN"]
+                                        @ViewData["MatKhauGiongNhau"]
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example4cg">Chuc vu</label>
+                                        @Html.DropDownList("MaCV", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.MaCV, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10 text-center text-lg-center text-sm-center">
+                                            <input type="submit" value="Edit" class="btn button-74" />
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<div class="m-2">
+    <butotn class="button-86">
+        @Html.ActionLink("Back to List", "LstNhanVien")
+    </butotn>
+</div>
+
+
+<style>
+
+    .button-86 {
+        margin: 1rem 0;
+        all: unset;
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        background: transparent;
+        border: none;
+        position: relative;
+        color: #f0f0f0;
+        cursor: pointer;
+        z-index: 1;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+        .button-86 a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .button-86::after,
+        .button-86::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -99999;
+            transition: all .4s;
+        }
+
+        .button-86::before {
+            transform: translate(0%, 0%);
+            width: 100%;
+            height: 100%;
+            background: #28282d;
+            border-radius: 10px;
+        }
+
+        .button-86::after {
+            transform: translate(10px, 10px);
+            width: 35px;
+            height: 35px;
+            background: #ffffff15;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 50px;
+        }
+
+        .button-86:hover::before {
+            transform: translate(5%, 20%);
+            width: 110%;
+            height: 110%;
+        }
+
+        .button-86:hover::after {
+            border-radius: 10px;
+            transform: translate(0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-86:active::after {
+            transition: 0s;
+            transform: translate(0, 5%);
+        }
+</style>

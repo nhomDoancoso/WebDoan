@@ -1,0 +1,64 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+}
+
+footer {
+    padding: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #000;
+    color: #fff;
+}
+
+.footer-content {
+    width: 25%;
+    padding: 2rem 0;
+}
+
+    .footer-content h2 {
+        font-size: 1rem;
+    }
+
+    .footer-content span {
+        font-size: .9rem;
+        line-height: 2;
+    }
+
+.footer-inner {
+    padding: 1rem 0;
+    display: flex;
+}
+
+    .footer-inner img {
+        width: 100px;
+    }
+
+
+.footer-inner-ii {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+}
+
+    .footer-inner-ii a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+        .footer-inner-ii a:hover {
+            color: #40a9ff;
+        }
+
+.footer-inner .imgtiktok {
+    width: 50px;
+    margin: 0 1rem;
+}
