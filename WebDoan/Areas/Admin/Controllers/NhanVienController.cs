@@ -17,7 +17,24 @@ namespace WebDoan.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult Chat(FormCollection collection)
+        {
+            var tendangnhap = collection["UserName"];
+            var matkhau = collection["Password"];
+            var email = collection["Email"];
 
+            NHANVIEN nv = db.NHANVIEN.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
+            if (nv != null)
+            {
+                ViewBag.ThongBao = "Chúc mừng đăng nhập thà nh công";
+                Session["TenNv"] = nv.TenNV;
+                Session["TaiKhoan"] = nv.MaNV;
+                Session["User"] = nv.UserName;
+                Session["Image"] = nv.HinhNV;
+
+            }
+            return View();
+        }
 
         public ActionResult LstNhanVien(int? page, string SearchString)
         {

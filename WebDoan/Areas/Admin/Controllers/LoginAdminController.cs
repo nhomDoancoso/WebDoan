@@ -51,7 +51,7 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["ErrorPass"] = "Mật khẩu không đúng";
                 return this.DangNhap();
             }
-            return RedirectToAction("LstNhanVien", "NhanVien");
+            return RedirectToAction("Index", "NhanVien");
         }
 
         public ActionResult Logout()
