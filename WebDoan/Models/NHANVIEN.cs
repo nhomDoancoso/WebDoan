@@ -44,6 +44,8 @@ namespace WebDoan.Models
 
         public int? MaCV { get; set; }
 
+        public bool? RememberMe { get; set; }
+
         public virtual CHUCVU CHUCVU { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

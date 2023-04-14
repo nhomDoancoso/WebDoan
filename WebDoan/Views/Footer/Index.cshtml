@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebDoan.Models.DICHVU>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 <div class="prices" id="Prices">
+        <div class="container-title">
+            <div class="wrap-title">
+                <span>List Prices</span>
+            </div>
+
+            <h2 class="title-big" style="color: #fff;">First cut free for kids.</h2>
+        </div>
+
+        <section class="list-container">
+            <div class="box">
+                <div class="wrap-title">
+                    <div class="title"> </div>
+                    <span>Prices List</span>
+                </div>
+                <h2 class="title-big" style="color: #fff;">Haircuts & Shaves</h2>
+
+                <div class="list-info">
+                    <ul>
+                       @foreach(var i in Model)
+                        {
+                            <li>
+                                <span>@i.TenDV</span>
+                                <span>@i.Gia</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="wrap-title">
+                    <div class="title"> </div>
+                    <span>Wax & Threading</span>
+                </div>
+                <h2 class="title-big" style="color: #fff;">Service</h2>
+
+                <div class="list-info">
+                    <ul>
+                        @foreach (var i in Model)
+                        {
+                            <li>
+                                <span>@i.LOAIDICHVU.TenLoaiDV</span>
+                                <span>@i.LOAIDICHVU.MaLoaiDV</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>

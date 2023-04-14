@@ -1,0 +1,128 @@
+
+.chatbox {
+	max-width: 50rem;
+    width: 90%;
+	margin: 5rem auto;
+	background-color: #f5f5f5;
+	border-radius: 1rem;
+	box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+	overflow: hidden;
+
+    .headerChatbox {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .chatlogs {
+        padding: 1rem;
+        height: 40rem;
+        overflow-y: scroll;
+    }
+
+    .chat {
+        display: flex;
+        flex-direction: row-reverse;
+        margin: 1rem 0;
+        gap: 1rem;
+
+        .user-photo {
+            max-width: 3rem;
+            height: 3rem;
+            background-size: cover;
+            background-position: center;
+            
+            margin-right: 1rem;
+
+            img {
+                border-radius: 50%;
+                width: 100%;
+            }
+        }
+
+        .chat-message {
+            background-color: #fff;
+            padding: 1rem;
+            font-size: 1.4rem;
+            
+            box-shadow: 0 0 1rem rgba(0,0,0,0.1);
+        }
+    }
+
+    .admin {
+        float: left;
+
+        .chat-message {
+            background-color: #fff;
+            padding: 1rem;
+            font-size: 1.4rem;
+            border-radius: 0 1rem 1rem 1rem;
+            box-shadow: 0 0 1rem rgba(0,0,0,0.1);
+        }
+    }
+
+    .user {
+        float: right;
+
+        .chat-message {
+            background-color: #fff;
+            padding: 1rem;
+            font-size: 1.4rem;
+            border-radius: 1rem 0 1rem 1rem;
+            box-shadow: 0 0 1rem rgba(0,0,0,0.1);
+        }
+        .chat-message {
+            background-color: #dddded;
+        }
+    }
+
+    .chat-form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
+        background-color: #fff;
+
+        textarea {
+            flex: 1;
+            border: none;
+            border-radius: 1rem;
+            padding: 1rem;
+            resize: none;
+            font-size: 16px;
+
+            &::placeholder{
+                font-size: 1.45rem;
+            }
+        }
+
+        button {
+            background-color: #542afb;
+            color: #fff;
+            border: none;
+            border-radius: 1rem;
+            padding: .8rem 1.7rem;
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

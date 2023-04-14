@@ -22,13 +22,26 @@ namespace WebDoan.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DangNhap(FormCollection collection)
+        public ActionResult DangNhap(FormCollection collection, NHANVIEN nhanvien)
         {
+            HttpCookie cookie = new HttpCookie("Vs");
             var tendangnhap = collection["UserName"];
             var matkhau = collection["Password"];
             var email = collection["Email"];
 
             NHANVIEN nv = db.NHANVIEN.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
+            if (nhanvien.RememberMe == true)
+            {
+                cookie["UserName"] = nhanvien.UserName;
+                cookie["Password"] = nhanvien.Password;
+                cookie.Expires = DateTime.Now.AddDays(4);
+                HttpContext.Response.Cookies.Add(cookie);
+            }
+            else
+            {
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                HttpContext.Response.Cookies.Add(cookie);
+            }
             if (nv != null)
             {
                 ViewBag.ThongBao = "Chúc mừng đăng nhập thà nh công";
@@ -40,6 +53,13 @@ namespace WebDoan.Areas.Admin.Controllers
                 Session["FullTaiKhoan"] = nv;
                 Session["Image"] = nv.HinhNV;
 
+            }
+            var row = db.NHANVIEN.Where(model => model.UserName == tendangnhap && model.Password == matkhau);
+            if (row != null)
+            {
+                Session["UserName"] = nhanvien.UserName;
+                TempData["msg"] = "<script>alert('login thanh cong)</script>";
+                return RedirectToAction("Index", "NhanVien");
             }
             else if (nv == null)
             {
@@ -53,6 +73,36 @@ namespace WebDoan.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "NhanVien");
         }
+        //public ActionResult DangNhap(FormCollection collection, NHANVIEN nhanvien)
+        //{
+        //    HttpCookie cookie = new HttpCookie("UserName");
+        //    var tendangnhap = collection["UserName"];
+        //    var matkhau = collection["Password"];
+        //    var email = collection["Email"];
+        //    if (ModelState.IsValid == true )
+        //    {
+        //        if(nhanvien.RememberMe == true)
+        //        {
+        //            cookie["UserName"] = nhanvien.UserName;
+        //            cookie["Password"] = nhanvien.Password;
+        //            cookie.Expires = DateTime.Now.AddDays(4);
+        //            HttpContext.Response.Cookies.Add(cookie);
+        //        } else
+        //        {
+        //            cookie.Expires = DateTime.Now.AddDays(-1);
+        //            HttpContext.Response.Cookies.Add(cookie);
+        //        }
+        //        var row = db.NHANVIEN.Where(model => model.UserName == tendangnhap && model.Password == matkhau);
+        //        if(row != null)
+        //        {
+        //            Session["UserName"] = nhanvien.UserName;
+        //            TempData["msg"] = "<script>alert('login thanh cong)</script>";
+        //            return RedirectToAction("Index", "NhanVien");
+        //        }
+        //    }
+        //    return View();
+        //}
+
 
         public ActionResult Logout()
         {

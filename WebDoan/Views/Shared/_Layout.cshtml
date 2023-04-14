@@ -1,43 +1,156 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title>Barber Shop</title>
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/Global.css">
+    <link href="~/Content/Images/haircut.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header class="header">
+        <nav class="header-navbar">
+            <a href="#Home">Home</a>
+            <a href="#About-us">About us</a>
+            <a href="#Service">Service</a>
+            <a href="#">
+                <img src="~/Content/images/logo.png" />
+            </a>
+            <a href="#Prices">Prices</a>
+            <a href="#Location">Location</a>
+            <a href="./chatbox.html">Sub</a>
+        </nav>
+    </header>
+
+    <!-- Home -->
+    <div class="Home" id="Home">
+        <div class="content-container">
+            <div class="wrap-title">
+                <div class="title"> </div>
+                <span>Barber Shop</span>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+
+            <div class="desc">
+                <h2>
+                    Create And Renovate Hairstyle
+                </h2>
+
+                <a href="#" class="btn">Booking now !</a>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <!-- about -->
+    <section class="about-us" id="About-us">
+        <div class="about-container">
+            <div class="img-about">
+                <img src="~/Content/images/section-1.jpg" />
+            </div>
+
+            <div class="content">
+                <div class="wrap-title">
+                    <div class="title"> </div>
+                    <span>About Us</span>
+                </div>
+
+                <h2 class="title-big">Welcome To Barber Shops.</h2>
+
+                <div class="descriptiton">
+                    <p>
+                        Proactively integrate turnkey synergy with world-class portals. Proactively harness sticky users whereas cooperative opportunities. harness exceptional before fully researched services. Seamlessly network client-focused results via interdependent markets.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- service -->
+    <div class="service" id="Service">
+        <div class="service-container">
+
+            <div class="box">
+                <div class="wrap-title">
+                    <div class="title"> </div>
+                    <span>Our Services</span>
+                </div>
+
+                <h2 class="title-big">Our special services for you.</h2>
+                <a href="./View-service.html" class="btn-view">View Service</a>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="~/Content/images/noun_hairdresser_1530755.svg" alt="">
+                    <h3>Scissor Cut & Style</h3>
+                    <p>You will experience precison cutting and styling at its finest from our top stylists, this treatment offers a</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="~/Content/images/noun_hairdryer_1530761.svg" alt="">
+                    <h3>Hair Wash With Model</h3>
+                    <p>This service is for the guys who like to keep it sharp at all times. For a skin fade to stay at its sharpest we</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="~/Content/images/noun_Straight-Razor_1370376.svg" alt="">
+                    <h3>Hot Towel Cut Throat Shave</h3>
+                    <p>Our shaves start with a consultation and skin analysis to find out any allergies or sensitivities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="to-top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
+    <!-- prices -->
+    @RenderBody()
+
+    @RenderSection("upload", required: false)
     @RenderSection("scripts", required: false)
+    <script>
+        const toTop = document.querySelector(".to-top");
+
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                toTop.classList.add("active");
+            } else {
+                toTop.classList.remove("active");
+            }
+        })
+    </script>
 </body>
 </html>
+
+<style>
+    body {
+        position:relative;
+    }
+
+    .to-top {
+        transition:all .4s;
+        pointer-events:none; 
+        color:#000;
+        background: #fff;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 2rem;
+        z-index: 1;
+        border-radius: 10px;
+        margin: 0 1rem;
+        opacity:0;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .to-top.active {
+        bottom:32px;
+        pointer-events:auto;
+        opacity:1;
+    }
+</style>

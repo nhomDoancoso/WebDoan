@@ -21,5 +21,6 @@ namespace WebDoan
         {
             app.MapSignalR();
         }
+       
     }
 }

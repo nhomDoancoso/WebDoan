@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@1,500;1,600;1,700&family=Poppins:wght@400;500;600&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  transition: 0.3s linear;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+button {
+  outline: none !important;
+  border: none !important;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 2.5rem;
+  color: #fff;
+  background: #c29e75;
+  font-size: 1.5rem;
+  border-radius: 5rem;
+}
+.btn:hover {
+  letter-spacing: 0.3rem;
+  color: #fff;
+}
+
+.btn-view {
+  display: inline-block;
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.5rem;
+  border: 0.2rem solid #c29e75;
+  font-size: 1.5rem;
+  color: #333;
+  border-radius: 0.2rem;
+}
+
+.wrap-title {
+  display: flex;
+}
+
+.wrap-title .title {
+  height: 0.3rem;
+  width: 6.2rem;
+  margin: 2rem 1.7rem 0 0;
+  background-color: #c29e75;
+  float: left;
+}
+
+.wrap-title span {
+  font-family: "Pacifico", cursive;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 3.5rem;
+  letter-spacing: 1.9px;
+  color: #c29e75;
+  margin: 0 0 0.7rem;
+}
+
+.title-big {
+  font-size: 5.3rem;
+  font-weight: 900;
+}
+
+section {
+  padding: 10rem 10%;
+  margin: 0 auto;
+}
+
+.flex-title {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body {
+  padding-top: 0 !important;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  margin-top: 0 !important;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=Global.css.map */
