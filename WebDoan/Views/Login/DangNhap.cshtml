@@ -1,0 +1,45 @@
+﻿@model WebDoan.Models.KHACHHANG
+@{
+    Layout = null;
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./css/Global.css">
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    @using (Html.BeginForm("DangNhap", "Login", FormMethod.Post))
+    {
+        <div class="login">
+            <h3>Welcome TO BARBER SHOP</h3>
+            <P>Sign in below or <a href="@Url.Action("DangKy", "Login")" style="color: red">create an account</a> to get started</P>
+
+
+            <div class="box-input">
+                <span>Email address</span>
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" })
+                @ViewData["ErrorAccount"]
+            </div>
+
+            <div class="box-input">
+                <span>Password</span>
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @ViewData["ErrorPass"]
+            </div>
+
+            <a href="#">Forgot Password ?</a>
+
+            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+        </div>
+    }
+
+</body>
+</html>

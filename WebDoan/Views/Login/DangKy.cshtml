@@ -1,0 +1,74 @@
+﻿@model WebDoan.Models.KHACHHANG
+@{
+    Layout = null;
+    <link href="~/Content/css/Global.css" rel="stylesheet" />
+    <link href="~/Content/css/register.css" rel="stylesheet" />
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    @using (Html.BeginForm("DangKy", "Login", FormMethod.Post))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="register">
+            <h3>Welcome TO BARBER SHOP</h3>
+            <P>Create an account below or <a href="@Url.Action("DangNhap","Login")" style="color: red">Sign in</a></P>
+
+                <div class="wrap-box">
+                    <div class="inner form-outline mb-4">
+                        <span class="span-inner">Full name</span>
+                        @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                        @ViewData["Name"]
+                    </div>
+
+                    <div class="inner form-outline mb-4">
+                        <span  class="span-inner">Email address</span>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @ViewData["UserExist"]
+                        @ViewData["EmailWrong"]
+                        @ViewData["email"]
+                    </div>
+                </div>
+
+                <div class="inner form-outline mb-4">
+                    <span  class="span-inner">Phone</span>
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    @ViewData["NumWrong"]
+                    @ViewData["dienthoai"]
+                </div>
+                <div class="inner form-outline mb-4">
+                    <span class="span-inner"> UserName</span>
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" })
+                    @ViewData["tendangnhap"]
+                </div>
+
+                <div class="inner form-outline mb-4">
+                    <span class="span-inner">Password</span>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    @ViewData["PassWordWrong"]
+                    @ViewData["matkhau"]
+                </div>
+
+                <div class="inner form-outline mb-4">
+                    <label class="form-label" style="font-size:1.5rem" for="MatKhauXacNhan">Mật khẩu xác nhận</label>
+                    <input type="password" id="MatKhauXacNhan" name="MatKhauXacNhan" class="form-control" />
+                    @ViewData["NhapMKXN"]
+                    @ViewData["MatKhauGiongNhau"]
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+        </div>
+    }
+   
+</body>
+</html>
+

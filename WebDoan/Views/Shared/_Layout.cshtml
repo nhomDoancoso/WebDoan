@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barber Shop</title>
-    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link href="~/Content/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/css/Global.css">
     <link href="~/Content/Images/haircut.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -21,7 +21,18 @@
             </a>
             <a href="#Prices">Prices</a>
             <a href="#Location">Location</a>
-            <a href="./chatbox.html">Sub</a>
+
+            @if (Session["TaiKhoanKH"] == null)
+            {
+                <a> @Html.ActionLink("Đăng nhập", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
+                <a> @Html.ActionLink("Đăng ký", "DangKy", "Login", new { area = "" }, new { @class = "cusor" })</a>
+            }
+            else
+            {
+
+                <a>@Html.ActionLink("Xin chào " + @Session["User"], "Index", "Footer", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "cusor" })</a>
+                <a>@Html.ActionLink("Đăng xuất", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
+            }
         </nav>
     </header>
 
@@ -38,7 +49,13 @@
                     Create And Renovate Hairstyle
                 </h2>
 
-                <a href="#" class="btn">Booking now !</a>
+                <form action="./booking.html">
+                    <div class="box">
+                        <h3>Đặt lịch qua số điện thoại</h3>
+                        <input type="text" id="" name="" placeholder="Nhập SĐT để đặt lịch">
+                        <button class="btn-send">Đặt ngay</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -114,8 +131,6 @@
     @RenderSection("scripts", required: false)
     <script>
         const toTop = document.querySelector(".to-top");
-
-
         window.addEventListener("scroll", () => {
             if (window.pageYOffset > 100) {
                 toTop.classList.add("active");
@@ -152,5 +167,34 @@
         bottom:32px;
         pointer-events:auto;
         opacity:1;
+    }
+
+    .Home .content-container .desc form {
+        padding: 1.3rem;
+        border-radius: 0.5rem;
+        background: #fff;
+        max-width: 33rem;
+        width: 100%;
+    }
+
+        .Home .content-container .desc form .box h3 {
+            font-size: 1.8rem;
+        }
+
+        .Home .content-container .desc form .box input {
+            font-size: 16px;
+        }
+
+            .Home .content-container .desc form .box input::placeholder {
+                font-size: 1.5rem;
+            }
+
+    .btn-send {
+        background-color: #542afb;
+        color: #fff;
+        border: none;
+        border-radius: 1rem;
+        padding: 0.8rem 1.7rem;
+        cursor: pointer;
     }
 </style>

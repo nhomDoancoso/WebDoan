@@ -1,220 +1,279 @@
-@import url("global.css");
+@import url("Global.css");
+
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem 10%;
-  z-index: 99 !important;
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+align-items: center;
+justify-content: space-between;
+padding: 2rem 10%;
+z-index: 99 !important;
 }
+
 .header .header-navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+display: flex;
+align-items: center;
+justify-content: space-between;
 }
+
 .header .header-navbar a {
-  color: #fff;
-  font-size: 1.7rem;
+color: #fff;
+font-size: 1.7rem;
 }
 
 .Home {
-  background-image: url("../images/banner.jpg");
-  min-height: 100vh;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+background-image: url("../images/banner.jpg");
+min-height: 100vh;
+width: 100%;
+background-size: cover;
+background-position: center;
+position: relative;
 }
+
 .Home .content-container {
-  position: absolute;
-  top: 21%;
-  left: 9%;
+position: absolute;
+top: 21%;
+left: 9%;
 }
+
 .Home .content-container .desc {
-  max-width: 45rem;
+max-width: 45rem;
 }
+
 .Home .content-container .desc h2 {
-  color: #fff;
-  font-weight: bolder;
-  font-size: 7rem;
+color: #fff;
+font-weight: bolder;
+font-size: 7rem;
+}
+
+.Home .content-container .desc form {
+padding: 1.3rem;
+border-radius: 0.5rem;
+background: #fff;
+max-width: 33rem;
+width: 100%;
+}
+
+.Home .content-container .desc form .box h3 {
+font-size: 1.8rem;
+}
+
+.Home .content-container .desc form .box input {
+font-size: 16px;
+}
+
+.Home .content-container .desc form .box input::placeholder {
+font-size: 1.5rem;
 }
 
 .about-us .about-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5rem;
+display: flex;
+flex-wrap: wrap;
+gap: 5rem;
 }
+
 .about-us .about-container .img-about {
-  flex: 1 1 32rem;
-  position: relative;
+flex: 1 1 32rem;
+position: relative;
 }
+
 .about-us .about-container .img-about::before, .about-us .about-container .img-about::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  background: #c29e75;
-  height: 15rem;
-  width: 15rem;
+content: "";
+position: absolute;
+z-index: -1;
+background: #c29e75;
+height: 15rem;
+width: 15rem;
 }
+
 .about-us .about-container .img-about::before {
-  top: -1.8rem;
-  left: -1.8rem;
+top: -1.8rem;
+left: -1.8rem;
 }
+
 .about-us .about-container .img-about::after {
-  bottom: -1.7rem;
-  right: -2rem;
+bottom: -1.7rem;
+right: -2rem;
 }
+
 .about-us .about-container .img-about img {
-  width: 100%;
-  border-top-right-radius: 1rem;
-  border-bottom-left-radius: 1rem;
+width: 100%;
+border-top-right-radius: 1rem;
+border-bottom-left-radius: 1rem;
 }
+
 .about-us .about-container .content {
-  flex: 1 1 32rem;
+flex: 1 1 32rem;
 }
+
 .about-us .about-container .content .descriptiton {
-  position: relative;
+position: relative;
 }
+
 .about-us .about-container .content .descriptiton p {
-  font-size: 1.6rem;
-  line-height: 1.7;
-  margin-left: 5rem;
+font-size: 1.6rem;
+line-height: 1.7;
+margin-left: 5rem;
 }
+
 .about-us .about-container .content .descriptiton::after {
-  content: "";
-  width: 0.3rem;
-  height: 100%;
-  background-color: #c29e75;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 1rem;
+content: "";
+width: 0.3rem;
+height: 100%;
+background-color: #c29e75;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 1rem;
 }
 
 .service {
-  padding: 10rem 2%;
+padding: 10rem 2%;
 }
+
 .service .service-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
-  gap: 1.5rem;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+gap: 1.5rem;
 }
+
 .service .service-container .box {
-  padding: 4rem 2rem;
+padding: 4rem 2rem;
 }
+
 .service .service-container .box .title-big {
-  font-family: "Playfair Display", serif;
-  font-weight: 900;
+font-family: "Playfair Display", serif;
+font-weight: 900;
 }
+
 .service .service-container .box:hover {
-  transition: 0.3s linear;
-  background-color: #1d2a3a;
+transition: 0.3s linear;
+background-color: #1d2a3a;
 }
+
 .service .service-container .box:hover h3, .service .service-container .box:hover p {
-  color: #fff;
+color: #fff;
 }
+
 .service .service-container .box:nth-child(1):hover {
-  background-color: #fff;
+background-color: #fff;
 }
+
 .service .service-container .box .title-big {
-  font-size: 4rem;
+font-size: 4rem;
 }
+
 .service .service-container .box .image {
-  text-align: center;
+text-align: center;
 }
+
 .service .service-container .box .image h3 {
-  font-size: 1.8rem;
+font-size: 1.8rem;
 }
+
 .service .service-container .box .image p {
-  text-align: start;
-  font-size: 1.6rem;
-  margin-left: 3rem;
-  position: relative;
+text-align: start;
+font-size: 1.6rem;
+margin-left: 3rem;
+position: relative;
 }
+
 .service .service-container .box .image p::after {
-  content: "";
-  width: 0.3rem;
-  height: 100%;
-  background-color: #c29e75;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: -2rem;
+content: "";
+width: 0.3rem;
+height: 100%;
+background-color: #c29e75;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: -2rem;
 }
 
 .prices {
-  background-image: url(../images/section-3.jpg);
-  min-height: 70vh;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+background-image: url(../images/section-3.jpg);
+min-height: 70vh;
+width: 100%;
+background-size: cover;
+background-position: center;
+position: relative;
 }
+
 .prices .container-title {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  max-width: 35rem;
+position: absolute;
+top: 40%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+max-width: 35rem;
 }
+
 .prices .container-title .wrap-title {
-  margin: auto;
-  display: inline-flex;
+margin: auto;
+display: inline-flex;
 }
+
 .prices .container-title .title-big {
-  font-family: "Playfair Display", serif;
-  text-transform: capitalize;
+font-family: "Playfair Display", serif;
+text-transform: capitalize;
 }
+
 .prices .list-container {
-  position: absolute;
-  top: 65%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  background: #1d2a3a;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 5rem;
+position: absolute;
+top: 65%;
+left: 0;
+right: 0;
+margin: auto;
+background: #1d2a3a;
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 5rem;
 }
+
 .prices .list-container .box {
-  flex: 1 1 38rem;
+flex: 1 1 38rem;
 }
+
 .prices .list-container .box .title-big {
-  font-family: "Playfair Display", serif;
-  font-size: 4rem !important;
+font-family: "Playfair Display", serif;
+font-size: 4rem !important;
 }
+
 .prices .list-container .box .list-info {
-  margin-top: 5rem;
+margin-top: 5rem;
 }
+
 .prices .list-container .box .list-info ul {
-  position: relative;
+position: relative;
 }
+
 .prices .list-container .box .list-info ul::after {
-  content: "";
-  width: 0.3rem;
-  height: 70%;
-  background-color: #c29e75;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 1rem;
+content: "";
+width: 0.3rem;
+height: 70%;
+background-color: #c29e75;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 1rem;
 }
+
 .prices .list-container .box .list-info ul li {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  margin-left: 5rem;
+display: flex;
+align-items: end;
+justify-content: space-between;
+margin-bottom: 1.5rem;
+margin-left: 5rem;
 }
+
 .prices .list-container .box .list-info ul li span:nth-child(1) {
-  color: #fff;
-  font-size: 1.9rem;
+color: #fff;
+font-size: 1.9rem;
 }
+
 .prices .list-container .box .list-info ul li span:nth-child(2) {
-  color: #c29e75;
-  font-size: 1.8rem;
-}/*# sourceMappingURL=style.css.map */
+color: #c29e75;
+font-size: 1.8rem;
+}
+/*# sourceMappingURL=style.css.map */
