@@ -1,89 +1,57 @@
-﻿@model WebDoan.Models.DICHVU
+﻿@model WebDoan.Models.COMBODICHVU
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1 style="font-size:1.5rem;padding:1rem 1rem">Thêm combo</h1>
-<hr />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="wrappres">
+    <div class="form-horizontal">
+        <h4>COMBODICHVU</h4>
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="wrapper-inner">
-            Mã Dịch Vụ
-            <div class="inner col-md-10">
-                @Html.EditorFor(model => model.MaDV, new { htmlAttributes = new { disable = "disable", @readonly = "readonly", @class = "" } })
-                @Html.ValidationMessageFor(model => model.MaDV, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaCB)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenCB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="wrapper-inner">
-            Tên Dịch Vụ
-            <div class="inner col-md-10">
-                @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "" } })
-                @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-
-        <div class="wrapper-inner">
-            Giá
-            <div class="inner col-md-10">
-                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-                @ViewData["Price"]
             </div>
         </div>
 
-        <div class="wrapper-inner">
-            Mã Loại Dịch Dụ
-            <div class="inner col-md-10">
-                @* @Html.EditorFor(model => model.MaLoaiDV, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.DropDownList("MaLoaiDV", null, htmlAttributes: new { @class = "" })
-                @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="inner">
-            <div style=" text-align: left; margin: 0 1rem;" class="col-md-offset-2 col-md-10">
-                <input style=" width: 10%; margin: 1rem 0;" type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
 <div class="button-86">
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 <style>
-    input {
-        width: 37%;
-        border-radius: 10px;
-        padding: 0.5rem 0.5rem;
-    }
-
-    .wrapper-inner {
-        margin: 1rem 0;
-    }
-
-    .inner {
-        width: 100%;
-    }
-
-    .wrappres {
-        text-align: center;
-    }
-
-    img {
-        text-align: center;
-        border-radius: 10px;
-    }
-
     .button-86 a {
         all: unset;
         width: 100px;

@@ -76,10 +76,33 @@ namespace WebDoan.Areas.Admin.Controllers
             Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[@!#%])[A-Za-z0-9!#%]{8,32}$");
             Match matchPassword = regexPass.Match(Pass);
             var checkUserl = db.NHANVIEN.FirstOrDefault(x => x.UserName == User);
-            if (string.IsNullOrEmpty(dienthoai) && string.IsNullOrEmpty(diachi) && string.IsNullOrEmpty(email)
-                    && string.IsNullOrEmpty(User) && string.IsNullOrEmpty(Pass))
+            if(string.IsNullOrEmpty(dienthoai))
             {
-                ViewData["!empty"] = "Không được để trống";
+                ViewData["!sdt"] = "Số điện thoại không được trống";
+                return this.Create();
+            }
+
+            if (string.IsNullOrEmpty(diachi))
+            {
+                ViewData["!diachi"] = "địa chỉ không được trống";
+                return this.Create();
+            }
+
+            if (string.IsNullOrEmpty(Pass))
+            {
+                ViewData["!pass"] = "mật khẩu không được trống";
+                return this.Create();
+            } 
+
+            if (string.IsNullOrEmpty(email))
+            {
+                ViewData["!email"] = "email không được trống";
+                return this.Create();
+            }
+
+            if (string.IsNullOrEmpty(User))
+            {
+                ViewData["!user"] = "user không được trống";
                 return this.Create();
             }
 

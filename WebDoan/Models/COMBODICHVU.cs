@@ -26,6 +26,9 @@ namespace WebDoan.Models
 
         public double? Gia { get; set; }
 
+        [StringLength(50)]
+        public string HinhAnh { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DICHVU> DICHVU { get; set; }
 

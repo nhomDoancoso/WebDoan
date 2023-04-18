@@ -8,7 +8,7 @@ namespace WebDoan.Models
     public partial class myDataContextDB : DbContext
     {
         public myDataContextDB()
-            : base("name=myDataContextDB1")
+            : base("name=myDataContextDB2")
         {
         }
 

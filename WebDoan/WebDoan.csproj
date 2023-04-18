@@ -354,7 +354,6 @@
     <Compile Include="Models\HOADON.cs" />
     <Compile Include="Models\KHACHHANG.cs" />
     <Compile Include="Models\LOAIDICHVU.cs" />
-    <Compile Include="Models\MaHoaMd5.cs" />
     <Compile Include="Models\myDataContextDB.cs" />
     <Compile Include="Models\NHANVIEN.cs" />
     <Compile Include="Models\PHIEUDAT.cs" />
@@ -3161,6 +3160,11 @@
     <Content Include="Content\sass\style.scss" />
     <Content Include="Content\css\login.css.map" />
     <Content Include="Content\css\register.css.map" />
+    <Content Include="Areas\Admin\Views\Combo\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Combo\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Combo\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Combo\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Combo\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3191,7 +3195,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Combo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

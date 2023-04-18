@@ -7,45 +7,143 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 }
 
+<h1 style="font-size:1.5rem;padding:1rem 1rem">Thêm Loại Dịch Vụ</h1>
+<hr />
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>LOAIDICHVU</h4>
-        <hr />
+    <div class="wrappres">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaLoaiDV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="wrapper-inner">
+            Mã Loại Dịch Vụ
+            <div class="inner col-md-10">
+                @Html.EditorFor(model => model.MaLoaiDV, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
                 @ViewData["ViewErr"]
                 @ViewData["UserExist"]
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenLoaiDV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenLoaiDV, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="wrapper-inner">
+            Tên Loại Dịch
+            <div class="inner col-md-10">
+                @Html.EditorFor(model => model.TenLoaiDV, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenLoaiDV, "", new { @class = "text-danger" })
                 @ViewData["ViewErr"]
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="inner">
+            <div style=" text-align: left; margin: 0 1rem;"  class="col-md-offset-2 col-md-10">
+                <input style=" width: 10%; margin: 1rem 0;"  type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
-<div class="button-86">
-    @Html.ActionLink("Back to List", "LoaiDv")
+<div class="m-2">
+    <butotn class="button-86">
+        @Html.ActionLink("Back to List", "LoaiDv")
+    </butotn>
 </div>
+<style>
+    .wrapper-inner {
+        margin: 1rem 0;
+    }
 
+    .inner {
+        width: 100%;
+    }
+
+    .wrappres {
+        text-align: center;
+    }
+
+    img {
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .button-86 {
+        margin: 1rem 0;
+        all: unset;
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        background: transparent;
+        border: none;
+        position: relative;
+        color: #f0f0f0;
+        cursor: pointer;
+        z-index: 1;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+        .button-86 a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .button-86::after,
+        .button-86::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -99999;
+            transition: all .4s;
+        }
+
+        .button-86::before {
+            transform: translate(0%, 0%);
+            width: 100%;
+            height: 100%;
+            background: #28282d;
+            border-radius: 10px;
+        }
+
+        .button-86::after {
+            transform: translate(10px, 10px);
+            width: 35px;
+            height: 35px;
+            background: #ffffff15;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 50px;
+        }
+
+        .button-86:hover::before {
+            transform: translate(5%, 20%);
+            width: 110%;
+            height: 110%;
+        }
+
+        .button-86:hover::after {
+            border-radius: 10px;
+            transform: translate(0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-86:active::after {
+            transition: 0s;
+            transform: translate(0, 5%);
+        }
+
+    input {
+        width: 37%;
+        border-radius: 10px;
+        padding: 0.5rem 0.5rem;
+    }
+</style>
 
 <style>
     .button-86 a {
