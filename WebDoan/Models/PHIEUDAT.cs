@@ -23,9 +23,13 @@ namespace WebDoan.Models
 
         public int? MaNV { get; set; }
 
-        public DateTime? TimeDat { get; set; }
+        public DateTime? TimeLap { get; set; }
 
         public DateTime? TimeHen { get; set; }
+
+        public int? MaCN { get; set; }
+
+        public virtual CHINHANH CHINHANH { get; set; }
 
         public virtual KHACHHANG KHACHHANG { get; set; }
 

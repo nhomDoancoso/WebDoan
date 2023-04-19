@@ -14,6 +14,7 @@ namespace WebDoan.Models
         {
             HOADON = new HashSet<HOADON>();
             PHIEUDAT = new HashSet<PHIEUDAT>();
+            Lich = new HashSet<Lich>();
         }
 
         [Key]
@@ -53,5 +54,8 @@ namespace WebDoan.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUDAT> PHIEUDAT { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Lich> Lich { get; set; }
     }
 }

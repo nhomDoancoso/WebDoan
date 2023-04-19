@@ -8,15 +8,17 @@ namespace WebDoan.Models
     public partial class myDataContextDB : DbContext
     {
         public myDataContextDB()
-            : base("name=myDataContextDB2")
+            : base("name=myDataContextDB5")
         {
         }
 
         public virtual DbSet<COMBODICHVU> COMBODICHVU { get; set; }
+        public virtual DbSet<CHINHANH> CHINHANH { get; set; }
         public virtual DbSet<CHUCVU> CHUCVU { get; set; }
         public virtual DbSet<DICHVU> DICHVU { get; set; }
         public virtual DbSet<HOADON> HOADON { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANG { get; set; }
+        public virtual DbSet<Lich> Lich { get; set; }
         public virtual DbSet<LOAIDICHVU> LOAIDICHVU { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIEN { get; set; }
         public virtual DbSet<PHIEUDAT> PHIEUDAT { get; set; }
@@ -37,6 +39,10 @@ namespace WebDoan.Models
                 .HasMany(e => e.HOADON)
                 .WithMany(e => e.COMBODICHVU)
                 .Map(m => m.ToTable("CTHOADON").MapLeftKey("MaCB").MapRightKey("MaHD"));
+
+            modelBuilder.Entity<CHINHANH>()
+                .Property(e => e.HotLine)
+                .IsUnicode(false);
 
             modelBuilder.Entity<DICHVU>()
                 .Property(e => e.MaLoaiDV)
@@ -61,6 +67,11 @@ namespace WebDoan.Models
                 .Property(e => e.Password)
                 .IsFixedLength()
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Lich>()
+                .HasMany(e => e.NHANVIEN)
+                .WithMany(e => e.Lich)
+                .Map(m => m.ToTable("CTLLV").MapLeftKey("MaTime").MapRightKey("MaNV"));
 
             modelBuilder.Entity<LOAIDICHVU>()
                 .Property(e => e.MaLoaiDV)

@@ -342,17 +342,20 @@
     <Compile Include="Areas\Admin\Controllers\LoaiDVController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TimeController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CHINHANH.cs" />
     <Compile Include="Models\CHUCVU.cs" />
     <Compile Include="Models\COMBODICHVU.cs" />
     <Compile Include="Models\DICHVU.cs" />
     <Compile Include="Models\HOADON.cs" />
     <Compile Include="Models\KHACHHANG.cs" />
+    <Compile Include="Models\Lich.cs" />
     <Compile Include="Models\LOAIDICHVU.cs" />
     <Compile Include="Models\myDataContextDB.cs" />
     <Compile Include="Models\NHANVIEN.cs" />
@@ -3165,6 +3168,11 @@
     <Content Include="Areas\Admin\Views\Combo\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Time\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Time\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Time\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Time\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Time\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
