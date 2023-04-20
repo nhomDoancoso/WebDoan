@@ -19,13 +19,15 @@
             </div> <div class="d-flex flex-row justify-content-center align-items-center mt-3">
 
             </div>
-            <div class=" d-flex mt-2">
-                <a href="@Url.Action("Edit", "NhanVien",  new { id = Model.MaNV})">
-                    <button class="btn1 btn-dark">
-                        Edit Profile
-                    </button>
-                </a>
-            </div>
+                   <div class=" d-flex mt-2">
+                       <span href="#" hidden id="Hide">
+                           <a href="@Url.Action("Edit", "NhanVien",  new { id = Model.MaNV})">
+                               <button class="btn1 btn-dark">
+                                   Edit Profile
+                               </button>
+                           </a>
+                           </span>
+                   </div>
             <div class="text mt-3" style="text-align:justify">
                 <span>Hair stylists, including barbers, hairdressers, and cosmetologists, provide haircutting, hairstyling, hair coloring, and a range of other beauty services to their clients. Hair stylists work mostly in barbershops or salons, so when writing your resume, be sure to include any work experience in these settings. Since physical stamina is important for hair stylists, be sure to mention that when listing your skills and qualifications. List your education, any special training you’ve received, and ensure that you include your current licensing information on your resume. For more tips on giving your resume a new look, use our hair stylist resume example. </span>
             </div>
@@ -122,3 +124,11 @@
             transform: translate(0, 5%);
         }
 </style>
+
+<script>
+    var Phanquyen = document.getElementById('Hide');
+    if ("@Session["CHucVU"]" == 2) {
+        Phanquyen.hidden = false;
+    }
+</script>
+

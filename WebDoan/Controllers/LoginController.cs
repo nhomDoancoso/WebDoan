@@ -11,7 +11,7 @@ namespace WebDoan.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        myDataContextDB db = new myDataContextDB();
+        myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
             return View();
@@ -29,7 +29,7 @@ namespace WebDoan.Controllers
             var matkhau = collection["Password"];
             var email = collection["Email"];
 
-            KHACHHANG khachang = db.KHACHHANG.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
+            KHACHHANG khachang = db.KHACHHANGs.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
 
             if (khachang != null)
             {
@@ -75,7 +75,7 @@ namespace WebDoan.Controllers
             Match matchPhone = regexPhone.Match(dienthoai);
             Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[@!#%])[A-Za-z0-9!#%]{8,32}$");
             Match matchPassword = regexPass.Match(matkhau);
-            var checkEmail = db.KHACHHANG.FirstOrDefault(x => x.Email == email);
+            var checkEmail = db.KHACHHANGs.FirstOrDefault(x => x.Email == email);
            
             if (string.IsNullOrEmpty(hoten))
             {
@@ -139,8 +139,8 @@ namespace WebDoan.Controllers
                     kh.Email = email;
                     kh.UserName = tendangnhap;
                     kh.Password = matkhau;
-                    db.KHACHHANG.Add(kh);
-                    db.SaveChanges();
+                    db.KHACHHANGs.InsertOnSubmit(kh);
+                    db.SubmitChanges();
                     return RedirectToAction("DangNhap", "Login");
                 }
             }

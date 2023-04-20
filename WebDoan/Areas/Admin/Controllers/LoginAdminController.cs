@@ -10,7 +10,7 @@ namespace WebDoan.Areas.Admin.Controllers
     public class LoginAdminController : Controller
     {
         // GET: Admin/LoginAdmin
-        myDataContextDB db = new myDataContextDB();
+        myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
             return View();
@@ -28,7 +28,7 @@ namespace WebDoan.Areas.Admin.Controllers
             var matkhau = collection["Password"];
             var email = collection["Email"];
 
-            NHANVIEN nv = db.NHANVIEN.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
+            NHANVIEN nv = db.NHANVIENs.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
             
             if (nv != null)
             {

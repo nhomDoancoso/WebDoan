@@ -103,7 +103,6 @@
                                         <label class="form-label" for="form3Example4cg">Tên Tài Khoản</label>
                                         @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                                        @ViewData["UserExist"]
                                         @ViewData["!user"]
                                     </div>
 

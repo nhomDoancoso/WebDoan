@@ -12,10 +12,10 @@ namespace WebDoan.Areas.Admin.Controllers
     public class ComboController : Controller
     {
         // GET: Admin/Combo
-        myDataContextDB db = new myDataContextDB();
+        myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
-            var lstCombo = from ss in db.COMBODICHVU select ss;
+            var lstCombo = from ss in db.COMBODICHVUs select ss;
             return View(lstCombo);
         }
 
@@ -31,13 +31,19 @@ namespace WebDoan.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.MaLoaiDV = new SelectList(db.LOAIDICHVUs, "MaLoaiDV", "TenLoaiDV");
             return View();
         }
         [HttpPost]
         public ActionResult Create(FormCollection collection, COMBODICHVU combo)
         {
             var macb = collection["MaCB"];
-            var checkCombo = db.COMBODICHVU.FirstOrDefault(x => x.MaCB.ToString() == macb);
+            var checkCombo = db.COMBODICHVUs.FirstOrDefault(x => x.MaCB.ToString() == macb);
+            if (checkCombo != null)
+            {
+                ViewData["userExits"] = "mã combo đã tồn tại";
+                return this.Create();
+            }
             if (combo.MaCB.ToString().IsNullOrWhiteSpace())
             {
                 ViewData["ViewErr"] = "Không được để trống";
@@ -50,64 +56,66 @@ namespace WebDoan.Areas.Admin.Controllers
                 return this.Create();
             }
 
-            if(combo.Gia.ToString().IsNullOrWhiteSpace() && combo.Gia <= 0)
+            if(combo.Gia.ToString().IsNullOrWhiteSpace() )
             {
                 ViewData["ViewErr3"] = "Không được để trống";
+                return this.Create();
+            }
+            if (combo.Gia <= 0)
+            {
                 ViewData["Vieweee"] = "Gía tiền không được âm";
                 return this.Create();
             }
-            db.COMBODICHVU.Add(combo);
-            db.SaveChanges();
-            return RedirectToAction("loaidv");
+
+
+            db.COMBODICHVUs.InsertOnSubmit(combo);
+            db.SubmitChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Detail(int id)
         {
-            var lstCombo = db.COMBODICHVU.Where(m => m.MaCB == id).First();
+            var lstCombo = db.COMBODICHVUs.Where(m => m.MaCB == id).First();
             return View(lstCombo);
         }
 
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            COMBODICHVU combo  = db.COMBODICHVU.Find(id);
-            if (combo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(combo);
+            var D_DV = db.COMBODICHVUs.First(m => m.MaCB == id);
+            return View(D_DV);
         }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
         {
-            COMBODICHVU combodv = db.COMBODICHVU.Find(id);
-            db.COMBODICHVU.Remove(combodv);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var D_DV = db.COMBODICHVUs.Where(m => m.MaCB == id).First();
+            db.COMBODICHVUs.DeleteOnSubmit(D_DV);
+            db.SubmitChanges();
+            return RedirectToAction("Index", "Combo");
         }
 
         public ActionResult Edit(int id)
         {
-           // ViewBag.MaCV = new SelectList(db.CHUCVU, "MaCV", "TenCV");
-            var lstCombo = db.COMBODICHVU.First(m => m.MaCB == id);
+            var lstCombo = db.COMBODICHVUs.First(m => m.MaCB == id);
             return View(lstCombo);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, COMBODICHVU combo)
         {
-            var E_Combo = db.COMBODICHVU.First(m => m.MaCB == id);
+            var E_Combo = db.COMBODICHVUs.First(m => m.MaCB == id);
             var E_tencb = collection["TenCB"];
             var E_Gia = double.Parse(collection["Gia"]);
             var E_HinhAh = collection["HinhAnh"];
             E_Combo.MaCB = id;
+            if(combo.Gia <= 0)
+            {
+                ViewData["gia"] = "Gía tiền không được âm";
+                return this.Create();
+            }
             if (string.IsNullOrEmpty(E_tencb))
             {
                 ViewData["Error"] = "Don't empty!";
+                return this.Create();
             }
             else
             {
@@ -115,7 +123,7 @@ namespace WebDoan.Areas.Admin.Controllers
                 E_Combo.Gia = E_Gia;
                 E_Combo.HinhAnh = E_HinhAh;
                 UpdateModel(E_Combo);
-                db.SaveChanges();
+                db.SubmitChanges();
                 return RedirectToAction("Index");
             }
             return this.Edit(id);

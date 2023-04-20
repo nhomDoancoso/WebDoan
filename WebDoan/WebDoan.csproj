@@ -103,6 +103,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -337,8 +338,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChiTietLichLVController.cs" />
     <Compile Include="Areas\Admin\Controllers\ComboController.cs" />
     <Compile Include="Areas\Admin\Controllers\DichVuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiDVController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
@@ -349,17 +352,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CHINHANH.cs" />
-    <Compile Include="Models\CHUCVU.cs" />
-    <Compile Include="Models\COMBODICHVU.cs" />
-    <Compile Include="Models\DICHVU.cs" />
-    <Compile Include="Models\HOADON.cs" />
-    <Compile Include="Models\KHACHHANG.cs" />
-    <Compile Include="Models\Lich.cs" />
-    <Compile Include="Models\LOAIDICHVU.cs" />
-    <Compile Include="Models\myDataContextDB.cs" />
-    <Compile Include="Models\NHANVIEN.cs" />
-    <Compile Include="Models\PHIEUDAT.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\myDataContext.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>myDataContext.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -3173,6 +3171,15 @@
     <Content Include="Areas\Admin\Views\Time\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Time\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Time\Edit.cshtml" />
+    <Content Include="Models\myDataContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\Error\Index.cshtml" />
+    <None Include="Models\myDataContext.dbml.layout">
+      <DependentUpon>myDataContext.dbml</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3203,6 +3210,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\ChiTietLichLV\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3216,6 +3224,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

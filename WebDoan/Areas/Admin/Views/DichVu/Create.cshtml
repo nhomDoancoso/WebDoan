@@ -26,6 +26,7 @@
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
+                @ViewData["ViewErr"]
             </div>
         </div>
 

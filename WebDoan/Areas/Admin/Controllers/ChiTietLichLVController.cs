@@ -5,16 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using WebDoan.Models;
 
-namespace WebDoan.Controllers
+namespace WebDoan.Areas.Admin.Controllers
 {
-    public class FooterController : Controller
+    public class ChiTietLichLVController : Controller
     {
-        // GET: Footer
+        // GET: Admin/ChiTietLichLV
         myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
-            var lstDv = from ss in db.DICHVUs select ss;
-            return View(lstDv);
+            return View();
         }
     }
 }

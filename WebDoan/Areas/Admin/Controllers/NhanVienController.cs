@@ -12,7 +12,7 @@ namespace WebDoan.Areas.Admin.Controllers
     public class NhanVienController : Controller
     {
         // GET: Admin/NhanVien
-        myDataContextDB db = new myDataContextDB();
+        myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
             return View();
@@ -23,7 +23,7 @@ namespace WebDoan.Areas.Admin.Controllers
             var matkhau = collection["Password"];
             var email = collection["Email"];
 
-            NHANVIEN nv = db.NHANVIEN.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
+            NHANVIEN nv = db.NHANVIENs.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
             if (nv != null)
             {
                 ViewBag.ThongBao = "Chúc mừng đăng nhập thà nh công";
@@ -40,8 +40,8 @@ namespace WebDoan.Areas.Admin.Controllers
         {
             int pageSize = 8;
             int pageNum = page ?? 1;
-            var SearchAll = db.NHANVIEN.OrderBy(s => s.TenNV);
-            var SearchSp = db.NHANVIEN.OrderBy(m => m.TenNV).Where(sp => sp.TenNV.ToUpper().Contains(SearchString.ToUpper()));
+            var SearchAll = db.NHANVIENs.OrderBy(s => s.TenNV);
+            var SearchSp = db.NHANVIENs.OrderBy(m => m.TenNV).Where(sp => sp.TenNV.ToUpper().Contains(SearchString.ToUpper()));
             page = 1;
             if (SearchString == null || SearchString == "")
                 return View(SearchAll.ToPagedList(pageNum, pageSize));
@@ -53,7 +53,7 @@ namespace WebDoan.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.MaCV = new SelectList(db.CHUCVU, "MaCV", "TenCV");
+            ViewBag.MaCV = new SelectList(db.CHUCVUs, "MaCV", "TenCV");
             return View();
         }
         [HttpPost]
@@ -75,7 +75,7 @@ namespace WebDoan.Areas.Admin.Controllers
             Match matchPhone = regexPhone.Match(dienthoai);
             Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[@!#%])[A-Za-z0-9!#%]{8,32}$");
             Match matchPassword = regexPass.Match(Pass);
-            var checkUserl = db.NHANVIEN.FirstOrDefault(x => x.UserName == User);
+            var checkUserl = db.NHANVIENs.FirstOrDefault(x => x.UserName == User);
             if(string.IsNullOrEmpty(dienthoai))
             {
                 ViewData["!sdt"] = "Số điện thoại không được trống";
@@ -150,8 +150,8 @@ namespace WebDoan.Areas.Admin.Controllers
                     nv.SDT = dienthoai;
                     nv.MaCV = chucvu;
 
-                    db.NHANVIEN.Add(nv);
-                    db.SaveChanges();
+                    db.NHANVIENs.InsertOnSubmit(nv);
+                    db.SubmitChanges();
 
                     return RedirectToAction("LstNhanVien");
                 }
@@ -170,21 +170,21 @@ namespace WebDoan.Areas.Admin.Controllers
 
         public ActionResult Detail(int id)
         {
-            var listNv = db.NHANVIEN.Where(m => m.MaNV == id).First();
+            var listNv = db.NHANVIENs.Where(m => m.MaNV == id).First();
             return View(listNv);
         }
 
         public ActionResult Edit(int id)
         {
-            ViewBag.MaCV = new SelectList(db.CHUCVU, "MaCV", "TenCV");
-            var listNv = db.NHANVIEN.First(m => m.MaNV == id);
+            ViewBag.MaCV = new SelectList(db.CHUCVUs, "MaCV", "TenCV");
+            var listNv = db.NHANVIENs.First(m => m.MaNV == id);
             return View(listNv);
         }
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            var ENv = db.NHANVIEN.First(m => m.MaNV == id);
+            var ENv = db.NHANVIENs.First(m => m.MaNV == id);
             var E_hinhNV = collection["HinhNV"];
             var E_tenNV = collection["TenNV"];
             var E_SDT = collection["SDT"];
@@ -206,22 +206,22 @@ namespace WebDoan.Areas.Admin.Controllers
                 ENv.UserName = User;
                 ENv.Password = Pass;
                 UpdateModel(ENv);
-                db.SaveChanges();
+                db.SubmitChanges();
                 return RedirectToAction("LstNhanVien");
             }
             return this.Edit(id);
         }
         public ActionResult Delete(int id)
         {
-            var listNv = db.NHANVIEN.First(m => m.MaNV == id);
+            var listNv = db.NHANVIENs.First(m => m.MaNV == id);
             return View(listNv);
         }
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            var listNv = db.NHANVIEN.Where(m => m.MaNV == id).First();
-            db.NHANVIEN.Remove(listNv);
-            db.SaveChanges();
+            var listNv = db.NHANVIENs.Where(m => m.MaNV == id).First();
+            db.NHANVIENs.DeleteOnSubmit(listNv);
+            db.SubmitChanges();
             return RedirectToAction("LstNhanVien");
         }
         public ActionResult Logout()

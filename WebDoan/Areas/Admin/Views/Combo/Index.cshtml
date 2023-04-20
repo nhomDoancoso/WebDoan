@@ -18,6 +18,7 @@
                     <table class="table user-list">
                         <thead>
                             <tr>
+                                <th class="text-center text-capitalize"><span> Mã combo </span></th>
                                 <th class="text-center text-capitalize"><span> Tên combo </span></th>
                                 <th class="text-center text-capitalize"><span> Giá </span></th>
                                 <th class="text-center text-capitalize"><span> Hình ảnh </span></th>
@@ -28,6 +29,9 @@
                         {
                             <tbody>
                                 <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaCB)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.TenCB)
                                     </td>

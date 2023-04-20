@@ -11,10 +11,10 @@ namespace WebDoan.Areas.Admin.Controllers
     public class TimeController : Controller
     {
         // GET: Admin/Time
-        myDataContextDB db = new myDataContextDB();
+        myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
-            var lstTime = from ss in db.Lich select ss;
+            var lstTime = from ss in db.Liches select ss;
             return View(lstTime);
         }
 
@@ -26,43 +26,34 @@ namespace WebDoan.Areas.Admin.Controllers
         public ActionResult Create(FormCollection collection, Lich loaitime)
         {
             var matime = collection["MaTime"];
-            var checkTime = db.Lich.FirstOrDefault(x => x.MaTime.ToString() == matime);
+            var checkTime = db.Liches.FirstOrDefault(x => x.MaTime.ToString() == matime);
             if (checkTime != null)
             {
                 ViewData["UserExist"] = "mã loại dịch vụ đã tồn tại";
                 return this.Create();
             }
-            db.Lich.Add(loaitime);
-            db.SaveChanges();
+            db.Liches.InsertOnSubmit(loaitime);
+            db.SubmitChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Lich lich = db.Lich.Find(id);
-            if (lich == null)
-            {
-                return HttpNotFound();
-            }
-            return View(lich);
+            var D_DV = db.Liches.First(m => m.MaTime == id);
+            return View(D_DV);
         }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
         {
-            Lich lich = db.Lich.Find(id);
-            db.Lich.Remove(lich);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var D_DV = db.Liches.Where(m => m.MaTime == id).First();
+            db.Liches.DeleteOnSubmit(D_DV);
+            db.SubmitChanges();
+            return RedirectToAction("Index", "Time");
         }
 
         public ActionResult Detail(int id)
         {
-            var loaiTime = db.Lich.Where(m => m.MaTime == id).First();
+            var loaiTime = db.Liches.Where(m => m.MaTime == id).First();
             return View(loaiTime);
         }
 
@@ -70,7 +61,7 @@ namespace WebDoan.Areas.Admin.Controllers
         {
             try
             {
-                var E_time = db.Lich.First(m => m.MaTime == id);
+                var E_time = db.Liches.First(m => m.MaTime == id);
                 return View(E_time);
             }
             catch (Exception ex)
@@ -81,7 +72,7 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            var sp = db.Lich.First(m => m.MaTime == id);
+            var sp = db.Liches.First(m => m.MaTime == id);
 
             var E_tenLoai = TimeSpan.Parse(collection["Time"]);
             sp.MaTime = id;
@@ -93,7 +84,7 @@ namespace WebDoan.Areas.Admin.Controllers
             {
                 sp.Time = E_tenLoai;
                 UpdateModel(sp);
-                db.SaveChanges();
+                db.SubmitChanges();
                 return RedirectToAction("Index", "Time");
             }
             return this.Edit(id);

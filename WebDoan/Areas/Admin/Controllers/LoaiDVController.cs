@@ -12,7 +12,7 @@ namespace WebDoan.Areas.Admin.Controllers
     public class LoaiDVController : Controller
     {
         // GET: Admin/LoaiDV
-        myDataContextDB db = new myDataContextDB();
+        myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
             return View();
@@ -20,7 +20,7 @@ namespace WebDoan.Areas.Admin.Controllers
 
         public ActionResult LoaiDv()
         {
-            var lstLoaiDV = from ss in db.LOAIDICHVU select ss;
+            var lstLoaiDV = from ss in db.LOAIDICHVUs select ss;
             return View(lstLoaiDV);
         }
 
@@ -32,7 +32,7 @@ namespace WebDoan.Areas.Admin.Controllers
         public ActionResult Create(FormCollection collection, LOAIDICHVU loaidv)
         {
             var madv = collection["MaLoaiDV"];
-            var checkLoaiDV = db.LOAIDICHVU.FirstOrDefault(x => x.MaLoaiDV == madv);
+            var checkLoaiDV = db.LOAIDICHVUs.FirstOrDefault(x => x.MaLoaiDV == madv);
             if (checkLoaiDV != null)
             {
                 ViewData["UserExist"] = "mã loại dịch vụ đã tồn tại";
@@ -43,36 +43,32 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["ViewErr"] = "Không được để trống";
                 return this.Create();
             }
-            db.LOAIDICHVU.Add(loaidv);
-            db.SaveChanges();
+            db.LOAIDICHVUs.InsertOnSubmit(loaidv);
+            db.SubmitChanges();
             return RedirectToAction("LoaiDv");
         }
         public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LOAIDICHVU lOAIDICHVU = db.LOAIDICHVU.Find(id);
-            if (lOAIDICHVU == null)
-            {
-                return HttpNotFound();
-            }
-            return View(lOAIDICHVU);
+            var listloaidv = db.LOAIDICHVUs.First(m => m.MaLoaiDV == id);
+            return View(listloaidv);
         }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        [HttpPost]
+        public ActionResult Delete(string id, FormCollection collection)
         {
-            LOAIDICHVU loaidv = db.LOAIDICHVU.Find(id);
-            db.LOAIDICHVU.Remove(loaidv);
-            db.SaveChanges();
-            return RedirectToAction("LoaiDv");
+            try {
+                var listloaidv = db.LOAIDICHVUs.Where(m => m.MaLoaiDV == id).First();
+                db.LOAIDICHVUs.DeleteOnSubmit(listloaidv);
+                db.SubmitChanges();
+                return RedirectToAction("LoaiDv");
+            } catch(Exception e)
+            {
+                return RedirectToAction("Error", new { message = e.Message });
+            }
         }
 
         public ActionResult Detail(string id)
         {
-            var loaidv = db.LOAIDICHVU.Where(m => m.MaLoaiDV == id).First();
+            var loaidv = db.LOAIDICHVUs.Where(m => m.MaLoaiDV == id).First();
             return View(loaidv);
         }
 
@@ -80,7 +76,7 @@ namespace WebDoan.Areas.Admin.Controllers
         {
             try
             {
-                var E_Sp = db.LOAIDICHVU.First(m => m.MaLoaiDV == id);
+                var E_Sp = db.LOAIDICHVUs.First(m => m.MaLoaiDV == id);
                 return View(E_Sp);
             }
             catch (Exception ex)
@@ -92,7 +88,7 @@ namespace WebDoan.Areas.Admin.Controllers
         public ActionResult Edit(string id, FormCollection collection, LOAIDICHVU loaidv)
         {
 
-            var sp = db.LOAIDICHVU.First(m => m.MaLoaiDV == id);
+            var sp = db.LOAIDICHVUs.First(m => m.MaLoaiDV == id);
 
             var E_tenLoai = collection["TenLoaiDV"];
             sp.MaLoaiDV = id;
@@ -104,7 +100,7 @@ namespace WebDoan.Areas.Admin.Controllers
             {
                 sp.TenLoaiDV = E_tenLoai;
                 UpdateModel(sp);
-                db.SaveChanges();
+                db.SubmitChanges();
                 return RedirectToAction("LoaiDv", "LoaiDv");
             }
             return this.Edit(id);
