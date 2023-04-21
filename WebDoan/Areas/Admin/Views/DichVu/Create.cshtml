@@ -13,13 +13,13 @@
 
     <div class="wrappres">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="wrapper-inner">
+        @*<div class="wrapper-inner">
             Mã Dịch Vụ
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.MaDV, new { htmlAttributes = new { disable = "disable", @readonly = "readonly", @class = "" } })
                 @Html.ValidationMessageFor(model => model.MaDV, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="wrapper-inner">
             Tên Dịch Vụ
@@ -46,7 +46,7 @@
             <div class="inner col-md-10">
                 @* @Html.EditorFor(model => model.MaLoaiDV, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.DropDownList("MaLoaiDV", null, htmlAttributes: new { @class = "" })
-                @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.LOAIDICHVU.MaLoaiDV, "", new { @class = "text-danger" })
             </div>
         </div>
 

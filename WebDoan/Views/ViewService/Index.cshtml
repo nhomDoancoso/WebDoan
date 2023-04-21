@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebDoan.Models.DICHVU>
+
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/css/Global.css" rel="stylesheet" />
+        <link href="~/Content/css/View-service.css" rel="stylesheet" />
+</head>
+<body>
+    </div>
+    <section class="full-section">
+        <div class="wrap-title">
+            <div class="title"> </div>
+            <span>Our Service</span>
+        </div>
+
+        <div class="fullsection-container">
+            @foreach (var item in Model)
+            {
+                <div class="box">
+                    <div class="box-imageDetail">
+                        <img src="~/Content/images/section-4.jpg" />
+                    </div>
+
+                    <div class="box-viewDetail">
+                        <h3>@Html.DisplayFor(modelItem => item.TenDV)</h3>
+                        <span>
+                            <strong> $: </strong>@Html.DisplayFor(modelItem => item.Gia)
+                        </span>
+                        <a href="" class="btn-send" style="margin-right: 1rem;">View Service</a>
+                        <a href="./booking.html" class="btn-send">Booking</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</body>
+</html>

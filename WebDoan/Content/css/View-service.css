@@ -1,0 +1,40 @@
+@import url("Global.css");
+.full-section {
+  padding: 5rem 10%;
+}
+
+.fullsection-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: initial;
+}
+
+.full-section .fullsection-container .box {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 3rem;
+}
+.full-section .fullsection-container .box .box-viewDetail {
+  display: inline-block;
+  text-align:center;
+}
+.full-section .fullsection-container .box .box-viewDetail h3 {
+  font-size: 2.5rem;
+}
+.full-section .fullsection-container .box .box-viewDetail span {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+.full-section .fullsection-container .box .box-viewDetail .btn-send {
+  align-items: center;
+  font-size: 1.4rem;
+}
+.full-section .fullsection-container .box .box-imageDetail {
+  max-width: 50rem;
+}
+.full-section .fullsection-container .box .box-imageDetail img {
+  width: 100%;
+  border-radius: 1rem;
+}/*# sourceMappingURL=View-service.css.map */

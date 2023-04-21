@@ -348,6 +348,7 @@
     <Compile Include="Areas\Admin\Controllers\TimeController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ViewServiceController.cs" />
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -373,6 +374,7 @@
     <Content Include="Content\css\sb-admin-2.css" />
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\View-service.css" />
     <Content Include="Content\fontawesome-free\css\all.css" />
     <Content Include="Content\fontawesome-free\css\all.min.css" />
     <Content Include="Content\fontawesome-free\css\brands.css" />
@@ -1258,6 +1260,7 @@
     <Content Include="Content\images\section-2.jpg" />
     <Content Include="Content\images\section-3.jpg" />
     <Content Include="Content\images\section-4.jpg" />
+    <Content Include="Content\images\section-product.jpg" />
     <Content Include="Content\js\demo\chart-area-demo.js" />
     <Content Include="Content\js\demo\chart-bar-demo.js" />
     <Content Include="Content\js\demo\chart-pie-demo.js" />
@@ -3177,6 +3180,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Views\Error\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietLichLV\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietLichLV\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietLichLV\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietLichLV\Edit.cshtml" />
+    <Content Include="Content\css\View-service.css.map" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
@@ -3206,11 +3214,11 @@
     <Content Include="Views\Footer\Index.cshtml" />
     <Content Include="Views\Login\DangNhap.cshtml" />
     <Content Include="Views\Login\DangKy.cshtml" />
+    <Content Include="Views\ViewService\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\ChiTietLichLV\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

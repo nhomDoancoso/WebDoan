@@ -1,0 +1,46 @@
+﻿@model WebDoan.Models.Lich
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @*<h4>CTLLV</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaTime)
+
+        @Html.HiddenFor(model => model.MaNV)*@
+    <div class="form-group">
+        Mã Time
+        <div class="col-md-10">
+            @Html.DropDownList("MaTime", null, htmlAttributes: new { @class = "" })
+            @Html.ValidationMessageFor(model => model.MaTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Mã Time
+        <div class="col-md-10">
+            @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "" })
+            @Html.ValidationMessageFor(model => model.NHANVIEN.TenNV, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

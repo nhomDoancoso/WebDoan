@@ -56,12 +56,15 @@ namespace WebDoan.Areas.Admin.Controllers
         public ActionResult Delete(string id, FormCollection collection)
         {
             try {
+     
                 var listloaidv = db.LOAIDICHVUs.Where(m => m.MaLoaiDV == id).First();
-                db.LOAIDICHVUs.DeleteOnSubmit(listloaidv);
-                db.SubmitChanges();
-                return RedirectToAction("LoaiDv");
+                    db.LOAIDICHVUs.DeleteOnSubmit(listloaidv);
+                    db.SubmitChanges();
+                    return RedirectToAction("LoaiDv");
+                    
             } catch(Exception e)
             {
+               // throw e ;
                 return RedirectToAction("Error", new { message = e.Message });
             }
         }

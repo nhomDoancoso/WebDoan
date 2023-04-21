@@ -1,10 +1,9 @@
-﻿@model IEnumerable<WebDoan.Models.Lich>
+﻿@model IEnumerable<WebDoan.Models.CTLLV>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 
 <span style="padding:1rem" class="button-24">
     @Html.ActionLink("Create New", "Create")
@@ -19,10 +18,8 @@
                     <table class="table user-list">
                         <thead>
                             <tr>
-                                <th class="text-center text-capitalize"><span> mã Time</span></th>
+                                <th class="text-center text-capitalize"><span> Tên nhân viên</span></th>
                                 <th class="text-center text-capitalize"><span> Thời gian </span></th>
-                                <th class="text-center text-capitalize"><span> Nhân Viên </span></th>
-
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -31,18 +28,13 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaTime)
+                                        @Html.DisplayFor(modelItem => item.NHANVIEN.TenNV)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Time)
-                                    </td>
-                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Lich.Time)
                                     </td>
                                     <td class="button-24 d-flex d-sm-flex d-lg-flex justify-content-center align-items-lg-center align-items-sm-center ">
 
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.MaTime })
-                                        @Html.ActionLink("Details", "Detail", new { id = item.MaTime })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.MaTime })
 
                                     </td>
                                 </tr>
@@ -152,5 +144,7 @@
                 Background: #fff;
             }
 </style>
+
+
 
 
