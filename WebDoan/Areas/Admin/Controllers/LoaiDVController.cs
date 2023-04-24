@@ -52,21 +52,23 @@ namespace WebDoan.Areas.Admin.Controllers
             var listloaidv = db.LOAIDICHVUs.First(m => m.MaLoaiDV == id);
             return View(listloaidv);
         }
-        [HttpPost]
+        [HttpPost] 
         public ActionResult Delete(string id, FormCollection collection)
         {
-            try {
-     
-                var listloaidv = db.LOAIDICHVUs.Where(m => m.MaLoaiDV == id).First();
-                    db.LOAIDICHVUs.DeleteOnSubmit(listloaidv);
-                    db.SubmitChanges();
-                    return RedirectToAction("LoaiDv");
-                    
-            } catch(Exception e)
+            try
             {
-               // throw e ;
+
+                var listloaidv = db.LOAIDICHVUs.Where(m => m.MaLoaiDV == id).First();
+                db.LOAIDICHVUs.DeleteOnSubmit(listloaidv);
+                db.SubmitChanges();
+                return RedirectToAction("LoaiDv");
+
+            }
+            catch (Exception e)
+            {
                 return RedirectToAction("Error", new { message = e.Message });
             }
+            return RedirectToAction("LoaiDv");   
         }
 
         public ActionResult Detail(string id)
