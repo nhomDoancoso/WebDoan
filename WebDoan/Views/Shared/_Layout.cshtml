@@ -49,13 +49,16 @@
                     Create And Renovate Hairstyle
                 </h2>
 
-                <form action="./booking.html">
+                <form id="booking-form" action="./booking.html">
                     <div class="box">
                         <h3>Đặt lịch qua số điện thoại</h3>
-                        <input type="text" id="" name="" placeholder="Nhập SĐT để đặt lịch">
-                        <button class="btn-send">Đặt ngay</button>
+                        <input type="text" id="phone-number" name="phone-number" placeholder="Nhập SĐT để đặt lịch">
+                    @*    <button type="submit" class="btn-send">Đặt ngay</button>*@
+                        <a  class="btn-send" href="@Url.Action("Index","Booking")">Đặt ngay</a>
                     </div>
                 </form>
+
+
             </div>
         </div>
     </div>
@@ -144,13 +147,13 @@
 
 <style>
     body {
-        position:relative;
+        position: relative;
     }
 
     .to-top {
-        transition:all .4s;
-        pointer-events:none; 
-        color:#000;
+        transition: all .4s;
+        pointer-events: none;
+        color: #000;
         background: #fff;
         position: fixed;
         bottom: 0;
@@ -159,15 +162,15 @@
         z-index: 1;
         border-radius: 10px;
         margin: 0 1rem;
-        opacity:0;
+        opacity: 0;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 
-    .to-top.active {
-        bottom:32px;
-        pointer-events:auto;
-        opacity:1;
-    }
+        .to-top.active {
+            bottom: 32px;
+            pointer-events: auto;
+            opacity: 1;
+        }
 
     .Home .content-container .desc form {
         padding: 1.3rem;
@@ -198,3 +201,34 @@
         cursor: pointer;
     }
 </style>
+
+<script>
+    const bookingForm = document.getElementById('booking-form');
+    const phoneNumberInput = document.getElementById('phone-number');
+    const submitButton = document.querySelector('.btn-send');
+
+    submitButton.addEventListener('click', (event) => {
+        if (phoneNumberInput.value.trim() === '') {
+            alert('Bạn chưa nhập số điện thoại');
+            event.preventDefault();
+            reloadPage();
+        } else if (isNaN(phoneNumberInput.value)) {
+            alert('Số điện thoại chỉ được nhập số');
+            event.preventDefault();
+            reloadPage();
+        } else if (phoneNumberInput.value.length < 10) {
+            alert('Số điện thoại không nhỏ hơn 10 số !');
+            event.preventDefault();
+            reloadPage();
+            location.reload();
+        } else if (phoneNumberInput.value.length > 11) {
+            alert('Số điện thoại không vượt quá 10 số !');
+            event.preventDefault();
+            reloadPage();
+        }
+    });
+
+    function reloadPage() {
+        location.reload();
+    }
+</script>

@@ -1,0 +1,49 @@
+@import url("Global.css");
+.booking {
+  padding: 7rem 10%;
+}
+.booking form {
+  margin-top: 1.5rem;
+}
+.booking form .wrap-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.booking form .wrap-input .booking-input {
+  flex: 1 1 40rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+.booking form .wrap-input .booking-input span {
+  display: block;
+  font-size: 1.5rem;
+}
+.booking form .wrap-input .booking-input input,
+.booking form .wrap-input .booking-input select {
+  padding: 0.8rem 1.5rem;
+  border: 0.1rem solid #e7eaf3;
+  width: 100%;
+  border-radius: 1rem;
+  font-size: 16px;
+}
+.booking form .wrap-input .booking-input select:hover {
+  cursor: pointer;
+}
+.booking form .booking-input {
+  flex: 1 1 40rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+.booking form .booking-input span {
+  display: block;
+  font-size: 1.5rem;
+}
+.booking form .booking-input input,
+.booking form .booking-input select {
+  padding: 0.8rem 1.5rem;
+  border: 0.1rem solid #e7eaf3;
+  width: 100%;
+  border-radius: 1rem;
+  font-size: 16px;
+}/*# sourceMappingURL=booking.css.map */

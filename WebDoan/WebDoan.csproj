@@ -346,6 +346,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimeController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ViewServiceController.cs" />
@@ -362,6 +363,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\booking.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2940,6 +2942,7 @@
     <Content Include="Content\vendor\jquery\jquery.min.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="DataBase\dâtbase.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -3215,6 +3218,8 @@
     <Content Include="Views\Login\DangNhap.cshtml" />
     <Content Include="Views\Login\DangKy.cshtml" />
     <Content Include="Views\ViewService\Index.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Booking\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

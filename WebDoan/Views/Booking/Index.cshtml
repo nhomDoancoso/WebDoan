@@ -1,0 +1,77 @@
+﻿@model WebDoan.Models.NHANVIEN 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/booking.css" rel="stylesheet" />
+    <link href="~/Content/css/Global.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="booking">
+        <div class="wrap-title">
+            <div class="title"> </div>
+            <span>Booking</span>
+        </div>
+
+        <h2 class="title-big" style="font-family: 'Playfair Display', serif;">Make An Appointment.</h2>
+
+
+        <form action="">
+            <div class="wrap-input">
+                <div class="booking-input">
+                    <span>Full name</span>
+                    <input type="text" id="" name="" placeholder="Full name">
+                </div>
+
+                <div class="booking-input">
+                    <span>Email address</span>
+                    <input type="text" id="" name="" placeholder="Email address">
+                </div>
+            </div>
+
+            <!-- value phone number -->
+            <div class="booking-input">
+                <span>Phone</span>
+                <input type="text" id="value-number" name="" value="" placeholder="Phone number">
+
+
+            </div>
+            <!--  -->
+            <div class="wrap-input">
+                <div class="booking-input">
+                    <span>Select Staff</span>
+                    @Html.DropDownList("TenNV", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+                </div>
+
+               @RenderPage("Index1.cshtml")
+            </div>
+
+            <div class="wrap-input">
+                <div class="booking-input">
+                    <span>Choose Your Date</span>
+                    <input type="date" id="" name="" placeholder="">
+                </div>
+                <div class="booking-input">
+                    <span>Enter Your Time</span>
+                    <input type="time" id="" name="" placeholder="">
+                </div>
+            </div>
+
+            <input type="submit" class="btn-submit" value="Booking">
+        </form>
+    </section>
+</body>
+</html>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const phoneNumber = urlParams.get('phone-number');
+
+    document.getElementById('value-number').value = phoneNumber;
+</script>
