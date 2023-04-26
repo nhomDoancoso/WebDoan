@@ -16,7 +16,7 @@ namespace WebDoan.Areas.Admin.Controllers
         myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index(int? page, string SearchString)
         {
-            int pageSize = 8;
+            int pageSize = 2;
             int pageNum = page ?? 1;
             var SearchAll = db.DICHVUs.OrderBy(s => s.TenDV);
             var SearchSp = db.DICHVUs.OrderBy(m => m.TenDV).Where(sp => sp.TenDV.ToUpper().Contains(SearchString.ToUpper()));

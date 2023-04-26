@@ -5,9 +5,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<span style="padding:1rem" class="button-24">
+@*<span style="padding:1rem" class="button-24">
     @Html.ActionLink("Create New", "Create")
-</span>
+</span>*@
 
 <div class="container">
     <div class="row">
@@ -33,9 +33,10 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Lich.Time)
                                     </td>
-                                    <td class="button-24 d-flex d-sm-flex d-lg-flex justify-content-center align-items-lg-center align-items-sm-center ">
-
-
+                                    <td  style="display:none" id="adminButton" class="button-24 d-flex d-sm-flex d-lg-flex justify-content-center align-items-lg-center align-items-sm-center ">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.MaNV })
+                                        @Html.ActionLink("Details", "Detail", new { id = item.MaNV })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.MaNV })
                                     </td>
                                 </tr>
                             </tbody>
@@ -144,7 +145,16 @@
                 Background: #fff;
             }
 </style>
+<script>
+    var userRole = '@ViewBag.Chucu';
+    var adminButton = document.getElementById("adminButton");
 
+    if(@Session["macv"] === "Quản Lý") {
+        adminButton.style.display = "block";
+    } else {
+        adminButton.style.display = "none";
+    }
+</script>
 
 
 

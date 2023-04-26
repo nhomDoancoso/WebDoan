@@ -1,4 +1,5 @@
 ﻿using Microsoft.Ajax.Utilities;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,21 @@ namespace WebDoan.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult LoaiDv()
+        public ActionResult LoaiDv(int? page, string SearchString)
         {
-            var lstLoaiDV = from ss in db.LOAIDICHVUs select ss;
-            return View(lstLoaiDV);
+            int pageSize = 2;
+            int pageNum = page ?? 1;
+            var SearchAll = db.LOAIDICHVUs.OrderBy(s => s.TenLoaiDV);
+            var SearchSp = db.LOAIDICHVUs.OrderBy(m => m.TenLoaiDV).Where(sp => sp.TenLoaiDV.ToUpper().Contains(SearchString.ToUpper()));
+            page = 1;
+            if (SearchString == null || SearchString == "")
+                return View(SearchAll.ToPagedList(pageNum, pageSize));
+            else if (SearchSp != null)
+                return View(SearchSp.ToPagedList(pageNum, pageSize));
+            else
+                return View(SearchAll.ToPagedList(pageNum, pageSize));
+            //var lstLoaiDV = from ss in db.LOAIDICHVUs select ss;
+            //return View(lstLoaiDV);
         }
 
         public ActionResult Create()

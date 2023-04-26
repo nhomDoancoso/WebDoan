@@ -12,8 +12,16 @@ namespace WebDoan.Areas.Admin.Controllers
     {
         // GET: Admin/Time
         myDataContextDataContext db = new myDataContextDataContext();
-        public ActionResult Index()
+        public ActionResult Index(FormCollection collection, NHANVIEN nhanvien)
         {
+            var tendangnhap = collection["UserName"];
+            var matkhau = collection["Password"];
+            var email = collection["Email"];
+            NHANVIEN nv = db.NHANVIENs.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
+            if (nv != null)
+            {
+                Session["ChucVU"] = nv.CHUCVU.TenCV;
+            }
             var lstTime = from ss in db.Liches select ss;
             return View(lstTime);
         }

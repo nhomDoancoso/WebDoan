@@ -3174,17 +3174,17 @@
     <Content Include="Areas\Admin\Views\Time\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Time\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Time\Edit.cshtml" />
-    <Content Include="Models\myDataContext.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Areas\Admin\Views\Error\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietLichLV\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietLichLV\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietLichLV\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietLichLV\Edit.cshtml" />
     <Content Include="Content\css\View-service.css.map" />
+    <Content Include="Models\myDataContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>

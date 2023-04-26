@@ -38,6 +38,7 @@ namespace WebDoan.Areas.Admin.Controllers
         public ActionResult Create(FormCollection collection, COMBODICHVU combo)
         {
             var macb = collection["MaCB"];
+            var gia = collection["Gia"];
             var checkCombo = db.COMBODICHVUs.FirstOrDefault(x => x.MaCB.ToString() == macb);
             if (checkCombo != null)
             {
@@ -49,21 +50,9 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["ViewErr"] = "Không được để trống";
                 return this.Create();
             }
-
             if (combo.TenCB.ToString().IsNullOrWhiteSpace())
             {
                 ViewData["ViewErr2"] = "Không được để trống";
-                return this.Create();
-            }
-
-            if(combo.Gia.ToString().IsNullOrWhiteSpace() )
-            {
-                ViewData["ViewErr3"] = "Không được để trống";
-                return this.Create();
-            }
-            if (combo.Gia <= 0)
-            {
-                ViewData["Vieweee"] = "Gía tiền không được âm";
                 return this.Create();
             }
 
@@ -104,14 +93,9 @@ namespace WebDoan.Areas.Admin.Controllers
         {
             var E_Combo = db.COMBODICHVUs.First(m => m.MaCB == id);
             var E_tencb = collection["TenCB"];
-            var E_Gia = double.Parse(collection["Gia"]);
+            var E_gia = collection["Gia"];
             var E_HinhAh = collection["HinhAnh"];
             E_Combo.MaCB = id;
-            if(combo.Gia <= 0)
-            {
-                ViewData["gia"] = "Gía tiền không được âm";
-                return this.Create();
-            }
             if (string.IsNullOrEmpty(E_tencb))
             {
                 ViewData["Error"] = "Don't empty!";
@@ -120,7 +104,7 @@ namespace WebDoan.Areas.Admin.Controllers
             else
             {
                 E_Combo.TenCB = E_tencb;
-                E_Combo.Gia = E_Gia;
+                E_Combo.Gia =Double.Parse(E_gia);
                 E_Combo.HinhAnh = E_HinhAh;
                 UpdateModel(E_Combo);
                 db.SubmitChanges();

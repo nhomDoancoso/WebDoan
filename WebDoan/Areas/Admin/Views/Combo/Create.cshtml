@@ -5,10 +5,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1 style="font-size:1.5rem;padding:1rem 1rem">Thêm combo</h1>
-<hr />
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -34,12 +30,11 @@
     </div>
 
     <div class="wrapper-inner">
-        Giá combo
+      Gía
         <div class="inner col-md-10">
             @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
             @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-            @ViewData["ViewErr3"]
-            @ViewData["Vieweee"]
+            @ViewData["ViewErr2"]
         </div>
     </div>
 

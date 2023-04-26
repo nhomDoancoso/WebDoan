@@ -249,9 +249,9 @@ namespace WebDoan.Models
 		
 		private string _TenCB;
 		
-		private System.Nullable<double> _Gia;
-		
 		private string _HinhAnh;
+		
+		private System.Nullable<double> _Gia;
 		
 		private EntitySet<CTCOMBO> _CTCOMBOs;
 		
@@ -267,10 +267,10 @@ namespace WebDoan.Models
     partial void OnMaCBChanged();
     partial void OnTenCBChanging(string value);
     partial void OnTenCBChanged();
-    partial void OnGiaChanging(System.Nullable<double> value);
-    partial void OnGiaChanged();
     partial void OnHinhAnhChanging(string value);
     partial void OnHinhAnhChanged();
+    partial void OnGiaChanging(System.Nullable<double> value);
+    partial void OnGiaChanged();
     #endregion
 		
 		public COMBODICHVU()
@@ -321,26 +321,6 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gia", DbType="Float")]
-		public System.Nullable<double> Gia
-		{
-			get
-			{
-				return this._Gia;
-			}
-			set
-			{
-				if ((this._Gia != value))
-				{
-					this.OnGiaChanging(value);
-					this.SendPropertyChanging();
-					this._Gia = value;
-					this.SendPropertyChanged("Gia");
-					this.OnGiaChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HinhAnh", DbType="NVarChar(50)")]
 		public string HinhAnh
 		{
@@ -357,6 +337,26 @@ namespace WebDoan.Models
 					this._HinhAnh = value;
 					this.SendPropertyChanged("HinhAnh");
 					this.OnHinhAnhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gia", DbType="Float")]
+		public System.Nullable<double> Gia
+		{
+			get
+			{
+				return this._Gia;
+			}
+			set
+			{
+				if ((this._Gia != value))
+				{
+					this.OnGiaChanging(value);
+					this.SendPropertyChanging();
+					this._Gia = value;
+					this.SendPropertyChanged("Gia");
+					this.OnGiaChanged();
 				}
 			}
 		}
@@ -475,7 +475,7 @@ namespace WebDoan.Models
 		
 		private string _Hinh;
 		
-		private EntitySet<CTCOMBO> _CTCOMBOs;
+		private EntitySet<CTHOADON> _CTHOADONs;
 		
 		private EntityRef<LOAISANPHAM> _LOAISANPHAM;
 		
@@ -499,7 +499,7 @@ namespace WebDoan.Models
 		
 		public SANPHAM()
 		{
-			this._CTCOMBOs = new EntitySet<CTCOMBO>(new Action<CTCOMBO>(this.attach_CTCOMBOs), new Action<CTCOMBO>(this.detach_CTCOMBOs));
+			this._CTHOADONs = new EntitySet<CTHOADON>(new Action<CTHOADON>(this.attach_CTHOADONs), new Action<CTHOADON>(this.detach_CTHOADONs));
 			this._LOAISANPHAM = default(EntityRef<LOAISANPHAM>);
 			OnCreated();
 		}
@@ -628,16 +628,16 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CTCOMBO", Storage="_CTCOMBOs", ThisKey="MaSP", OtherKey="MaSP")]
-		public EntitySet<CTCOMBO> CTCOMBOs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CTHOADON", Storage="_CTHOADONs", ThisKey="MaSP", OtherKey="MaSP")]
+		public EntitySet<CTHOADON> CTHOADONs
 		{
 			get
 			{
-				return this._CTCOMBOs;
+				return this._CTHOADONs;
 			}
 			set
 			{
-				this._CTCOMBOs.Assign(value);
+				this._CTHOADONs.Assign(value);
 			}
 		}
 		
@@ -695,13 +695,13 @@ namespace WebDoan.Models
 			}
 		}
 		
-		private void attach_CTCOMBOs(CTCOMBO entity)
+		private void attach_CTHOADONs(CTHOADON entity)
 		{
 			this.SendPropertyChanging();
 			entity.SANPHAM = this;
 		}
 		
-		private void detach_CTCOMBOs(CTCOMBO entity)
+		private void detach_CTHOADONs(CTHOADON entity)
 		{
 			this.SendPropertyChanging();
 			entity.SANPHAM = null;
@@ -718,11 +718,7 @@ namespace WebDoan.Models
 		
 		private int _MaDV;
 		
-		private int _MaSP;
-		
 		private EntityRef<COMBODICHVU> _COMBODICHVU;
-		
-		private EntityRef<SANPHAM> _SANPHAM;
 		
 		private EntityRef<DICHVU> _DICHVU;
 		
@@ -734,14 +730,11 @@ namespace WebDoan.Models
     partial void OnMaCBChanged();
     partial void OnMaDVChanging(int value);
     partial void OnMaDVChanged();
-    partial void OnMaSPChanging(int value);
-    partial void OnMaSPChanged();
     #endregion
 		
 		public CTCOMBO()
 		{
 			this._COMBODICHVU = default(EntityRef<COMBODICHVU>);
-			this._SANPHAM = default(EntityRef<SANPHAM>);
 			this._DICHVU = default(EntityRef<DICHVU>);
 			OnCreated();
 		}
@@ -794,30 +787,6 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSP", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaSP
-		{
-			get
-			{
-				return this._MaSP;
-			}
-			set
-			{
-				if ((this._MaSP != value))
-				{
-					if (this._SANPHAM.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaSPChanging(value);
-					this.SendPropertyChanging();
-					this._MaSP = value;
-					this.SendPropertyChanged("MaSP");
-					this.OnMaSPChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="COMBODICHVU_CTCOMBO", Storage="_COMBODICHVU", ThisKey="MaCB", OtherKey="MaCB", IsForeignKey=true)]
 		public COMBODICHVU COMBODICHVU
 		{
@@ -848,40 +817,6 @@ namespace WebDoan.Models
 						this._MaCB = default(int);
 					}
 					this.SendPropertyChanged("COMBODICHVU");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CTCOMBO", Storage="_SANPHAM", ThisKey="MaSP", OtherKey="MaSP", IsForeignKey=true)]
-		public SANPHAM SANPHAM
-		{
-			get
-			{
-				return this._SANPHAM.Entity;
-			}
-			set
-			{
-				SANPHAM previousValue = this._SANPHAM.Entity;
-				if (((previousValue != value) 
-							|| (this._SANPHAM.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SANPHAM.Entity = null;
-						previousValue.CTCOMBOs.Remove(this);
-					}
-					this._SANPHAM.Entity = value;
-					if ((value != null))
-					{
-						value.CTCOMBOs.Add(this);
-						this._MaSP = value.MaSP;
-					}
-					else
-					{
-						this._MaSP = default(int);
-					}
-					this.SendPropertyChanged("SANPHAM");
 				}
 			}
 		}
@@ -1287,7 +1222,13 @@ namespace WebDoan.Models
 		
 		private int _MaCB;
 		
+		private System.Nullable<double> _Gia;
+		
+		private int _MaSP;
+		
 		private EntityRef<COMBODICHVU> _COMBODICHVU;
+		
+		private EntityRef<SANPHAM> _SANPHAM;
 		
 		private EntityRef<HOADON> _HOADON;
 		
@@ -1299,11 +1240,16 @@ namespace WebDoan.Models
     partial void OnMaHDChanged();
     partial void OnMaCBChanging(int value);
     partial void OnMaCBChanged();
+    partial void OnGiaChanging(System.Nullable<double> value);
+    partial void OnGiaChanged();
+    partial void OnMaSPChanging(int value);
+    partial void OnMaSPChanged();
     #endregion
 		
 		public CTHOADON()
 		{
 			this._COMBODICHVU = default(EntityRef<COMBODICHVU>);
+			this._SANPHAM = default(EntityRef<SANPHAM>);
 			this._HOADON = default(EntityRef<HOADON>);
 			OnCreated();
 		}
@@ -1356,6 +1302,50 @@ namespace WebDoan.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gia", DbType="Float")]
+		public System.Nullable<double> Gia
+		{
+			get
+			{
+				return this._Gia;
+			}
+			set
+			{
+				if ((this._Gia != value))
+				{
+					this.OnGiaChanging(value);
+					this.SendPropertyChanging();
+					this._Gia = value;
+					this.SendPropertyChanged("Gia");
+					this.OnGiaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSP", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaSP
+		{
+			get
+			{
+				return this._MaSP;
+			}
+			set
+			{
+				if ((this._MaSP != value))
+				{
+					if (this._SANPHAM.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaSPChanging(value);
+					this.SendPropertyChanging();
+					this._MaSP = value;
+					this.SendPropertyChanged("MaSP");
+					this.OnMaSPChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="COMBODICHVU_CTHOADON", Storage="_COMBODICHVU", ThisKey="MaCB", OtherKey="MaCB", IsForeignKey=true)]
 		public COMBODICHVU COMBODICHVU
 		{
@@ -1386,6 +1376,40 @@ namespace WebDoan.Models
 						this._MaCB = default(int);
 					}
 					this.SendPropertyChanged("COMBODICHVU");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SANPHAM_CTHOADON", Storage="_SANPHAM", ThisKey="MaSP", OtherKey="MaSP", IsForeignKey=true)]
+		public SANPHAM SANPHAM
+		{
+			get
+			{
+				return this._SANPHAM.Entity;
+			}
+			set
+			{
+				SANPHAM previousValue = this._SANPHAM.Entity;
+				if (((previousValue != value) 
+							|| (this._SANPHAM.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SANPHAM.Entity = null;
+						previousValue.CTHOADONs.Remove(this);
+					}
+					this._SANPHAM.Entity = value;
+					if ((value != null))
+					{
+						value.CTHOADONs.Add(this);
+						this._MaSP = value.MaSP;
+					}
+					else
+					{
+						this._MaSP = default(int);
+					}
+					this.SendPropertyChanged("SANPHAM");
 				}
 			}
 		}

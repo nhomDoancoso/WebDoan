@@ -18,7 +18,7 @@ namespace WebDoan.Areas.Admin.Controllers
             var chucvu = db.CHUCVUs.FirstOrDefault(x => x.MaCV.ToString() == macv);
             if(cHUCVU != null)
             {
-                Session["macv"] = cHUCVU.MaCV;
+                ViewBag.Chucu = cHUCVU.MaCV;
             }
             return View(lstDetailTime);
         }

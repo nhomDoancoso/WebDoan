@@ -4,8 +4,8 @@
     <Type Name="COMBODICHVU">
       <Column Name="MaCB" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenCB" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="COMBODICHVU_CTCOMBO" Member="CTCOMBOs" ThisKey="MaCB" OtherKey="MaCB" Type="CTCOMBO" />
       <Association Name="COMBODICHVU_CTPHIEUDAT" Member="CTPHIEUDATs" ThisKey="MaCB" OtherKey="MaCB" Type="CTPHIEUDAT" />
       <Association Name="COMBODICHVU_CTHOADON" Member="CTHOADONs" ThisKey="MaCB" OtherKey="MaCB" Type="CTHOADON" />
@@ -19,7 +19,7 @@
       <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Hinh" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="SANPHAM_CTCOMBO" Member="CTCOMBOs" ThisKey="MaSP" OtherKey="MaSP" Type="CTCOMBO" />
+      <Association Name="SANPHAM_CTHOADON" Member="CTHOADONs" ThisKey="MaSP" OtherKey="MaSP" Type="CTHOADON" />
       <Association Name="LOAISANPHAM_SANPHAM" Member="LOAISANPHAM" ThisKey="MaLoaiSP" OtherKey="MaLoaiSP" Type="LOAISANPHAM" IsForeignKey="true" />
     </Type>
   </Table>
@@ -27,9 +27,7 @@
     <Type Name="CTCOMBO">
       <Column Name="MaCB" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaDV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="COMBODICHVU_CTCOMBO" Member="COMBODICHVU" ThisKey="MaCB" OtherKey="MaCB" Type="COMBODICHVU" IsForeignKey="true" />
-      <Association Name="SANPHAM_CTCOMBO" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" />
       <Association Name="DICHVU_CTCOMBO" Member="DICHVU" ThisKey="MaDV" OtherKey="MaDV" Type="DICHVU" IsForeignKey="true" />
     </Type>
   </Table>
@@ -53,7 +51,10 @@
     <Type Name="CTHOADON">
       <Column Name="MaHD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaCB" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="COMBODICHVU_CTHOADON" Member="COMBODICHVU" ThisKey="MaCB" OtherKey="MaCB" Type="COMBODICHVU" IsForeignKey="true" />
+      <Association Name="SANPHAM_CTHOADON" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" />
       <Association Name="HOADON_CTHOADON" Member="HOADON" ThisKey="MaHD" OtherKey="MaHD" Type="HOADON" IsForeignKey="true" />
     </Type>
   </Table>
