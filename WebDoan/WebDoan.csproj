@@ -3185,13 +3185,13 @@
     <Content Include="Areas\Admin\Views\ChiTietLichLV\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietLichLV\Edit.cshtml" />
     <Content Include="Content\css\View-service.css.map" />
+    <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Create.cshtml" />
     <Content Include="Models\myDataContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPham\Create.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>

@@ -29,6 +29,8 @@ namespace WebDoan.Areas.Admin.Controllers
                 return View(SearchAll.ToPagedList(pageNum, pageSize));
         }
 
+      
+
         public ActionResult Create()
         {
             ViewBag.MaLoaiSP = new SelectList(db.LOAISANPHAMs, "MaLoaiSP", "TenLoaiSP");
@@ -57,9 +59,24 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["Price"] = "không được để giá âm";
                 return this.Create();
             }
-            if (sp.TenSP.IsNullOrWhiteSpace())
+            if (sp.SoLuong <= 0)
+            {
+                ViewData["sl"] = "không được để sl âm";
+                return this.Create();
+            }
+            if (string.IsNullOrEmpty(tensp))
             {
                 ViewData["ViewErr"] = "Không được để trống";
+                return this.Create();
+            }
+            if (string.IsNullOrEmpty(gia))
+            {
+                ViewData["gia"] = "Không được để trống";
+                return this.Create();
+            }
+            if(string.IsNullOrEmpty(masp))
+            {
+                ViewData["maspss"] = "Không được để trống";
                 return this.Create();
             }
             db.SANPHAMs.InsertOnSubmit(sp);
@@ -67,5 +84,14 @@ namespace WebDoan.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
+            return "/Content/images/" + file.FileName;
+        }
     }
 }

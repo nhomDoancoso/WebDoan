@@ -608,7 +608,7 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hinh", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hinh", DbType="NVarChar(50)")]
 		public string Hinh
 		{
 			get
@@ -641,7 +641,7 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISANPHAM_SANPHAM", Storage="_LOAISANPHAM", ThisKey="MaLoaiSP", OtherKey="MaLoaiSP", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LOAISANPHAM_SANPHAM", Storage="_LOAISANPHAM", ThisKey="MaLoaiSP", OtherKey="MaLoaiSP", IsForeignKey=true, DeleteRule="CASCADE")]
 		public LOAISANPHAM LOAISANPHAM
 		{
 			get
@@ -2176,10 +2176,6 @@ namespace WebDoan.Models
 		
 		private int _MaKH;
 		
-		private string _TenKH;
-		
-		private string _SDT;
-		
 		private string _Email;
 		
 		private string _UserName;
@@ -2198,10 +2194,6 @@ namespace WebDoan.Models
     partial void OnCreated();
     partial void OnMaKHChanging(int value);
     partial void OnMaKHChanged();
-    partial void OnTenKHChanging(string value);
-    partial void OnTenKHChanged();
-    partial void OnSDTChanging(string value);
-    partial void OnSDTChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
     partial void OnUserNameChanging(string value);
@@ -2235,46 +2227,6 @@ namespace WebDoan.Models
 					this._MaKH = value;
 					this.SendPropertyChanged("MaKH");
 					this.OnMaKHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenKH", DbType="NVarChar(50)")]
-		public string TenKH
-		{
-			get
-			{
-				return this._TenKH;
-			}
-			set
-			{
-				if ((this._TenKH != value))
-				{
-					this.OnTenKHChanging(value);
-					this.SendPropertyChanging();
-					this._TenKH = value;
-					this.SendPropertyChanged("TenKH");
-					this.OnTenKHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDT", DbType="Char(10)")]
-		public string SDT
-		{
-			get
-			{
-				return this._SDT;
-			}
-			set
-			{
-				if ((this._SDT != value))
-				{
-					this.OnSDTChanging(value);
-					this.SendPropertyChanging();
-					this._SDT = value;
-					this.SendPropertyChanged("SDT");
-					this.OnSDTChanged();
 				}
 			}
 		}
@@ -3207,7 +3159,7 @@ namespace WebDoan.Models
 		
 		private int _MaPD;
 		
-		private System.Nullable<int> _MaKH;
+		private int _MaKH;
 		
 		private System.Nullable<int> _MaNV;
 		
@@ -3216,6 +3168,10 @@ namespace WebDoan.Models
 		private System.Nullable<System.DateTime> _TimeHen;
 		
 		private System.Nullable<int> _MaCN;
+		
+		private string _TenKH;
+		
+		private string _SDT;
 		
 		private EntitySet<CTPHIEUDAT> _CTPHIEUDATs;
 		
@@ -3231,7 +3187,7 @@ namespace WebDoan.Models
     partial void OnCreated();
     partial void OnMaPDChanging(int value);
     partial void OnMaPDChanged();
-    partial void OnMaKHChanging(System.Nullable<int> value);
+    partial void OnMaKHChanging(int value);
     partial void OnMaKHChanged();
     partial void OnMaNVChanging(System.Nullable<int> value);
     partial void OnMaNVChanged();
@@ -3241,6 +3197,10 @@ namespace WebDoan.Models
     partial void OnTimeHenChanged();
     partial void OnMaCNChanging(System.Nullable<int> value);
     partial void OnMaCNChanged();
+    partial void OnTenKHChanging(string value);
+    partial void OnTenKHChanged();
+    partial void OnSDTChanging(string value);
+    partial void OnSDTChanged();
     #endregion
 		
 		public PHIEUDAT()
@@ -3272,8 +3232,8 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int")]
-		public System.Nullable<int> MaKH
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int NOT NULL")]
+		public int MaKH
 		{
 			get
 			{
@@ -3384,6 +3344,46 @@ namespace WebDoan.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenKH", DbType="NVarChar(50)")]
+		public string TenKH
+		{
+			get
+			{
+				return this._TenKH;
+			}
+			set
+			{
+				if ((this._TenKH != value))
+				{
+					this.OnTenKHChanging(value);
+					this.SendPropertyChanging();
+					this._TenKH = value;
+					this.SendPropertyChanged("TenKH");
+					this.OnTenKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDT", DbType="VarChar(20)")]
+		public string SDT
+		{
+			get
+			{
+				return this._SDT;
+			}
+			set
+			{
+				if ((this._SDT != value))
+				{
+					this.OnSDTChanging(value);
+					this.SendPropertyChanging();
+					this._SDT = value;
+					this.SendPropertyChanged("SDT");
+					this.OnSDTChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHIEUDAT_CTPHIEUDAT", Storage="_CTPHIEUDATs", ThisKey="MaPD", OtherKey="MaPD")]
 		public EntitySet<CTPHIEUDAT> CTPHIEUDATs
 		{
@@ -3458,7 +3458,7 @@ namespace WebDoan.Models
 					}
 					else
 					{
-						this._MaKH = default(Nullable<int>);
+						this._MaKH = default(int);
 					}
 					this.SendPropertyChanged("KHACHHANG");
 				}

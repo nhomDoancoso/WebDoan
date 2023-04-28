@@ -9,66 +9,68 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="wrappres">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="wrapper-inner">
-        mã sản phẩm
-        <div class="innner ">
-            @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
-            <span style="color:red">@ViewData["masp"]</span>
+    <div class="wrappres">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="wrapper-inner">
+            mã sản phẩm
+            <div class="innner ">
+                @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
+                <span style="color:red">@ViewData["masp"]</span>
+                <span style="color:red">@ViewData["maspss"]</span>
+            </div>
+        </div>
+
+        <div class="wrapper-inner">
+            Tên sản phẩm
+            <div class="innner ">
+                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                <span style="color:red">@ViewData["ViewErr"]</span>
+            </div>
+        </div>
+
+        <div class="wrapper-inner">
+            Loại Sản phẩm
+            <div class="innner ">
+                @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "", @style = "padding: 0.8rem 14rem;border-radius: 10px; " })
+                @Html.ValidationMessageFor(model => model.LOAISANPHAM.TenLoaiSP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="wrapper-inner">
+            Giá
+            <div class="inner ">
+                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+                <span style="color:red"> @ViewData["Price"] </span>
+                <span style="color:red">@ViewData["gia"]</span>
+            </div>
+        </div>
+
+        <div class="wrapper-inner">
+            Số lượng
+            <div class="inner ">
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                <span style="color:red">@ViewData["sl"]</span>
+            </div>
+        </div>
+
+        <div class="wrapper-inner">
+            Hình ảnh
+            <div class="inner ">
+                @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
+                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
+                <img style="width:44%" class="wrapper-img" src="" id="pictureUpload" />
+            </div>
         </div>
     </div>
-
-    <div class="wrapper-inner">
-        Tên sản phẩm
-        <div class="innner ">
-            @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
-            <span style="color:red"> @ViewData["ViewErr"]</span>
-        </div>
-    </div>
-
-    <div class="wrapper-inner">
-        Loại Sản phẩm
-        <div class="innner ">
-            @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "", @style = "padding: 0.8rem 14rem;border-radius: 10px; " })
-            @Html.ValidationMessageFor(model => model.LOAISANPHAM.TenLoaiSP, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="wrapper-inner">
-        Giá
-        <div class="inner ">
-            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-            <span style="color:red"> @ViewData["Price"]</span>
-        </div>
-    </div>
-
-    <div class="wrapper-inner">
-        Số lượng
-        <div class="inner ">
-            @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="wrapper-inner">
-        Hình ảnh
-        <div class="inner ">
-            @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
-
-        </div>
-        <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-        <input style=" width: 10%; margin: 1rem 0;" type="button" id="btnUpload" value="Chọn ảnh đê" class="btn btn-danger" />
-        <img src="" id="pictureUpload" />
-    </div>
-</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     @section upload
-{
+            {
         <script>
             $(function () {
                 $('#btnUpload').click(function () {
@@ -85,13 +87,13 @@
                     $.ajax(
                         {
                             type: 'POST',
-                            url: '/Combo/ProcessUpload',
+                            url: '/SanPham/ProcessUpload',
                             contentType: false,
                             processData: false,
                             data: formData,
                             success: function (urlImage) {
                                 $('#pictureUpload').attr('src', urlImage);
-                                $('#HinhAnh').val(urlImage);
+                                $('#Hinh').val(urlImage);
                             },
                             error: function (err) {
                                 alert('Error ', err.statusText);
@@ -112,6 +114,8 @@
     <butotn class="button-86">
         @Html.ActionLink("Back to List", "Index")
     </butotn>
+
+
 </div>
 <style>
     .wrapper-inner {

@@ -34,7 +34,6 @@ namespace WebDoan.Controllers
             if (khachang != null)
             {
                 ViewBag.ThongBao = "Chúc mừng đăng nhập thà nh công";
-                Session["User"] = khachang.TenKH;
                 Session["User"] = khachang.UserName;
                 Session["TaiKhoanKH"] = khachang.MaKH;
                 Session["FullTaiKhoan"] = khachang;
@@ -134,8 +133,6 @@ namespace WebDoan.Controllers
                 }
                 else
                 {
-                    kh.TenKH = hoten;
-                    kh.SDT = dienthoai;
                     kh.Email = email;
                     kh.UserName = tendangnhap;
                     kh.Password = matkhau;

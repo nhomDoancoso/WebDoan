@@ -94,7 +94,6 @@
                                         <label class="form-label" for="form3Example4cg">Email</label>
                                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                        @ViewData["UserExist"]
                                         @ViewData["EmailWrong"]
                                         @ViewData["!email"]
                                     </div>

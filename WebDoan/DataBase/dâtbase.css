@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [QuanLyDatLichCatToc]    Script Date: 26/04/2023 10:06:14 SA ******/
+/****** Object:  Database [QuanLyDatLichCatToc]    Script Date: 28/04/2023 6:50:42 CH ******/
 CREATE DATABASE [QuanLyDatLichCatToc]
 CONTAINMENT = NONE
 ON PRIMARY
@@ -80,7 +80,7 @@ ALTER DATABASE [QuanLyDatLichCatToc] SET QUERY_STORE = OFF
 GO
 USE [QuanLyDatLichCatToc]
 GO
-/****** Object:  Table [dbo].[CHINHANH]    Script Date: 26/04/2023 10:06:14 SA ******/
+/****** Object:  Table [dbo].[CHINHANH]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -95,7 +95,7 @@ CREATE TABLE [dbo].[CHINHANH](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CHUCVU]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[CHUCVU]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -109,7 +109,7 @@ CREATE TABLE [dbo].[CHUCVU](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[COMBODICHVU]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[COMBODICHVU]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +125,7 @@ CREATE TABLE [dbo].[COMBODICHVU](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CTCOMBO]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[CTCOMBO]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +140,7 @@ CREATE TABLE [dbo].[CTCOMBO](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CTHOADON]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[CTHOADON]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -158,7 +158,7 @@ CREATE TABLE [dbo].[CTHOADON](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CTLLV]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[CTLLV]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -173,7 +173,7 @@ CREATE TABLE [dbo].[CTLLV](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CTPHIEUDAT]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[CTPHIEUDAT]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -188,7 +188,7 @@ CREATE TABLE [dbo].[CTPHIEUDAT](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DICHVU]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[DICHVU]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -204,7 +204,7 @@ CREATE TABLE [dbo].[DICHVU](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[HOADON]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[HOADON]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -220,15 +220,13 @@ CREATE TABLE [dbo].[HOADON](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[KHACHHANG]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[KHACHHANG]    Script Date: 28/04/2023 6:50:42 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[KHACHHANG](
 	[MaKH] [int] IDENTITY(1,1) NOT NULL,
-	[TenKH] [nvarchar](50) NULL,
-	[SDT] [char](10) NULL,
 	[Email] [char](100) NULL,
 	[UserName] [char](100) NULL,
 	[Password] [char](100) NULL,
@@ -239,7 +237,7 @@ CREATE TABLE [dbo].[KHACHHANG](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Lich]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[Lich]    Script Date: 28/04/2023 6:50:43 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -253,7 +251,7 @@ CREATE TABLE [dbo].[Lich](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LOAIDICHVU]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[LOAIDICHVU]    Script Date: 28/04/2023 6:50:43 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -267,7 +265,7 @@ CREATE TABLE [dbo].[LOAIDICHVU](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LOAISANPHAM]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[LOAISANPHAM]    Script Date: 28/04/2023 6:50:43 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -281,7 +279,7 @@ CREATE TABLE [dbo].[LOAISANPHAM](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NHANVIEN]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[NHANVIEN]    Script Date: 28/04/2023 6:50:43 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -304,25 +302,27 @@ CREATE TABLE [dbo].[NHANVIEN](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PHIEUDAT]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[PHIEUDAT]    Script Date: 28/04/2023 6:50:43 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PHIEUDAT](
 	[MaPD] [int] NOT NULL,
-	[MaKH] [int] NULL,
+	[MaKH] [int] NOT NULL,
 	[MaNV] [int] NULL,
 	[TimeLap] [datetime] NULL,
 	[TimeHen] [datetime] NULL,
 	[MaCN] [int] NULL,
+	[TenKH] [nvarchar](50) NULL,
+	[SDT] [varchar](20) NULL,
  CONSTRAINT [PK_PHIEUDAT] PRIMARY KEY CLUSTERED 
 (
 	[MaPD] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SANPHAM]    Script Date: 26/04/2023 10:06:15 SA ******/
+/****** Object:  Table [dbo].[SANPHAM]    Script Date: 28/04/2023 6:50:43 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -333,12 +333,14 @@ CREATE TABLE [dbo].[SANPHAM](
 	[MaLoaiSP] [int] NULL,
 	[Gia] [float] NULL,
 	[SoLuong] [int] NULL,
-	[Hinh] [varchar](50) NULL,
+	[Hinh] [nvarchar](50) NULL,
  CONSTRAINT [PK_SANPHAM] PRIMARY KEY CLUSTERED 
 (
 	[MaSP] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+INSERT [dbo].[CHINHANH] ([MaCN], [DiaChi], [HotLine]) VALUES (1, N'quan8', N'0767537243')
 GO
 SET IDENTITY_INSERT [dbo].[CHUCVU] ON
 
@@ -364,13 +366,6 @@ INSERT [dbo].[DICHVU] ([MaDV], [TenDV], [Gia], [MaLoaiDV]) VALUES (10, N'Gội �
 INSERT [dbo].[DICHVU] ([MaDV], [TenDV], [Gia], [MaLoaiDV]) VALUES (13, N'Massage Nam', 800000, N'M01')
 SET IDENTITY_INSERT [dbo].[DICHVU] OFF
 GO
-SET IDENTITY_INSERT [dbo].[KHACHHANG] ON
-
-INSERT [dbo].[KHACHHANG] ([MaKH], [TenKH], [SDT], [Email], [UserName], [Password], [IsValid]) VALUES (1, N'Huynh Hiep', N'0767537243', N'huynhhiepvan1998@gmail.com                                                                          ', N'Hiephuynh2410#                                                                                      ', N'Hiephuynh2410##                                                                                     ', NULL)
-INSERT [dbo].[KHACHHANG] ([MaKH], [TenKH], [SDT], [Email], [UserName], [Password], [IsValid]) VALUES (3, N'KhanhPeo', N'0782916541', N'KhanhPeo12@gmail.com                                                                                ', N'KhanhPeo1234                                                                                        ', N'khanhPeo123#                                                                                        ', NULL)
-INSERT [dbo].[KHACHHANG] ([MaKH], [TenKH], [SDT], [Email], [UserName], [Password], [IsValid]) VALUES (4, N'Trường Thịnh', N'0989865472', N'LeThinh123@gmail.com                                                                                ', N'TruongThinh123#                                                                                     ', N'TruongThinh123#                                                                                     ', NULL)
-SET IDENTITY_INSERT [dbo].[KHACHHANG] OFF
-GO
 SET IDENTITY_INSERT [dbo].[Lich] ON
 
 INSERT [dbo].[Lich] ([MaTime], [Time]) VALUES (1, CAST(N'12:00:00' AS Time))
@@ -385,6 +380,8 @@ INSERT [dbo].[LOAIDICHVU] ([MaLoaiDV], [TenLoaiDV]) VALUES (N'Gd01', N'Gội Đ�
 INSERT [dbo].[LOAIDICHVU] ([MaLoaiDV], [TenLoaiDV]) VALUES (N'Hád012', N'qưeqe')
 INSERT [dbo].[LOAIDICHVU] ([MaLoaiDV], [TenLoaiDV]) VALUES (N'M01', N'Massage')
 GO
+INSERT [dbo].[LOAISANPHAM] ([MaLoaiSP], [TenLoaiSP]) VALUES (1, N'dầu gội')
+GO
 SET IDENTITY_INSERT [dbo].[NHANVIEN] ON
 
 INSERT [dbo].[NHANVIEN] ([MaNV], [HinhNV], [TenNV], [SDT], [DiaChi], [Email], [UserName], [Password], [IsValid], [MaCV], [RememberMe]) VALUES (18, N'/Content/images/prduct_img_Shoe3.jpeg', N'Khánh Mập', N'0767537243', N'chung cư giai việt Phường 5 quận 8', N'Quangtruc123@gmail.com                                                                              ', N'QuangTruc123#                                                                                       ', N'QuangTruc12345#                                                                                     ', NULL, 1, NULL)
@@ -392,6 +389,10 @@ INSERT [dbo].[NHANVIEN] ([MaNV], [HinhNV], [TenNV], [SDT], [DiaChi], [Email], [U
 INSERT [dbo].[NHANVIEN] ([MaNV], [HinhNV], [TenNV], [SDT], [DiaChi], [Email], [UserName], [Password], [IsValid], [MaCV], [RememberMe]) VALUES (23, NULL, N'Khanhmap', N'0767537247', N'quan 9', N'khanhmap123@gmail.com                                                                               ', N'khanhMap123                                                                                         ', N'Khanhmap123#                                                                                        ', NULL, 3, NULL)
 INSERT [dbo].[NHANVIEN] ([MaNV], [HinhNV], [TenNV], [SDT], [DiaChi], [Email], [UserName], [Password], [IsValid], [MaCV], [RememberMe]) VALUES (24, NULL, N'Phước Đạt', N'0568964323', N'Quận 7', N'PhuocDat123@gmail.com                                                                               ', N'phuocDat123                                                                                         ', N'phuocDat123#                                                                                        ', NULL, 2, NULL)
 SET IDENTITY_INSERT [dbo].[NHANVIEN] OFF
+GO
+INSERT [dbo].[SANPHAM] ([MaSP], [TenSP], [MaLoaiSP], [Gia], [SoLuong], [Hinh]) VALUES (1, N'dầu gội sunsilk', 1, 100000, 123, N'/Content/images/Product_img_shoe2.jpeg')
+INSERT [dbo].[SANPHAM] ([MaSP], [TenSP], [MaLoaiSP], [Gia], [SoLuong], [Hinh]) VALUES (2, NULL, 1, 100, 123, N'd?')
+INSERT [dbo].[SANPHAM] ([MaSP], [TenSP], [MaLoaiSP], [Gia], [SoLuong], [Hinh]) VALUES (3, N'Dầu gội X-men', 1, 150000, 100, NULL)
 GO
 ALTER TABLE [dbo].[CTCOMBO] WITH CHECK ADD CONSTRAINT [FK_CTCOMBO_COMBODICHVU] FOREIGN KEY([MaCB])
 REFERENCES [dbo].[COMBODICHVU] ([MaCB])
@@ -476,6 +477,7 @@ ALTER TABLE [dbo].[PHIEUDAT] CHECK CONSTRAINT [FK_PHIEUDAT_NHANVIEN]
 GO
 ALTER TABLE [dbo].[SANPHAM] WITH CHECK ADD CONSTRAINT [FK_SANPHAM_LOAISANPHAM] FOREIGN KEY([MaLoaiSP])
 REFERENCES [dbo].[LOAISANPHAM] ([MaLoaiSP])
+ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SANPHAM] CHECK CONSTRAINT [FK_SANPHAM_LOAISANPHAM]
 GO

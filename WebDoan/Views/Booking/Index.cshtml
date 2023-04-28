@@ -27,28 +27,33 @@
         {
             <div class="wrap-input">
                 <div class="booking-input">
-                    <span>mapD</span>
+                    <span>maPD</span>
                     @Html.TextBoxFor(model => model.MaPD, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "FullName" })
                 </div>
 
                 <div class="booking-input">
-                    <span>Full name</span>
-                    @Html.TextBoxFor(model => model.KHACHHANG.TenKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "FullName" })
+                    <span>MaKh</span>
+                    @Html.TextBoxFor(model => model.MaKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "FullName" })
                 </div>
 
                 <div class="booking-input">
-                    <span>Email address</span>
-                    @Html.TextBoxFor(model => model.KHACHHANG.Email, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Email Address" })
+                    <span>Ma nv</span>
+                    @Html.TextBoxFor(model => model.MaNV, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Email Address" })
                 </div>
             </div>
 
             <div class="booking-input">
-                <span>Phone</span>
-                @Html.TextBoxFor(model => model.KHACHHANG.SDT, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                <span>ten kh</span>
+                @Html.TextBoxFor(model => model.TenKH, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+            </div>
+
+            <div class="booking-input">
+                <span>sdt</span>
+                @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
             </div>
             <div class="wrap-input">
-                @RenderPage("Index2.cshtml")
-                @RenderPage("Index1.cshtml")
+                @*@RenderPage("Index2.cshtml")   
+                @RenderPage("Index1.cshtml")*@
             </div>
 
             <div class="wrap-input">
