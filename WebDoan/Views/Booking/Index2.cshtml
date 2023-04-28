@@ -1,0 +1,15 @@
+﻿@model WebDoan.Models.NHANVIEN
+@{
+    Layout = null;
+}
+<div class="booking-input">
+    <span>Select Staff</span>
+    @Html.DropDownList("TenNV", null, htmlAttributes: new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+</div>
+
+<div class="booking-input">
+    <span>chi nhánh</span>
+    @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+</div>

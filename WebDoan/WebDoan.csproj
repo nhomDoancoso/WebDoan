@@ -345,10 +345,12 @@
     <Compile Include="Areas\Admin\Controllers\LoaiDVController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\TimeController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\ViewServiceController.cs" />
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Global.asax.cs">
@@ -3188,6 +3190,8 @@
       <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Create.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
@@ -3220,10 +3224,14 @@
     <Content Include="Views\ViewService\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\Index1.cshtml" />
+    <Content Include="Views\Booking\Index2.cshtml" />
+    <Content Include="Views\Booking\NgayGio.cshtml" />
+    <Content Include="Views\Booking\XacNhanDat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\SanPham\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
