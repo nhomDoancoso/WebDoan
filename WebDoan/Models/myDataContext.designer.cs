@@ -2184,6 +2184,10 @@ namespace WebDoan.Models
 		
 		private System.Nullable<bool> _IsValid;
 		
+		private string _TenKH;
+		
+		private string _SDT;
+		
 		private EntitySet<HOADON> _HOADONs;
 		
 		private EntitySet<PHIEUDAT> _PHIEUDATs;
@@ -2202,6 +2206,10 @@ namespace WebDoan.Models
     partial void OnPasswordChanged();
     partial void OnIsValidChanging(System.Nullable<bool> value);
     partial void OnIsValidChanged();
+    partial void OnTenKHChanging(string value);
+    partial void OnTenKHChanged();
+    partial void OnSDTChanging(string value);
+    partial void OnSDTChanged();
     #endregion
 		
 		public KHACHHANG()
@@ -2307,6 +2315,46 @@ namespace WebDoan.Models
 					this._IsValid = value;
 					this.SendPropertyChanged("IsValid");
 					this.OnIsValidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenKH", DbType="NVarChar(50)")]
+		public string TenKH
+		{
+			get
+			{
+				return this._TenKH;
+			}
+			set
+			{
+				if ((this._TenKH != value))
+				{
+					this.OnTenKHChanging(value);
+					this.SendPropertyChanging();
+					this._TenKH = value;
+					this.SendPropertyChanged("TenKH");
+					this.OnTenKHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDT", DbType="VarChar(20)")]
+		public string SDT
+		{
+			get
+			{
+				return this._SDT;
+			}
+			set
+			{
+				if ((this._SDT != value))
+				{
+					this.OnSDTChanging(value);
+					this.SendPropertyChanging();
+					this._SDT = value;
+					this.SendPropertyChanged("SDT");
+					this.OnSDTChanged();
 				}
 			}
 		}

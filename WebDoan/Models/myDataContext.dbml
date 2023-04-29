@@ -101,6 +101,8 @@
       <Column Name="UserName" Type="System.String" DbType="Char(100)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="Char(100)" CanBeNull="true" />
       <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Association Name="KHACHHANG_HOADON" Member="HOADONs" ThisKey="MaKH" OtherKey="MaKH" Type="HOADON" />
       <Association Name="KHACHHANG_PHIEUDAT" Member="PHIEUDATs" ThisKey="MaKH" OtherKey="MaKH" Type="PHIEUDAT" />
     </Type>
