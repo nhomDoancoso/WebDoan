@@ -45,12 +45,12 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["userExits"] = "mã combo đã tồn tại";
                 return this.Create();
             }
-            if (combo.MaCB.ToString().IsNullOrWhiteSpace())
+            if (string.IsNullOrEmpty(macb))
             {
                 ViewData["ViewErr"] = "Không được để trống";
                 return this.Create();
             }
-            if (combo.TenCB.ToString().IsNullOrWhiteSpace())
+            if (string.IsNullOrEmpty(gia))
             {
                 ViewData["ViewErr2"] = "Không được để trống";
                 return this.Create();

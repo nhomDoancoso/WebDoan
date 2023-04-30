@@ -1,0 +1,105 @@
+﻿@model WebDoan.Models.CHINHANH
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<<div class="text-center">
+    <h3>Are you sure you want to delete this?</h3>
+    <dl class="dl-horizontal">
+        <dd>
+            Mã chi nhánh: @Html.DisplayFor(model => model.MaCN)
+        </dd>
+        <dd>
+            Địa Chỉ: @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+        <dd>
+            HotLine: @Html.DisplayFor(model => model.HotLine)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-warning" />
+            <div class="button-86">
+                @Html.ActionLink("Back to List", "LoaiDv")
+            </div>
+
+        </div>
+    }
+</div>
+
+
+
+<style>
+    .button-86 a {
+        all: unset;
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        background: transparent;
+        border: none;
+        position: relative;
+        color: #f0f0f0;
+        cursor: pointer;
+        z-index: 1;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+        .button-86 a::after,
+        .button-86 a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: -99999;
+            transition: all .4s;
+        }
+
+        .button-86 a::before {
+            transform: translate(0%, 0%);
+            width: 100%;
+            height: 100%;
+            background: #28282d;
+            border-radius: 10px;
+        }
+
+        .button-86 a::after {
+            transform: translate(10px, 10px);
+            width: 35px;
+            height: 35px;
+            background: #ffffff15;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 50px;
+        }
+
+        .button-86 a:hover::before {
+            transform: translate(5%, 20%);
+            width: 110%;
+            height: 110%;
+        }
+
+        .button-86 a:hover::after {
+            border-radius: 10px;
+            transform: translate(0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+        .button-86 a:active::after {
+            transition: 0s;
+            transform: translate(0, 5%);
+        }
+</style>

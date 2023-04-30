@@ -9,90 +9,89 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="wrappres">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="wrapper-inner">
-        Mã Combo
-        <div class="inner col-md-10">
-            @Html.EditorFor(model => model.MaCB, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.MaCB, "", new { @class = "text-danger" })
-            @ViewData["userExits"]
+    <div class="wrappres">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="wrapper-inner">
+            Mã Combo
+            <div class="inner col-md-10">
+                @Html.EditorFor(model => model.MaCB, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.MaCB, "", new { @class = "text-danger" })
+                @ViewData["userExits"]
+            </div>
         </div>
-    </div>
 
-    <div class="wrapper-inner">
-        Tên Combo
-        <div class="inner col-md-10">
-            @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
-            @ViewData["ViewErr2"]
+        <div class="wrapper-inner">
+            Tên Combo
+            <div class="inner col-md-10">
+                @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
+                @ViewData["ViewErr2"]
+            </div>
         </div>
-    </div>
 
-    <div class="wrapper-inner">
-      Gía
-        <div class="inner col-md-10">
-            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
-            @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-            @ViewData["ViewErr2"]
+        <div class="wrapper-inner">
+            Gía
+            <div class="inner col-md-10">
+                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+                @ViewData["ViewErr2"]
+            </div>
         </div>
-    </div>
 
-    <div class="wrapper-inner">
-        Hình Ảnh
-        <div class=" inner col-md-10">
-            <a href="" style="display:none">
-                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "" } })
-            </a>
-            @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
-            <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-            <input style=" width: 10%; margin: 1rem 0;" type="button" id="btnUpload" value="Chọn ảnh đê" class="btn btn-danger" />
-            <img src="" id="pictureUpload" />
+        <div class="wrapper-inner">
+            Hình Ảnh
+            <div class=" inner col-md-10">
+                <a href="" style="display:none">
+                    @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "" } })
+                </a>
+                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                <input style=" width: 10%; margin: 1rem 0;" type="button" id="btnUpload" value="Chọn ảnh đê" class="btn btn-danger" />
+                <img src="" id="pictureUpload" />
+            </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    @section upload
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        @section upload
 {
-        <script>
-            $(function () {
-                $('#btnUpload').click(function () {
-                    $('#fileUpload').trigger('click');
+            <script>
+                $(function () {
+                    $('#btnUpload').click(function () {
+                        $('#fileUpload').trigger('click');
+                    });
                 });
-            });
-            $('#fileUpload').change(function () {
-                if (window.FormData !== undefined) {
-                    var fileUpload = $('#fileUpload').get(0);
-                    var files = fileUpload.files;
-                    var formData = new FormData();
-                    formData.append('file', files[0]);
+                $('#fileUpload').change(function () {
+                    if (window.FormData !== undefined) {
+                        var fileUpload = $('#fileUpload').get(0);
+                        var files = fileUpload.files;
+                        var formData = new FormData();
+                        formData.append('file', files[0]);
 
-                    $.ajax(
-                        {
-                            type: 'POST',
-                            url: '/Combo/ProcessUpload',
-                            contentType: false,
-                            processData: false,
-                            data: formData,
-                            success: function (urlImage) {
-                                $('#pictureUpload').attr('src', urlImage);
-                                $('#HinhAnh').val(urlImage);
-                            },
-                            error: function (err) {
-                                alert('Error ', err.statusText);
-                            }
-                        });
-                }
-            });
-        </script>
-    }
-    <div class="inner">
-        <div style=" text-align: left; margin: 0 1rem;" class="col-md-offset-2 col-md-10">
-            <input style=" width: 10%; margin: 1rem 0;" type="submit" value="Create" class="btn btn-success" />
+                        $.ajax(
+                            {
+                                type: 'POST',
+                                url: '/Combo/ProcessUpload',
+                                contentType: false,
+                                processData: false,
+                                data: formData,
+                                success: function (urlImage) {
+                                    $('#pictureUpload').attr('src', urlImage);
+                                    $('#HinhAnh').val(urlImage);
+                                },
+                                error: function (err) {
+                                    alert('Error ', err.statusText);
+                                }
+                            });
+                    }
+                });
+            </script>
+        }
+        <div class="inner">
+            <div style=" text-align: left; margin: 0 1rem;" class="col-md-offset-2 col-md-10">
+                <input style=" width: 10%; margin: 1rem 0;" type="submit" value="Create" class="btn btn-success" />
+            </div>
         </div>
     </div>
-</div>
 }
-
 <div class="m-2">
     <butotn class="button-86">
         @Html.ActionLink("Back to List", "Index")
@@ -100,7 +99,7 @@
 </div>
 <style>
     .wrapper-inner {
-        margin:1rem 0;
+        margin: 1rem 0;
     }
 
     .inner {
@@ -108,13 +107,14 @@
     }
 
     .wrappres {
-        text-align:center;
+        text-align: center;
     }
 
     img {
         text-align: center;
         border-radius: 10px;
     }
+
     .button-86 {
         margin: 1rem 0;
         all: unset;

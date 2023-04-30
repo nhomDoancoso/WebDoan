@@ -338,6 +338,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChiNhanhController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChiTietLichLVController.cs" />
     <Compile Include="Areas\Admin\Controllers\ComboController.cs" />
     <Compile Include="Areas\Admin\Controllers\DichVuController.cs" />
@@ -3192,6 +3193,11 @@
       <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\ChiNhanh\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiNhanh\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiNhanh\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiNhanh\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiNhanh\Delete.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
