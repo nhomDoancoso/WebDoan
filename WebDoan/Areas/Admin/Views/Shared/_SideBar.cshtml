@@ -1,34 +1,46 @@
 ﻿<div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
-            <div class="nav">
+            <div class="nav nav-bar">
                 <div class="sb-sidenav-menu-heading">Core</div>
+              
                 <a class="nav-link" href="@Url.Action("Index", "NhanVien")">
                     <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                     Trang Chủ
                 </a>
+
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="@Url.Action("Chat", "NhanVien")" data-bs-toggle="" data-bs-target="" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Chat
                 </a>
+                <hr />
+
                 <a class="nav-link collapsed" href="@Url.Action("Index", "Combo")" data-bs-toggle="" data-bs-target="" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Combo
                 </a>
+                <hr />
+
                 <a class="nav-link collapsed" href="@Url.Action("Index", "ChiNhanh")" data-bs-toggle="" data-bs-target="" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Chi nhánh
                 </a>
+                <hr />
+
                 <a class="nav-link collapsed" href="@Url.Action("Index", "ChiTIetLichLV")" data-bs-toggle="" data-bs-target="" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Lịch Làm Việc
                 </a>
+                <hr />
+
                 <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Dịch Vụ
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <hr />
+
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="@Url.Action("LoaiDv","LoaiDV")">Loại Dịch Vụ</a>

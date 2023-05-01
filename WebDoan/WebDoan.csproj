@@ -375,6 +375,7 @@
     <Content Include="Content\css\chatbox.css" />
     <Content Include="Content\css\Global.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\Mediaquery.css" />
     <Content Include="Content\css\register.css" />
     <Content Include="Content\css\sb-admin-2.css" />
     <Content Include="Content\css\sb-admin-2.min.css" />
@@ -1272,6 +1273,7 @@
     <Content Include="Content\js\demo\datatables-demo.js" />
     <Content Include="Content\js\sb-admin-2.js" />
     <Content Include="Content\js\sb-admin-2.min.js" />
+    <Content Include="Content\js\toggle.js" />
     <Content Include="Content\Main.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\proDuct.css" />
