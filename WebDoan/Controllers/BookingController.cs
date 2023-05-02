@@ -18,6 +18,8 @@ namespace WebDoan.Controllers
             ViewBag.TenNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
             ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
             ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
+            ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
+
             return View();
         }
         [HttpPost]
@@ -29,6 +31,9 @@ namespace WebDoan.Controllers
             var MaNV = collection["MaNV"];
             var TimeLap = collection["TimeLap"];
             var TimeHen = collection["TimeHen"];
+            var MaCn = collection["MaCN"];
+            var tenkh = collection["TenKH"];
+            var sdt = collection["SDT"];
             var checkPD = db.PHIEUDATs.FirstOrDefault(x => x.MaPD.ToString() == MaPD);
             db.PHIEUDATs.InsertOnSubmit(pd);
             db.SubmitChanges();

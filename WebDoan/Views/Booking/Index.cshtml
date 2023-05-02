@@ -25,35 +25,33 @@
 
         @using (Html.BeginForm("Index", "Booking", FormMethod.Post))
         {
-            <div class="wrap-input">
-                <div class="booking-input">
-                    <span>maPD</span>
-                    @Html.TextBoxFor(model => model.MaPD, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "FullName" })
-                </div>
 
-                <div class="booking-input">
-                    <span>MaKh</span>
-                    @Html.TextBoxFor(model => model.MaKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "FullName" })
-                </div>
-
-                <div class="booking-input">
-                    <span>Ma nv</span>
-                    @Html.TextBoxFor(model => model.MaNV, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Email Address" })
-                </div>
+            <div class="booking-input">
+                <span>Mã Phiếu đặt</span>
+                  @Html.TextBoxFor(model => model.MaPD, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "ma phieu đặt   " })
+            </div>
+            <div class="booking-input">
+                <span>Tên khách hàng</span>
+                @Html.DropDownList("MaKH", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.KHACHHANG.TenKH, "", new { @class = "text-danger" })
+                @*  @Html.TextBoxFor(model => model.TenKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên khách hàng" })*@
             </div>
 
             <div class="booking-input">
-                <span>ten kh</span>
-                @Html.TextBoxFor(model => model.TenKH, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
-            </div>
-
-            <div class="booking-input">
-                <span>sdt</span>
+                <span>số điện thoại</span>
                 @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
             </div>
             <div class="wrap-input">
-                @*@RenderPage("Index2.cshtml")   
-                @RenderPage("Index1.cshtml")*@
+                <div class="booking-input">
+                    <span>Select Staff</span>
+                    @Html.DropDownList("TenNV", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NHANVIEN.MaNV, "", new { @class = "text-danger" })
+                </div>
+                <div class="booking-input">
+                    <span>Select Location</span>
+                    @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CHINHANH.MaCN, "", new { @class = "text-danger" })
+                </div>
             </div>
 
             <div class="wrap-input">
