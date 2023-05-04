@@ -1,14 +1,10 @@
-﻿
-@model PagedList.IPagedList<WebDoan.Models.NHANVIEN>
+﻿@model PagedList.IPagedList<WebDoan.Models.LOAISANPHAM>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "LstNhanVien";
+    ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/Content/Card.css" rel="stylesheet" />
 }
+
 
 <span style="padding:1rem" class="button-24">
     @Html.ActionLink("Create New", "Create")
@@ -31,17 +27,8 @@
                     <table class="table user-list">
                         <thead>
                             <tr>
-                                <th class="text-center text-capitalize"><span>Mã Nhân Viên</span></th>
-                                <th class="text-center text-capitalize"><span>Chức Vụ</span></th>
-                                <th class="text-center text-capitalize">
-                                    <span>
-                                        Hình ảnh Nhân Viên
-                                    </span>
-                                </th>
-                                <th class="text-center text-capitalize"><span>Tên Nhân Viên</span></th>
-                                <th class="text-center text-capitalize"><span> Số ĐT</span></th>
-                                <th class="text-center text-capitalize"><span> Địa Chỉ</span></th>
-                                <th class="text-center text-capitalize"><span>email</span></th>
+                                <th class="text-center text-capitalize"><span>Mã loại sản phẩm</span></th>
+                                <th class="text-center text-capitalize"><span>Tên loại sản phẩm</span></th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -50,36 +37,17 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaNV)
+                                        @Html.DisplayFor(modelItem => item.MaLoaiSP)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CHUCVU.TenCV)
+                                        @Html.DisplayFor(modelItem => item.TenLoaiSP)
                                     </td>
-                                    <td class="text-center">
-                                        <a href='@Url.Action("Detail", "NhanVien", new { id = item.MaNV})' class="zoom-img">
-                                            <img src="@Html.DisplayFor(modelItem => item.HinhNV)" alt="Hình nhân viên" />
-                                        </a>
-                                    </td>
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenNV)
-                                    </td>
-                                    <td>
-                                        <a href="#"> @Html.DisplayFor(modelItem => item.SDT)</a>
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DiaChi)
-
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Email)
-
-                                    </td>
+                                   
                                     <td class="button-24 d-flex d-sm-flex d-lg-flex justify-content-center align-items-lg-center align-items-sm-center ">
 
-                                        @*@Html.ActionLink("Edit", "Edit", new { id = item.MaNV })*@
-                                        @Html.ActionLink("Details", "Detail", new { id = item.MaNV })
-                                     @*   @Html.ActionLink("Delete", "Delete", new { id = item.MaNV })*@
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.MaLoaiSP })
+                                        @Html.ActionLink("Details", "Detail", new { id = item.MaLoaiSP })
+                                           @Html.ActionLink("Delete", "Delete", new { id = item.MaLoaiSP })
 
                                     </td>
                                 </tr>
@@ -94,7 +62,7 @@
 </div>
 <div>
     <div class="MenuTrang">
-        @Html.PagedListPager(Model, page => Url.Action("LstNhanVien", new { page = page }))
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
     </div>
 </div>
 <style>

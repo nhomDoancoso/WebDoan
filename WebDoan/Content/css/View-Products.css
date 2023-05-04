@@ -1,0 +1,49 @@
+.products .products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+  gap: 2rem;
+}
+.products .products-container .box {
+  text-align: center;
+  border-radius: 1rem;
+  padding: 2rem 1rem;
+}
+.products .products-container .box:hover {
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  transform: scale(0.97);
+}
+.products .products-container .box:hover .image-product .icons {
+  bottom: 25%;
+}
+.products .products-container .box .image-product {
+  max-width: 25rem;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+}
+.products .products-container .box .image-product .icons {
+  position: absolute;
+  bottom: -100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.products .products-container .box .image-product .icons a {
+  font-size: 1.7rem;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  background-color: #c29e75;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+.products .products-container .box .image-product .icons a:nth-child(1) {
+  margin-right: 0.3rem;
+}
+.products .products-container .box .image-product img {
+  width: 100%;
+}
+.products .products-container .box .content .price {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #e76b18;
+}/*# sourceMappingURL=View-Products.css.map */

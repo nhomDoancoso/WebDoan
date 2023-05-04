@@ -16,9 +16,9 @@
             <div class="innner ">
                 @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
-                <span style="color:red">@ViewData["masp"]</span>
-                <span style="color:red">@ViewData["maspss"]</span>
             </div>
+                <span style="color:red">@ViewData["masp"]</span>
+                <span style="color:red">@ViewData["ViewErr"]</span>
         </div>
 
         <div class="wrapper-inner">
@@ -26,8 +26,8 @@
             <div class="innner ">
                 @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
-                <span style="color:red">@ViewData["ViewErr"]</span>
             </div>
+                <span style="color:red">@ViewData["ViewErr"]</span>
         </div>
 
         <div class="wrapper-inner">
@@ -43,9 +43,9 @@
             <div class="inner ">
                 @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-                <span style="color:red"> @ViewData["Price"] </span>
-                <span style="color:red">@ViewData["gia"]</span>
             </div>
+                <span style="color:red"> @ViewData["Price"] </span>
+                <span style="color:red">@ViewData["ViewErr"]</span>
         </div>
 
         <div class="wrapper-inner">
@@ -53,8 +53,10 @@
             <div class="inner ">
                 @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
-                <span style="color:red">@ViewData["sl"]</span>
+
             </div>
+                <span style="color:red">@ViewData["sl"]</span>
+                <span style="color:red">@ViewData["ViewErr"]</span>
         </div>
 
         <div class="wrapper-inner">
@@ -62,10 +64,10 @@
             <div class="inner ">
                 @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger" })
-                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-                <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
-                <img style="width:44%" class="wrapper-img" src="" id="pictureUpload" />
             </div>
+                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                <input style=" width: 10%;" type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
+                <img style="width:20%" class="wrapper-img" src="" id="pictureUpload" />
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

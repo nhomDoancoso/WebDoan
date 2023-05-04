@@ -344,6 +344,7 @@
     <Compile Include="Areas\Admin\Controllers\DichVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiDVController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
@@ -351,7 +352,7 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\productController.cs" />
     <Compile Include="Controllers\ViewServiceController.cs" />
     <Compile Include="Models\ChatHub.cs" />
     <Compile Include="Global.asax.cs">
@@ -380,6 +381,7 @@
     <Content Include="Content\css\sb-admin-2.css" />
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\View-Products.css" />
     <Content Include="Content\css\View-service.css" />
     <Content Include="Content\fontawesome-free\css\all.css" />
     <Content Include="Content\fontawesome-free\css\all.min.css" />
@@ -3200,6 +3202,14 @@
     <Content Include="Areas\Admin\Views\ChiNhanh\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\ChiNhanh\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChiNhanh\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\LoaiSanPham\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
@@ -3235,11 +3245,11 @@
     <Content Include="Views\Booking\Index2.cshtml" />
     <Content Include="Views\Booking\NgayGio.cshtml" />
     <Content Include="Views\Booking\XacNhanDat.cshtml" />
+    <Content Include="Views\product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\SanPham\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

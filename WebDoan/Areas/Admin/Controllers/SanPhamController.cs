@@ -64,19 +64,9 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["sl"] = "không được để sl âm";
                 return this.Create();
             }
-            if (string.IsNullOrEmpty(tensp))
+            if (string.IsNullOrEmpty(tensp) && string.IsNullOrEmpty(gia) && string.IsNullOrEmpty(masp) && string.IsNullOrEmpty(soluong))
             {
                 ViewData["ViewErr"] = "Không được để trống";
-                return this.Create();
-            }
-            if (string.IsNullOrEmpty(gia))
-            {
-                ViewData["gia"] = "Không được để trống";
-                return this.Create();
-            }
-            if(string.IsNullOrEmpty(masp))
-            {
-                ViewData["maspss"] = "Không được để trống";
                 return this.Create();
             }
             db.SANPHAMs.InsertOnSubmit(sp);
@@ -92,6 +82,66 @@ namespace WebDoan.Areas.Admin.Controllers
             }
             file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
             return "/Content/images/" + file.FileName;
+        }
+        public ActionResult Edit(int id)
+        {
+            try
+            {
+                ViewBag.MaLoaiSP = new SelectList(db.LOAISANPHAMs, "MaLoaiSP", "TenLoaiSP");
+                var E_Sp = db.SANPHAMs.First(m => m.MaSP == id);
+                return View(E_Sp);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection, SANPHAM sanpham)
+        {
+
+            var sp = db.SANPHAMs.First(m => m.MaSP == id);
+
+            var E_tendv = collection["TenSP"];
+            sp.MaSP = id;
+            if (sp.Gia <= 0)
+            {
+                ViewData["Price"] = "không được để giá âm";
+                return this.Create();
+            }
+            if (sp.SoLuong <= 0)
+            {
+                ViewData["sl"] = "không được để sl âm";
+                return this.Create();
+            }
+            else
+            {
+                sp.TenSP = E_tendv;
+                UpdateModel(sp);
+                db.SubmitChanges();
+                return RedirectToAction("Index", "SanPham");
+            }
+            return this.Edit(id);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var D_SanPham = db.SANPHAMs.Where(m => m.MaSP == id).First();
+            return View(D_SanPham);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var D_DV = db.SANPHAMs.First(m => m.MaSP == id);
+            return View(D_DV);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            var D_DV = db.SANPHAMs.Where(m => m.MaSP == id).First();
+            db.SANPHAMs.DeleteOnSubmit(D_DV);
+            db.SubmitChanges();
+            return RedirectToAction("Index", "SanPham");
         }
     }
 }

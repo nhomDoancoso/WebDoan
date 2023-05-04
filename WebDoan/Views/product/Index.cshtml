@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebDoan.Models.SANPHAM>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Images/haircut.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="~/Content/css/View-Products.css" rel="stylesheet" />
+    <link href="~/Content/css/Global.css" rel="stylesheet" />
+</head>
+<body>
+    <body>
+        <section class="products">
+            <div class="wrap-title">
+                <div class="title"> </div>
+                <span style="font-size: 1.7rem;">View Products</span>
+            </div>
+
+            <h2 class="title-big" style="font-family: 'Playfair Display', serif; font-size: 4rem;">All Products</h2>
+
+
+            <div class="products-container">
+
+                @foreach (var item in Model)
+                {
+                    <div class="box">
+                        <div class="image-product">
+                            <img src="@item.Hinh" alt="">
+
+                            <div class="icons">
+                                <a href="" class="fa-solid fa-eye"></a>
+                                <a href="" class="fa-solid fa-bag-shopping"></a>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            <h2>@item.TenSP</h2>
+                            <span class="price">@item.Gia x đ</span>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </section>
+    </body>
+</html>

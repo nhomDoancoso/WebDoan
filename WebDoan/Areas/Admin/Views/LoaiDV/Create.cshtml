@@ -20,9 +20,12 @@
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.MaLoaiDV, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
+            </div>
+            <span style="color:red">
                 @ViewData["ViewErr"]
                 @ViewData["UserExist"]
-            </div>
+            </span>
+                
         </div>
 
         <div class="wrapper-inner">
@@ -30,8 +33,10 @@
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.TenLoaiDV, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenLoaiDV, "", new { @class = "text-danger" })
-                @ViewData["ViewErr"]
             </div>
+            <span style="color:red">
+                @ViewData["ViewErr"]
+                </span>
         </div>
 
         <div class="inner">
