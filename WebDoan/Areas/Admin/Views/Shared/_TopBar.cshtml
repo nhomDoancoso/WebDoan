@@ -1,13 +1,9 @@
-﻿
-
-@{
+﻿@{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link href="~/Content/css/Mediaquery.css" rel="stylesheet" />
 
 }
-
-
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <a class="navbar-brand ps-3" href="index.html">H | Lab</a>
 
@@ -50,7 +46,7 @@
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                    @Html.ActionLink("Đăng xuất", "Logout", "Admin/LoginAdmin", new { area = "" }, new { @class = "hoverc navbar-brand dropdown-item " })
+                    @Html.ActionLink("Đăng xuất", "Logout", "Admin/LoginAdmin", new { area = "" }, new { @class = "hoverc navbar-brand dropdown-item " , @style ="color:black"})
                 </li>
             </ul>
         </li>
