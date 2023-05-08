@@ -608,7 +608,7 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hinh", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hinh", DbType="NVarChar(200)")]
 		public string Hinh
 		{
 			get
@@ -2190,8 +2190,6 @@ namespace WebDoan.Models
 		
 		private EntitySet<HOADON> _HOADONs;
 		
-		private EntitySet<PHIEUDAT> _PHIEUDATs;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2215,7 +2213,6 @@ namespace WebDoan.Models
 		public KHACHHANG()
 		{
 			this._HOADONs = new EntitySet<HOADON>(new Action<HOADON>(this.attach_HOADONs), new Action<HOADON>(this.detach_HOADONs));
-			this._PHIEUDATs = new EntitySet<PHIEUDAT>(new Action<PHIEUDAT>(this.attach_PHIEUDATs), new Action<PHIEUDAT>(this.detach_PHIEUDATs));
 			OnCreated();
 		}
 		
@@ -2372,19 +2369,6 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_PHIEUDAT", Storage="_PHIEUDATs", ThisKey="MaKH", OtherKey="MaKH")]
-		public EntitySet<PHIEUDAT> PHIEUDATs
-		{
-			get
-			{
-				return this._PHIEUDATs;
-			}
-			set
-			{
-				this._PHIEUDATs.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2412,18 +2396,6 @@ namespace WebDoan.Models
 		}
 		
 		private void detach_HOADONs(HOADON entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHHANG = null;
-		}
-		
-		private void attach_PHIEUDATs(PHIEUDAT entity)
-		{
-			this.SendPropertyChanging();
-			entity.KHACHHANG = this;
-		}
-		
-		private void detach_PHIEUDATs(PHIEUDAT entity)
 		{
 			this.SendPropertyChanging();
 			entity.KHACHHANG = null;
@@ -3207,8 +3179,6 @@ namespace WebDoan.Models
 		
 		private int _MaPD;
 		
-		private int _MaKH;
-		
 		private System.Nullable<int> _MaNV;
 		
 		private System.Nullable<System.DateTime> _TimeLap;
@@ -3225,8 +3195,6 @@ namespace WebDoan.Models
 		
 		private EntityRef<CHINHANH> _CHINHANH;
 		
-		private EntityRef<KHACHHANG> _KHACHHANG;
-		
 		private EntityRef<NHANVIEN> _NHANVIEN;
 		
     #region Extensibility Method Definitions
@@ -3235,8 +3203,6 @@ namespace WebDoan.Models
     partial void OnCreated();
     partial void OnMaPDChanging(int value);
     partial void OnMaPDChanged();
-    partial void OnMaKHChanging(int value);
-    partial void OnMaKHChanged();
     partial void OnMaNVChanging(System.Nullable<int> value);
     partial void OnMaNVChanged();
     partial void OnTimeLapChanging(System.Nullable<System.DateTime> value);
@@ -3255,12 +3221,11 @@ namespace WebDoan.Models
 		{
 			this._CTPHIEUDATs = new EntitySet<CTPHIEUDAT>(new Action<CTPHIEUDAT>(this.attach_CTPHIEUDATs), new Action<CTPHIEUDAT>(this.detach_CTPHIEUDATs));
 			this._CHINHANH = default(EntityRef<CHINHANH>);
-			this._KHACHHANG = default(EntityRef<KHACHHANG>);
 			this._NHANVIEN = default(EntityRef<NHANVIEN>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPD", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPD", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int MaPD
 		{
 			get
@@ -3276,30 +3241,6 @@ namespace WebDoan.Models
 					this._MaPD = value;
 					this.SendPropertyChanged("MaPD");
 					this.OnMaPDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaKH", DbType="Int NOT NULL")]
-		public int MaKH
-		{
-			get
-			{
-				return this._MaKH;
-			}
-			set
-			{
-				if ((this._MaKH != value))
-				{
-					if (this._KHACHHANG.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaKHChanging(value);
-					this.SendPropertyChanging();
-					this._MaKH = value;
-					this.SendPropertyChanged("MaKH");
-					this.OnMaKHChanged();
 				}
 			}
 		}
@@ -3475,40 +3416,6 @@ namespace WebDoan.Models
 						this._MaCN = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("CHINHANH");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KHACHHANG_PHIEUDAT", Storage="_KHACHHANG", ThisKey="MaKH", OtherKey="MaKH", IsForeignKey=true)]
-		public KHACHHANG KHACHHANG
-		{
-			get
-			{
-				return this._KHACHHANG.Entity;
-			}
-			set
-			{
-				KHACHHANG previousValue = this._KHACHHANG.Entity;
-				if (((previousValue != value) 
-							|| (this._KHACHHANG.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KHACHHANG.Entity = null;
-						previousValue.PHIEUDATs.Remove(this);
-					}
-					this._KHACHHANG.Entity = value;
-					if ((value != null))
-					{
-						value.PHIEUDATs.Add(this);
-						this._MaKH = value.MaKH;
-					}
-					else
-					{
-						this._MaKH = default(int);
-					}
-					this.SendPropertyChanged("KHACHHANG");
 				}
 			}
 		}

@@ -15,7 +15,7 @@ namespace WebDoan.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.TenNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
             ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
             ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
             ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
@@ -23,11 +23,10 @@ namespace WebDoan.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(FormCollection collection, PHIEUDAT pd )
+        public ActionResult Index(FormCollection collection, PHIEUDAT pd , Lich lich)
         {
-
             var MaPD = collection["MaPD"];
-            var MAKH = collection["MAKH"];
+            var MAKH = collection["MaKH"];
             var MaNV = collection["MaNV"];
             var TimeLap = collection["TimeLap"];
             var TimeHen = collection["TimeHen"];
@@ -40,22 +39,5 @@ namespace WebDoan.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Index1()
-        {
-            ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
-            return View();
-        }
-
-        public ActionResult Index2()
-        {
-            ViewBag.TenNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
-            ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
-            return View();
-        }
-
-        public ActionResult NgayGio()
-        {
-            return View();
-        }
     }
 }

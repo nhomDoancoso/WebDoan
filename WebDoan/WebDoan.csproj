@@ -3192,11 +3192,6 @@
     <Content Include="Content\css\View-service.css.map" />
     <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Create.cshtml" />
-    <Content Include="Models\myDataContext.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Areas\Admin\Views\ChiNhanh\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ChiNhanh\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ChiNhanh\Detail.cshtml" />
@@ -3210,6 +3205,11 @@
     <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
+    <Content Include="Models\myDataContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
@@ -3241,10 +3241,6 @@
     <Content Include="Views\Login\DangKy.cshtml" />
     <Content Include="Views\ViewService\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\Booking\Index1.cshtml" />
-    <Content Include="Views\Booking\Index2.cshtml" />
-    <Content Include="Views\Booking\NgayGio.cshtml" />
-    <Content Include="Views\Booking\XacNhanDat.cshtml" />
     <Content Include="Views\product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

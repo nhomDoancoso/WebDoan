@@ -25,16 +25,9 @@
 
         @using (Html.BeginForm("Index", "Booking", FormMethod.Post))
         {
-
-            <div class="booking-input">
-                <span>Mã Phiếu đặt</span>
-                  @Html.TextBoxFor(model => model.MaPD, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "ma phieu đặt   " })
-            </div>
             <div class="booking-input">
                 <span>Tên khách hàng</span>
-                @Html.DropDownList("MaKH", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.KHACHHANG.TenKH, "", new { @class = "text-danger" })
-                @*  @Html.TextBoxFor(model => model.TenKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên khách hàng" })*@
+                  @Html.TextBoxFor(model => model.TenKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên khách hàng" })
             </div>
 
             <div class="booking-input">
@@ -43,9 +36,9 @@
             </div>
             <div class="wrap-input">
                 <div class="booking-input">
-                    <span>Select Staff</span>
-                    @Html.DropDownList("TenNV", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.NHANVIEN.MaNV, "", new { @class = "text-danger" })
+                    <span>Chọn nhân viên</span>
+                    @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NHANVIEN.TenNV, "", new { @class = "text-danger" })
                 </div>
                 <div class="booking-input">
                     <span>Select Location</span>
@@ -56,12 +49,14 @@
 
             <div class="wrap-input">
                 <div class="booking-input">
-                    <span>Choose Your Date</span>
-                    @Html.TextBoxFor(model => model.TimeHen, new { @type = "date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                    <span>Choose Your Time</span>
+                    @Html.TextBoxFor(model => model.TimeLap, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+
                 </div>
                 <div class="booking-input">
-                    <span>Enter Your Time</span>
-                    @Html.TextBoxFor(model => model.TimeLap, new { @type = "time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                    <span>Enter Your Date</span>
+                    @Html.TextBoxFor(model => model.TimeHen, new { @type = "Date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+
                 </div>
             </div>
 
@@ -70,3 +65,5 @@
     </section>
 </body>
 </html>
+
+>
