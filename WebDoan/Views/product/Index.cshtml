@@ -11,7 +11,9 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <link href="~/Content/Images/haircut.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="~/Content/css/View-Products.css" rel="stylesheet" />
     <link href="~/Content/css/Global.css" rel="stylesheet" />
 </head>
@@ -42,7 +44,10 @@
 
                         <div class="content">
                             <h2>@item.TenSP</h2>
-                            <span class="price">@item.Gia x đ</span>
+                            <span class="price">@item.Gia đ</span>
+                            <button id="heart-button">
+                                <i id="heart-icon" class="far fa-heart"></i>
+                            </button>
                         </div>
                     </div>
                 }
@@ -51,4 +56,28 @@
             </div>
         </section>
     </body>
+    <script>
+    var heartButton = document.getElementById("heart-button");
+    var heartIcon = document.getElementById("heart-icon");
+
+    heartButton.addEventListener("click", function() {
+    if (heartIcon.classList.contains("active")) {
+        heartIcon.classList.remove("active");
+    } else {
+        heartIcon.classList.add("active");
+    }
+    });
+</script>
 </html>
+
+<style>
+    #heart-icon {
+        font-size: 1.2em;
+        color: gray;
+        transition: color 0.3s ease;
+    }
+
+        #heart-icon.active {
+            color: red;
+        }
+</style>

@@ -41,7 +41,7 @@
                     @Html.ValidationMessageFor(model => model.NHANVIEN.TenNV, "", new { @class = "text-danger" })
                 </div>
                 <div class="booking-input">
-                    <span>Select Location</span>
+                    <span>Chọn địa điểm</span>
                     @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CHINHANH.MaCN, "", new { @class = "text-danger" })
                 </div>
@@ -49,12 +49,11 @@
 
             <div class="wrap-input">
                 <div class="booking-input">
-                    <span>Choose Your Time</span>
+                    <span>Chọn thời gian</span>
                     @Html.TextBoxFor(model => model.TimeLap, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
-
                 </div>
                 <div class="booking-input">
-                    <span>Enter Your Date</span>
+                    <span>Chọn ngày</span>
                     @Html.TextBoxFor(model => model.TimeHen, new { @type = "Date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
 
                 </div>
