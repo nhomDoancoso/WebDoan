@@ -379,6 +379,7 @@
     <Compile Include="Areas\Admin\Controllers\ChiNhanhController.cs" />
     <Compile Include="Areas\Admin\Controllers\ClientBookingController.cs" />
     <Compile Include="Areas\Admin\Controllers\ComboController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CTLLVController.cs" />
     <Compile Include="Areas\Admin\Controllers\DichVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiDVController.cs" />
@@ -3239,6 +3240,9 @@
       <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\CTLLV\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CTLLV\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CTLLV\Delete.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
