@@ -187,6 +187,9 @@
     <Reference Include="System.Net.Http.Extensions, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Primitives, Version=4.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
@@ -263,6 +266,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -367,9 +373,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\APIController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChiNhanhController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ChiTietLichLVController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ClientBookingController.cs" />
     <Compile Include="Areas\Admin\Controllers\ComboController.cs" />
     <Compile Include="Areas\Admin\Controllers\DichVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
@@ -378,7 +386,6 @@
     <Compile Include="Areas\Admin\Controllers\LoginAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TimeController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -3209,16 +3216,7 @@
     <Content Include="Areas\Admin\Views\Combo\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Time\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Time\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Time\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Time\Detail.cshtml" />
-    <Content Include="Areas\Admin\Views\Time\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Error\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietLichLV\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietLichLV\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietLichLV\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\ChiTietLichLV\Edit.cshtml" />
     <Content Include="Content\css\View-service.css.map" />
     <Content Include="Areas\Admin\Views\SanPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Create.cshtml" />
@@ -3235,6 +3233,7 @@
     <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ClientBooking\Index.cshtml" />
     <Content Include="Models\myDataContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>myDataContext.designer.cs</LastGenOutput>

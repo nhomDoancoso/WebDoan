@@ -882,7 +882,7 @@ namespace WebDoan.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _MaTime;
+		private int _MaLich;
 		
 		private int _MaNV;
 		
@@ -894,8 +894,8 @@ namespace WebDoan.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMaTimeChanging(int value);
-    partial void OnMaTimeChanged();
+    partial void OnMaLichChanging(int value);
+    partial void OnMaLichChanged();
     partial void OnMaNVChanging(int value);
     partial void OnMaNVChanged();
     #endregion
@@ -907,26 +907,26 @@ namespace WebDoan.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTime", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLich", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaLich
 		{
 			get
 			{
-				return this._MaTime;
+				return this._MaLich;
 			}
 			set
 			{
-				if ((this._MaTime != value))
+				if ((this._MaLich != value))
 				{
 					if (this._Lich.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnMaTimeChanging(value);
+					this.OnMaLichChanging(value);
 					this.SendPropertyChanging();
-					this._MaTime = value;
-					this.SendPropertyChanged("MaTime");
-					this.OnMaTimeChanged();
+					this._MaLich = value;
+					this.SendPropertyChanged("MaLich");
+					this.OnMaLichChanged();
 				}
 			}
 		}
@@ -955,7 +955,7 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lich_CTLLV", Storage="_Lich", ThisKey="MaTime", OtherKey="MaTime", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lich_CTLLV", Storage="_Lich", ThisKey="MaLich", OtherKey="MaLich", IsForeignKey=true)]
 		public Lich Lich
 		{
 			get
@@ -978,11 +978,11 @@ namespace WebDoan.Models
 					if ((value != null))
 					{
 						value.CTLLVs.Add(this);
-						this._MaTime = value.MaTime;
+						this._MaLich = value.MaLich;
 					}
 					else
 					{
-						this._MaTime = default(int);
+						this._MaLich = default(int);
 					}
 					this.SendPropertyChanged("Lich");
 				}
@@ -2408,9 +2408,9 @@ namespace WebDoan.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _MaTime;
+		private int _MaLich;
 		
-		private System.Nullable<System.TimeSpan> _Time;
+		private System.Nullable<System.TimeSpan> _GioLamViec;
 		
 		private EntitySet<CTLLV> _CTLLVs;
 		
@@ -2418,10 +2418,10 @@ namespace WebDoan.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMaTimeChanging(int value);
-    partial void OnMaTimeChanged();
-    partial void OnTimeChanging(System.Nullable<System.TimeSpan> value);
-    partial void OnTimeChanged();
+    partial void OnMaLichChanging(int value);
+    partial void OnMaLichChanged();
+    partial void OnGioLamViecChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnGioLamViecChanged();
     #endregion
 		
 		public Lich()
@@ -2430,47 +2430,47 @@ namespace WebDoan.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTime", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MaTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLich", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaLich
 		{
 			get
 			{
-				return this._MaTime;
+				return this._MaLich;
 			}
 			set
 			{
-				if ((this._MaTime != value))
+				if ((this._MaLich != value))
 				{
-					this.OnMaTimeChanging(value);
+					this.OnMaLichChanging(value);
 					this.SendPropertyChanging();
-					this._MaTime = value;
-					this.SendPropertyChanged("MaTime");
-					this.OnMaTimeChanged();
+					this._MaLich = value;
+					this.SendPropertyChanged("MaLich");
+					this.OnMaLichChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Time")]
-		public System.Nullable<System.TimeSpan> Time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GioLamViec", DbType="Time")]
+		public System.Nullable<System.TimeSpan> GioLamViec
 		{
 			get
 			{
-				return this._Time;
+				return this._GioLamViec;
 			}
 			set
 			{
-				if ((this._Time != value))
+				if ((this._GioLamViec != value))
 				{
-					this.OnTimeChanging(value);
+					this.OnGioLamViecChanging(value);
 					this.SendPropertyChanging();
-					this._Time = value;
-					this.SendPropertyChanged("Time");
-					this.OnTimeChanged();
+					this._GioLamViec = value;
+					this.SendPropertyChanged("GioLamViec");
+					this.OnGioLamViecChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lich_CTLLV", Storage="_CTLLVs", ThisKey="MaTime", OtherKey="MaTime")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lich_CTLLV", Storage="_CTLLVs", ThisKey="MaLich", OtherKey="MaLich")]
 		public EntitySet<CTLLV> CTLLVs
 		{
 			get
@@ -3181,15 +3181,19 @@ namespace WebDoan.Models
 		
 		private System.Nullable<int> _MaNV;
 		
-		private System.Nullable<System.DateTime> _TimeLap;
+		private System.Nullable<System.DateTime> _ThoiGianLap;
 		
-		private System.Nullable<System.DateTime> _TimeHen;
+		private System.Nullable<System.DateTime> _ThoiGianHen;
 		
 		private System.Nullable<int> _MaCN;
 		
 		private string _TenKH;
 		
 		private string _SDT;
+		
+		private System.Nullable<System.TimeSpan> _GioLamViec;
+		
+		private System.Nullable<bool> _TrangThaiPhieuDat;
 		
 		private EntitySet<CTPHIEUDAT> _CTPHIEUDATs;
 		
@@ -3205,16 +3209,20 @@ namespace WebDoan.Models
     partial void OnMaPDChanged();
     partial void OnMaNVChanging(System.Nullable<int> value);
     partial void OnMaNVChanged();
-    partial void OnTimeLapChanging(System.Nullable<System.DateTime> value);
-    partial void OnTimeLapChanged();
-    partial void OnTimeHenChanging(System.Nullable<System.DateTime> value);
-    partial void OnTimeHenChanged();
+    partial void OnThoiGianLapChanging(System.Nullable<System.DateTime> value);
+    partial void OnThoiGianLapChanged();
+    partial void OnThoiGianHenChanging(System.Nullable<System.DateTime> value);
+    partial void OnThoiGianHenChanged();
     partial void OnMaCNChanging(System.Nullable<int> value);
     partial void OnMaCNChanged();
     partial void OnTenKHChanging(string value);
     partial void OnTenKHChanged();
     partial void OnSDTChanging(string value);
     partial void OnSDTChanged();
+    partial void OnGioLamViecChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnGioLamViecChanged();
+    partial void OnTrangThaiPhieuDatChanging(System.Nullable<bool> value);
+    partial void OnTrangThaiPhieuDatChanged();
     #endregion
 		
 		public PHIEUDAT()
@@ -3269,42 +3277,42 @@ namespace WebDoan.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeLap", DbType="DateTime")]
-		public System.Nullable<System.DateTime> TimeLap
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThoiGianLap", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ThoiGianLap
 		{
 			get
 			{
-				return this._TimeLap;
+				return this._ThoiGianLap;
 			}
 			set
 			{
-				if ((this._TimeLap != value))
+				if ((this._ThoiGianLap != value))
 				{
-					this.OnTimeLapChanging(value);
+					this.OnThoiGianLapChanging(value);
 					this.SendPropertyChanging();
-					this._TimeLap = value;
-					this.SendPropertyChanged("TimeLap");
-					this.OnTimeLapChanged();
+					this._ThoiGianLap = value;
+					this.SendPropertyChanged("ThoiGianLap");
+					this.OnThoiGianLapChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeHen", DbType="DateTime")]
-		public System.Nullable<System.DateTime> TimeHen
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThoiGianHen", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ThoiGianHen
 		{
 			get
 			{
-				return this._TimeHen;
+				return this._ThoiGianHen;
 			}
 			set
 			{
-				if ((this._TimeHen != value))
+				if ((this._ThoiGianHen != value))
 				{
-					this.OnTimeHenChanging(value);
+					this.OnThoiGianHenChanging(value);
 					this.SendPropertyChanging();
-					this._TimeHen = value;
-					this.SendPropertyChanged("TimeHen");
-					this.OnTimeHenChanged();
+					this._ThoiGianHen = value;
+					this.SendPropertyChanged("ThoiGianHen");
+					this.OnThoiGianHenChanged();
 				}
 			}
 		}
@@ -3369,6 +3377,46 @@ namespace WebDoan.Models
 					this._SDT = value;
 					this.SendPropertyChanged("SDT");
 					this.OnSDTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GioLamViec", DbType="Time")]
+		public System.Nullable<System.TimeSpan> GioLamViec
+		{
+			get
+			{
+				return this._GioLamViec;
+			}
+			set
+			{
+				if ((this._GioLamViec != value))
+				{
+					this.OnGioLamViecChanging(value);
+					this.SendPropertyChanging();
+					this._GioLamViec = value;
+					this.SendPropertyChanged("GioLamViec");
+					this.OnGioLamViecChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrangThaiPhieuDat", DbType="Bit")]
+		public System.Nullable<bool> TrangThaiPhieuDat
+		{
+			get
+			{
+				return this._TrangThaiPhieuDat;
+			}
+			set
+			{
+				if ((this._TrangThaiPhieuDat != value))
+				{
+					this.OnTrangThaiPhieuDatChanging(value);
+					this.SendPropertyChanging();
+					this._TrangThaiPhieuDat = value;
+					this.SendPropertyChanged("TrangThaiPhieuDat");
+					this.OnTrangThaiPhieuDatChanged();
 				}
 			}
 		}

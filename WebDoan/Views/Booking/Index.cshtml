@@ -49,24 +49,12 @@
                 <div class="booking-input">
                     <span>Chọn thời gian</span>
                     @*@Html.DropDownList("Lich", null, htmlAttributes: new { @class = "form-control" })*@
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.TimeLap)
-                    </div>
-                    <div class="editor-field">
-
-                        <select id="type">
-                            <option value="12:00:00">12:00:00</option>
-                            <option value="9:30:00">9:30</option>
-                            <option value="10:00:00">10:00 </option>
-                            <option value="10:30:00">10:30</option>
-                         </select>
-                    </div>
-                    </div>
-                    <div class="booking-input">
-                        <span>Chọn ngày</span>
-                        @Html.TextBoxFor(model => model.TimeHen, new { @type = "Date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
-
-                    </div>
+                    @Html.TextBoxFor(model => model.GioLamViec, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                </div>
+                <div class="booking-input">
+                    <span>Chọn ngày cắt </span>
+                    @Html.TextBoxFor(model => model.ThoiGianHen, new { @type = "Date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                </div>
                 </div>
 
             <input type="submit" class="btn-submit" value="Booking">

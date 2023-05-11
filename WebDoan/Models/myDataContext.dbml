@@ -33,9 +33,9 @@
   </Table>
   <Table Name="dbo.CTLLV" Member="CTLLVs">
     <Type Name="CTLLV">
-      <Column Name="MaTime" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaLich" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaNV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Lich_CTLLV" Member="Lich" ThisKey="MaTime" OtherKey="MaTime" Type="Lich" IsForeignKey="true" />
+      <Association Name="Lich_CTLLV" Member="Lich" ThisKey="MaLich" OtherKey="MaLich" Type="Lich" IsForeignKey="true" />
       <Association Name="NHANVIEN_CTLLV" Member="NHANVIEN" ThisKey="MaNV" OtherKey="MaNV" Type="NHANVIEN" IsForeignKey="true" />
     </Type>
   </Table>
@@ -108,9 +108,9 @@
   </Table>
   <Table Name="dbo.Lich" Member="Liches">
     <Type Name="Lich">
-      <Column Name="MaTime" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Time" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Association Name="Lich_CTLLV" Member="CTLLVs" ThisKey="MaTime" OtherKey="MaTime" Type="CTLLV" />
+      <Column Name="MaLich" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GioLamViec" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Association Name="Lich_CTLLV" Member="CTLLVs" ThisKey="MaLich" OtherKey="MaLich" Type="CTLLV" />
     </Type>
   </Table>
   <Table Name="dbo.LOAIDICHVU" Member="LOAIDICHVUs">
@@ -150,11 +150,13 @@
     <Type Name="PHIEUDAT">
       <Column Name="MaPD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MaNV" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TimeLap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TimeHen" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ThoiGianLap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ThoiGianHen" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MaCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SDT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="GioLamViec" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="TrangThaiPhieuDat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="PHIEUDAT_CTPHIEUDAT" Member="CTPHIEUDATs" ThisKey="MaPD" OtherKey="MaPD" Type="CTPHIEUDAT" />
       <Association Name="CHINHANH_PHIEUDAT" Member="CHINHANH" ThisKey="MaCN" OtherKey="MaCN" Type="CHINHANH" IsForeignKey="true" />
       <Association Name="NHANVIEN_PHIEUDAT" Member="NHANVIEN" ThisKey="MaNV" OtherKey="MaNV" Type="NHANVIEN" IsForeignKey="true" />
