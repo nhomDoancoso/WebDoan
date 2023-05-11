@@ -21,13 +21,11 @@
         </div>
 
         <h2 class="title-big" style="font-family: 'Playfair Display', serif;">Make An Appointment.</h2>
-
-
         @using (Html.BeginForm("Index", "Booking", FormMethod.Post))
         {
             <div class="booking-input">
                 <span>Tên khách hàng</span>
-                  @Html.TextBoxFor(model => model.TenKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên khách hàng" })
+                @Html.TextBoxFor(model => model.TenKH, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên khách hàng" })
             </div>
 
             <div class="booking-input">
@@ -50,14 +48,26 @@
             <div class="wrap-input">
                 <div class="booking-input">
                     <span>Chọn thời gian</span>
-                    @Html.TextBoxFor(model => model.TimeLap, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
-                </div>
-                <div class="booking-input">
-                    <span>Chọn ngày</span>
-                    @Html.TextBoxFor(model => model.TimeHen, new { @type = "Date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                    @*@Html.DropDownList("Lich", null, htmlAttributes: new { @class = "form-control" })*@
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.TimeLap)
+                    </div>
+                    <div class="editor-field">
 
+                        <select id="type">
+                            <option value="12:00:00">12:00:00</option>
+                            <option value="9:30:00">9:30</option>
+                            <option value="10:00:00">10:00 </option>
+                            <option value="10:30:00">10:30</option>
+                         </select>
+                    </div>
+                    </div>
+                    <div class="booking-input">
+                        <span>Chọn ngày</span>
+                        @Html.TextBoxFor(model => model.TimeHen, new { @type = "Date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+
+                    </div>
                 </div>
-            </div>
 
             <input type="submit" class="btn-submit" value="Booking">
         }
@@ -65,4 +75,18 @@
 </body>
 </html>
 
->
+<script>
+    $(function () {
+        $("#MaTime").change(function () {
+            var maTime = $(this).val();
+            $.ajax({
+                url: "/Booking/GetThoiGian",
+                type: "POST",
+                data: { maTime: maTime },
+                success: function (data) {
+                    $("#ThoiGian").val(data);
+                }
+            });
+        });
+    });
+</script>
