@@ -42,55 +42,65 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaNV)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThoiGianLap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThoiGianHen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaCN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenKH)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SDT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GioLamViec)
-            </td>
-            @if (@item.TrangThaiPhieuDat == false)
-            {
-                <td style="background-color:red">
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaNV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ThoiGianLap)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ThoiGianHen)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaCN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenKH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SDT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GioLamViec)
+    </td>
+    @*@if (@item.TrangThaiPhieuDat == false)
+        {
+            <td style="background-color:red">
 
-                    @Html.DisplayFor(modelItem => item.TrangThaiPhieuDat)
-                </td>
-            }
-            else
-            {
-                <td style="background-color:black">
-
-                    @Html.DisplayFor(modelItem => item.TrangThaiPhieuDat)
-                </td>
-            }
-            <td>
-                @Html.ActionLink("Baams", "ClientBooking", "", "index", new { id = item.MaPD, @class = "btnUpdate" })
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
-                @Html.ActionLink("Details", "Details", new { id = item.MaPD })
-                @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
+                @Html.DisplayFor(modelItem => item.TrangThaiPhieuDat)
             </td>
-        </tr>
+        }
+        else
+        {
+            <td style="background-color:black">
+
+                @Html.DisplayFor(modelItem => item.TrangThaiPhieuDat)
+            </td>
+        }*@
+<td>
+   @if (item.TrangThaiPhieuDat == false)
+    {
+        <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: red; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">Xác nhận đặt lịch</button>
+    }
+    else
+    {
+        <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Chưa xác nhận Đặt lịch</button>
+    }
+</td>
+    
+     
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
+        @Html.ActionLink("Details", "Details", new { id = item.MaPD })
+        @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
+    </td>
+</tr>
     }
 </table>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+@*<script>
 
     $(".btnUpdate").click(function () {
         var id = 11; // Id của bản ghi cần cập nhật, có thể thay đổi tùy theo yêu cầu
@@ -103,4 +113,32 @@
             }
         });
     });
-</script>
+</script>*@
+@*<script>
+    $(document).ready(function () {
+        $(".js-toggle-fav").click(function (e) {
+            var button = $(e.target);
+            $.post("/Menu/AddFavorite", { Id: button.attr("data-dish-id") })
+                .done(function (result) {
+                    if (result == "unfav") {
+                        alert("Đã bỏ thích!")
+                        button.removeClass("glyphicon-heart").addClass("glyphicon-heart-empty");
+                        window.location.reload();
+                    }
+                    else if (result == "fav") {
+                        alert("Đã thích !")
+                        button.removeClass("glyphicon-heart-empty").addClass("glyphicon-heart");
+                        window.location.reload();
+                    }
+                }).fail(function () {
+                    alert("Something Wrong...");
+                });
+        });
+    });
+
+    $(document).ready(function () {
+        $(".js-toggle-fav-unauthor").click(function () {
+            alert("Bạn phải đăng nhập để gửi lượt thích!")
+        });
+    });
+</script>*@

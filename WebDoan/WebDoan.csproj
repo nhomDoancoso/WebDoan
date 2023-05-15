@@ -3243,6 +3243,7 @@
     <Content Include="Areas\Admin\Views\CTLLV\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CTLLV\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CTLLV\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CTLLV\Edit.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
