@@ -3,6 +3,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WebDoan.Models;
@@ -41,13 +42,25 @@ namespace WebDoan.Areas.Admin.Controllers
             var macn = collection["MaCN"];
             var DiaChi = collection["DiaChi"];
             var hotline = collection["HotLine"];
+            Regex regexPhone = new Regex(@"(84|\+84|0)(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5|8|9]|9[0-4|6-9])[0-9]{7}");
+            Match matchPhone = regexPhone.Match(hotline);
             var checkCombo = db.CHINHANHs.FirstOrDefault(x => x.MaCN.ToString() == macn);
             if (checkCombo != null)
             {
                 ViewData["userExits"] = "mã cn đã tồn tại";
                 return this.Create();
             }
-            if(string.IsNullOrEmpty(DiaChi) && string.IsNullOrEmpty(hotline) && string.IsNullOrEmpty(macn))
+            if (hotline.Length < 10 || hotline.Length > 10)
+            {
+                ViewData["lenghtNum"] = "số điện thoải phải 10 số";
+                return this.Create();
+            }
+            if (!matchPhone.Success)
+            {
+                ViewData["NumWrong"] = "số điện thoải phải đúng định dạng";
+                return this.Create();
+            }
+            if (string.IsNullOrEmpty(DiaChi) && string.IsNullOrEmpty(hotline) && string.IsNullOrEmpty(macn))
             {
                 ViewData["ViewErr"] = "Không được để trống";
                 return this.Create();
@@ -76,6 +89,18 @@ namespace WebDoan.Areas.Admin.Controllers
             var E_DiaChi = collection["DiaChi"];
             var E_Holine = collection["HotLine"];
             E_ChiNhanh.MaCN = id;
+            Regex regexPhone = new Regex(@"(84|\+84|0)(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5|8|9]|9[0-4|6-9])[0-9]{7}");
+            Match matchPhone = regexPhone.Match(E_Holine);
+            if(E_Holine.Length < 10 || E_Holine.Length > 10)
+            {
+                ViewData["lenghtNum"] = "số điện thoải phải 10 số";
+                return this.Create();
+            }
+            if (!matchPhone.Success )
+            {
+                ViewData["NumWrong"] = "số điện thoải phải đúng định dạng";
+                return this.Create();
+            }
             if (string.IsNullOrEmpty(E_DiaChi) && string.IsNullOrEmpty(E_Holine))
             {
                 ViewData["Error"] = "Don't empty!";

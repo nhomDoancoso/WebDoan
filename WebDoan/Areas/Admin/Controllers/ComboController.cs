@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WebDoan.Models;
@@ -31,13 +32,14 @@ namespace WebDoan.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.MaLoaiDV = new SelectList(db.LOAIDICHVUs, "MaLoaiDV", "TenLoaiDV");
+            ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
             return View();
         }
         [HttpPost]
         public ActionResult Create(FormCollection collection, COMBODICHVU combo)
         {
             var macb = collection["MaCB"];
+            var tencb = collection["TenCB"];
             var gia = collection["Gia"];
             var checkCombo = db.COMBODICHVUs.FirstOrDefault(x => x.MaCB.ToString() == macb);
             if (checkCombo != null)
@@ -45,16 +47,18 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["userExits"] = "mã combo đã tồn tại";
                 return this.Create();
             }
-            if (string.IsNullOrEmpty(macb))
+            if (string.IsNullOrEmpty(macb) && string.IsNullOrEmpty(gia)&& string.IsNullOrEmpty(tencb))
             {
                 ViewData["ViewErr"] = "Không được để trống";
                 return this.Create();
             }
-            if (string.IsNullOrEmpty(gia))
+            if (combo.Gia <= 0)
             {
-                ViewData["ViewErr2"] = "Không được để trống";
+                ViewData["Price"] = "không được để giá âm";
                 return this.Create();
             }
+           
+           
 
 
             db.COMBODICHVUs.InsertOnSubmit(combo);

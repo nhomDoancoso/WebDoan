@@ -42,6 +42,8 @@
             @Html.ValidationMessageFor(model => model.HotLine, "", new { @class = "text-danger" })
         </div>
         <span style="color:Red">
+            @ViewData["lenghtNum"]
+            @ViewData["NumWrong"]
             @ViewData["ViewErr"]
         </span>
     </div>

@@ -6,11 +6,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -64,81 +60,27 @@
     <td>
         @Html.DisplayFor(modelItem => item.GioLamViec)
     </td>
-    @*@if (@item.TrangThaiPhieuDat == false)
-        {
-            <td style="background-color:red">
 
-                @Html.DisplayFor(modelItem => item.TrangThaiPhieuDat)
-            </td>
+    <td>
+        @if (item.TrangThaiPhieuDat == false)
+        {
+            <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: green; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">Xác nhận đặt lịch</button>
         }
         else
         {
-            <td style="background-color:black">
-
-                @Html.DisplayFor(modelItem => item.TrangThaiPhieuDat)
-            </td>
-        }*@
-<td>
-   @if (item.TrangThaiPhieuDat == false)
-    {
-        <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: red; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">Xác nhận đặt lịch</button>
-    }
-    else
-    {
-        <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Chưa xác nhận Đặt lịch</button>
-    }
-</td>
-    
-     
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
-        @Html.ActionLink("Details", "Details", new { id = item.MaPD })
-        @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
+            <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Chưa xác nhận Đặt lịch</button>
+        }
     </td>
+
+        @*
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
+                @Html.ActionLink("Details", "Details", new { id = item.MaPD })
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
+            </td>
+        *@
 </tr>
     }
 </table>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-@*<script>
-
-    $(".btnUpdate").click(function () {
-        var id = 11; // Id của bản ghi cần cập nhật, có thể thay đổi tùy theo yêu cầu
-        $.ajax({
-            url: "/API/UpdateBooleanValue",
-            type: "POST",
-            data: { 'id': id },
-            success: function () {
-                alert("Updated successfully!");
-            }
-        });
-    });
-</script>*@
-@*<script>
-    $(document).ready(function () {
-        $(".js-toggle-fav").click(function (e) {
-            var button = $(e.target);
-            $.post("/Menu/AddFavorite", { Id: button.attr("data-dish-id") })
-                .done(function (result) {
-                    if (result == "unfav") {
-                        alert("Đã bỏ thích!")
-                        button.removeClass("glyphicon-heart").addClass("glyphicon-heart-empty");
-                        window.location.reload();
-                    }
-                    else if (result == "fav") {
-                        alert("Đã thích !")
-                        button.removeClass("glyphicon-heart-empty").addClass("glyphicon-heart");
-                        window.location.reload();
-                    }
-                }).fail(function () {
-                    alert("Something Wrong...");
-                });
-        });
-    });
-
-    $(document).ready(function () {
-        $(".js-toggle-fav-unauthor").click(function () {
-            alert("Bạn phải đăng nhập để gửi lượt thích!")
-        });
-    });
-</script>*@

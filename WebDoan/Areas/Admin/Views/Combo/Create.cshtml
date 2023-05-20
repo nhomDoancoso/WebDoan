@@ -12,21 +12,23 @@
     <div class="wrappres">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="wrapper-inner">
-            Mã Combo
+            mã combo
             <div class="inner col-md-10">
-                @Html.EditorFor(model => model.MaCB, new { htmlAttributes = new { @class = "" } })
+                @Html.EditorFor(model => model.MaCB, new { htmlattributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.MaCB, "", new { @class = "text-danger" })
-                @ViewData["userExits"]
             </div>
+                @ViewData["userexits"]
+                @ViewData["ViewErr"]
         </div>
+
 
         <div class="wrapper-inner">
             Tên Combo
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
-                @ViewData["ViewErr2"]
             </div>
+                @ViewData["ViewErr"]
         </div>
 
         <div class="wrapper-inner">
@@ -34,8 +36,9 @@
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-                @ViewData["ViewErr2"]
             </div>
+                @ViewData["ViewErr"]
+                @ViewData["Price"]
         </div>
 
         <div class="wrapper-inner">

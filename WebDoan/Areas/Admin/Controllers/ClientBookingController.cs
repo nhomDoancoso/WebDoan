@@ -24,40 +24,12 @@ namespace WebDoan.Areas.Admin.Controllers
 
             if (phieudat != null)
             {
-                phieudat.TrangThaiPhieuDat = !phieudat.TrangThaiPhieuDat; // toggle the TrangThaiPhieuDat property value
-                dbContext.SubmitChanges(); // save the changes to the database
+                phieudat.TrangThaiPhieuDat = !phieudat.TrangThaiPhieuDat;
+                dbContext.SubmitChanges(); 
             }
 
-            // redirect to the same view that displays the item details
-            return RedirectToAction("Index", new { id = id });
+            return RedirectToAction("Index", "ClientBooking", new { id = id });
           
         }
-        //[HttpPost]
-        //public ActionResult AddFavorite(int id)
-        //{
-        //    string result = "fail";
-        //    int userID = int.Parse(Session["UserID"].ToString());
-        //    Favorite favorite = context.Favorites.FirstOrDefault(f => f.UserID == userID && f.DishID == id);
-        //    if (favorite == null)
-        //    {
-
-        //        Favorite newFavor = new Favorite
-        //        {
-        //            DishID = id,
-        //            UserID = userID,
-        //        };
-        //        context.Favorites.Add(newFavor);
-        //        context.SaveChanges();
-        //        result = "fav";
-        //    }
-        //    else
-        //    {
-        //        context.Favorites.Remove(favorite);
-        //        context.SaveChanges();
-        //        result = "unfav";
-
-        //    }
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
     }
 }

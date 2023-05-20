@@ -3212,7 +3212,6 @@
     <Content Include="Content\sass\style.scss" />
     <Content Include="Content\css\login.css.map" />
     <Content Include="Content\css\register.css.map" />
-    <Content Include="Areas\Admin\Views\Combo\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Detail.cshtml" />
@@ -3244,6 +3243,7 @@
     <Content Include="Areas\Admin\Views\CTLLV\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CTLLV\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\CTLLV\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Combo\Create.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>

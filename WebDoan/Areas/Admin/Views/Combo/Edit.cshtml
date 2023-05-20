@@ -15,7 +15,7 @@
     @Html.HiddenFor(model => model.MaCB)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.TenCB, htmlAttributes: new { @class = "control-label col-md-2" })
+        Tên Combo
         <div class="col-md-10">
             @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
@@ -23,7 +23,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
+        Giá
         <div class="col-md-10">
             @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
@@ -31,12 +31,53 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+        HÌnh Ảnh
         <div class="col-md-10">
-            @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="img-wrap"  style="align-items:center">
+            <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+            <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
+            <img class="wrapper-img" src="" id="pictureUpload" />
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    @section upload
+            {
+        <script>
+                                            $(function () {
+                                                $('#btnUpload').click(function () {
+                                                    $('#fileUpload').trigger('click');
+                                                });
+                                            });
+                                            $('#fileUpload').change(function () {
+                                                if (window.FormData !== undefined) {
+                                                    var fileUpload = $('#fileUpload').get(0);
+                                                    var files = fileUpload.files;
+                                                    var formData = new FormData();
+                                                    formData.append('file', files[0]);
+
+                                                    $.ajax(
+                                                        {
+                                                            type: 'POST',
+                                                            url: '/Combo/ProcessUpload',
+                                                            contentType: false,
+                                                            processData: false,
+                                                            data: formData,
+                                                            success: function (urlImage) {
+                                                                $('#pictureUpload').attr('src', urlImage);
+                                                                $('#HinhAnh').val(urlImage);
+                                                            },
+                                                            error: function (err) {
+                                                                alert('Error ', err.statusText);
+                                                            }
+                                                        });
+                                                }
+                                            });
+        </script>
+    }
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

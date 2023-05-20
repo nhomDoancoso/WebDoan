@@ -116,6 +116,11 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["UserExist"] = "user đăng nhập đã tồn tại";
                 return this.Create();
             }
+            if(dienthoai.Length < 10 || dienthoai.Length > 10)
+            {
+                ViewData["lenghtNum"] = "số điện thoải phải 10 số";
+                return this.Create();
+            }
             if (!matchPhone.Success)
             {
                 ViewData["NumWrong"] = "số điện thoải phải đúng định dạng";
