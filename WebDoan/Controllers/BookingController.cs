@@ -45,9 +45,19 @@ namespace WebDoan.Controllers
             pd.TenKH = tenkh;
             pd.SDT = sdt;
             var checkpd = db.PHIEUDATs.FirstOrDefault(x => x.MaPD.ToString() == mapd);
+            if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
+            {
+                ViewData["empty"] = "không được để trống";
+                ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+                ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
+                ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
+                ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
+                ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
+                return View(pd);
+            }
             db.PHIEUDATs.InsertOnSubmit(pd);
             db.SubmitChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("BookingSucces",pd);
         }
       
         [HttpPost]
@@ -64,5 +74,20 @@ namespace WebDoan.Controllers
             }
         }
      
+        public ActionResult BookingSucces(FormCollection collection, PHIEUDAT model)
+        {
+            ViewBag.Message = "Đặt chổ thành công!";
+            ViewBag.MaPD = model.MaPD;
+            ViewBag.TenKH = model.TenKH;
+            ViewBag.SDT = model.SDT;
+            //ViewBag.TenNV = model.;
+            ViewBag.TGLAP = model.ThoiGianLap;
+            ViewBag.TGHEN = model.ThoiGianHen;
+            //ViewBag.CHINHANH = model.CHINHANH.DiaChi;
+            ViewBag.GioLamViec = model.GioLamViec;
+            ViewBag.State = model.TrangThaiPhieuDat;
+
+            return View(model);
+        }
     }
 }

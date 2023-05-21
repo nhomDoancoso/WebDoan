@@ -3276,6 +3276,7 @@
     <Content Include="Views\ViewService\Index.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\product\Index.cshtml" />
+    <Content Include="Views\Booking\BookingSucces.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

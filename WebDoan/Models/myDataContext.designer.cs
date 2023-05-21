@@ -3230,7 +3230,8 @@ namespace WebDoan.Models
 			this._CTPHIEUDATs = new EntitySet<CTPHIEUDAT>(new Action<CTPHIEUDAT>(this.attach_CTPHIEUDATs), new Action<CTPHIEUDAT>(this.detach_CTPHIEUDATs));
 			this._CHINHANH = default(EntityRef<CHINHANH>);
 			this._NHANVIEN = default(EntityRef<NHANVIEN>);
-			OnCreated();
+            this.TrangThaiPhieuDat = true;
+            OnCreated();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaPD", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]

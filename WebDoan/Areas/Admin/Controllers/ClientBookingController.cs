@@ -15,10 +15,12 @@ namespace WebDoan.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var lst = from ss in db.PHIEUDATs select ss;
+            //var lst = from ss in db.PHIEUDATs where ss;
             return View(lst);   
         }
         public ActionResult Confirm(int id)
         {
+
             var dbContext = new myDataContextDataContext();
             var phieudat = dbContext.PHIEUDATs.Where(p => p.MaPD == id).FirstOrDefault();
 
