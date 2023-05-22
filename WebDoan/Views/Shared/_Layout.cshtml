@@ -205,6 +205,7 @@
     const bookingForm = document.getElementById('booking-form');
     const phoneNumberInput = document.getElementById('phone-number');
     const submitButton = document.querySelector('.btn-send');
+    const phoneNumberRegex = /^(090|093|089|012[0-8])+([0-9]{7})$/;
 
     submitButton.addEventListener('click', (event) => {
         if (phoneNumberInput.value.trim() === '') {
@@ -222,6 +223,11 @@
             location.reload();
         } else if (phoneNumberInput.value.length > 11) {
             alert('Số điện thoại không vượt quá 10 số !');
+            event.preventDefault();
+            reloadPage();
+        }
+        else if (!phoneNumberRegex.test(phoneNumberInput.value)) {
+            alert('Số điện thoại không đúng định dạng');
             event.preventDefault();
             reloadPage();
         }

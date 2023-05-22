@@ -57,8 +57,16 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["Price"] = "không được để giá âm";
                 return this.Create();
             }
-           
-           
+
+            double GIA;
+            if (!double.TryParse(gia, out GIA))
+            {
+                ViewData["Price"] = "Giá không hợp lệ!";
+                ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
+                return View(combo);
+            }
+
+
 
 
             db.COMBODICHVUs.InsertOnSubmit(combo);
@@ -100,6 +108,13 @@ namespace WebDoan.Areas.Admin.Controllers
             var E_gia = collection["Gia"];
             var E_HinhAh = collection["HinhAnh"];
             E_Combo.MaCB = id;
+            double GIA;
+            if (!double.TryParse(E_gia, out GIA))
+            {
+                ViewData["Price"] = "Giá không hợp lệ!";
+                ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
+                return View(combo);
+            }
             if (string.IsNullOrEmpty(E_tencb))
             {
                 ViewData["Error"] = "Don't empty!";

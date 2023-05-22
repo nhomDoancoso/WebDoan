@@ -33,7 +33,12 @@ namespace WebDoan.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.MaLoaiSP = new SelectList(db.LOAISANPHAMs, "MaLoaiSP", "TenLoaiSP");
+          
+            var listLoaiSP = db.LOAISANPHAMs.ToList();
+            var selectListLoaiSP = new SelectList(listLoaiSP, "MaLoaiSP", "TenLoaiSP");
+
+            // Gán danh sách loại sản phẩm vào ViewData
+            ViewData["LoaiSP"] = selectListLoaiSP;
             return View();
         }
         [HttpPost]
@@ -69,6 +74,12 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["ViewErr"] = "Không được để trống";
                 return this.Create();
             }
+            double GIA;
+            if (!double.TryParse(gia, out GIA))
+            {
+                ViewData["Price2"] = "Giá không hợp lệ!";
+                return View(sp);
+            }
             db.SANPHAMs.InsertOnSubmit(sp);
             db.SubmitChanges();
             return RedirectToAction("Index");
@@ -103,7 +114,14 @@ namespace WebDoan.Areas.Admin.Controllers
             var sp = db.SANPHAMs.First(m => m.MaSP == id);
 
             var E_tendv = collection["TenSP"];
+            var e_gia = collection["Gia"];
             sp.MaSP = id;
+            double GIA;
+            if (!double.TryParse(e_gia, out GIA))
+            {
+                ViewData["Price2"] = "Giá không hợp lệ!";
+                return View(sp);
+            }
             if (sp.Gia <= 0)
             {
                 ViewData["Price"] = "không được để giá âm";

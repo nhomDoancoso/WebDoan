@@ -33,7 +33,9 @@
         <div class="wrapper-inner">
             Loại Sản phẩm
             <div class="innner ">
-                @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "", @style = "padding: 0.8rem 14rem;border-radius: 10px; " })
+                @*@Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "", @style = "padding: 0.8rem 14rem;border-radius: 10px; " })
+        @Html.ValidationMessageFor(model => model.LOAISANPHAM.TenLoaiSP, "", new { @class = "text-danger" })*@
+                @Html.DropDownList("MaLoaiSP", ViewData["LoaiSP"] as SelectList, "-- Chọn loại sản phẩm --", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.LOAISANPHAM.TenLoaiSP, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,6 +48,8 @@
             </div>
                 <span style="color:red"> @ViewData["Price"] </span>
                 <span style="color:red">@ViewData["ViewErr"]</span>
+                <span style="color:red">@ViewData["Price2"]</span>
+
         </div>
 
         <div class="wrapper-inner">

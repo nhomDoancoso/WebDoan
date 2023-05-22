@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebDoan.Models;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace WebDoan.Controllers
 {
@@ -37,10 +38,12 @@ namespace WebDoan.Controllers
             var macn = collection["macn"];
             var tenkh = collection["tenkh"];
             var sdt = collection["sdt"];
+            
             pd.MaNV = int.Parse(manv);
             pd.ThoiGianLap = DateTime.Now;
-            pd.ThoiGianHen = DateTime.Parse(timehen);
-            pd.GioLamViec = TimeSpan.Parse(giolamviec);
+            //pd.ThoiGianHen = DateTime.Parse(timehen);
+            //pd.GioLamViec = TimeSpan.Parse(giolamviec);
+          
             pd.MaCN = int.Parse(macn);
             pd.TenKH = tenkh;
             pd.SDT = sdt;
@@ -55,6 +58,24 @@ namespace WebDoan.Controllers
                 ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
                 return View(pd);
             }
+            TimeSpan gioLamViec;
+            if (!TimeSpan.TryParseExact(giolamviec, "hh\\:mm", CultureInfo.InvariantCulture, out gioLamViec))
+            {
+                ViewData["error"] = "Giờ làm việc không hợp lệ";
+                // Trả về view với các SelectList và model đã được điền trước đó
+                return View(pd);
+            }
+
+            DateTime thoiGianHen;
+            if (!DateTime.TryParseExact(timehen, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out thoiGianHen))
+            {
+                ViewData["error"] = "Ngày cắt không hợp lệ";
+                // Trả về view với các SelectList và model đã được điền trước đó
+              
+                return View(pd);
+            }
+            pd.ThoiGianHen = thoiGianHen.Date;
+            pd.GioLamViec = thoiGianHen.TimeOfDay;
             db.PHIEUDATs.InsertOnSubmit(pd);
             db.SubmitChanges();
             return RedirectToAction("BookingSucces",pd);
@@ -88,6 +109,20 @@ namespace WebDoan.Controllers
             ViewBag.State = model.TrangThaiPhieuDat;
 
             return View(model);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var D_DV = db.PHIEUDATs.First(m => m.MaPD == id);
+            return View(D_DV);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            var D_DV = db.PHIEUDATs.Where(m => m.MaPD == id).First();
+            db.PHIEUDATs.DeleteOnSubmit(D_DV);
+            db.SubmitChanges();
+            return RedirectToAction("Index", "Footer");
         }
     }
 }

@@ -55,16 +55,23 @@
                 <div class="booking-input">
                     <span>Chọn thời gian</span>
                     @*@Html.DropDownList("Lich", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.TextBoxFor(model => model.GioLamViec, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                      @Html.TextBoxFor(model => model.GioLamViec, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                    <span style="color:red">
+                        @ViewData["error"]
+                    </span>
                 </div>
                 <div class="booking-input">
                     <span>Chọn ngày cắt </span>
-                    @Html.TextBoxFor(model => model.ThoiGianHen, new { @type = "date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number", @min = DateTime.Today.ToString("yyyy-MM-dd")})
+                    @Html.TextBoxFor(model => model.ThoiGianHen, new { @type = "date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number", @min = DateTime.Today.ToString("yyyy-MM-dd") })
+                    <span style="color:red">
+                        @ViewData["error"]
+                    </span>
                 </div>
-                </div>
+            </div>
 
             <input type="submit" class="btn-submit" value="Booking">
         }
+            <a style="background:black; color:white; padding:1rem 2rem; border-radius:10px" href="@Url.Action("Index", "Footer")" >Back to MainPage</a>
     </section>
 </body>
 </html>
@@ -84,3 +91,9 @@
         });
     });
 </script>
+
+<style>
+    .booking form {
+        padding:2rem 0;
+    }
+</style>

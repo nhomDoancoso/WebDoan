@@ -17,8 +17,11 @@
                 @Html.EditorFor(model => model.MaCB, new { htmlattributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.MaCB, "", new { @class = "text-danger" })
             </div>
+            <span style="color:red">
                 @ViewData["userexits"]
                 @ViewData["ViewErr"]
+            </span>
+             
         </div>
 
 
@@ -28,7 +31,10 @@
                 @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
             </div>
+            <span style="color:red">
+
                 @ViewData["ViewErr"]
+             </span>
         </div>
 
         <div class="wrapper-inner">
@@ -37,8 +43,11 @@
                 @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
             </div>
+            <span style="color:red">
+                @ViewData["Price"]
                 @ViewData["ViewErr"]
                 @ViewData["Price"]
+            </span>
         </div>
 
         <div class="wrapper-inner">

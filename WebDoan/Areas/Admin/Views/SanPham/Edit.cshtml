@@ -40,6 +40,7 @@
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
             </div>
             <span style="color:red">
+                @ViewData["Price2"]
                 @ViewData["Price"]
             </span>
         </div>

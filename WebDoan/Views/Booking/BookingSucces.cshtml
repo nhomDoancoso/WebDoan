@@ -32,8 +32,11 @@
         }
 
         @*<p>Địa chỉ: @ViewBag.CHINHANH</p>*@
+        <span>
+            @Html.ActionLink("Trở Lại", "Index", "Footer", new { @class="btn btn-success "})
+        </span>
     <span>
-        @Html.ActionLink("Trở Lại", "Index", "Footer")
+        @Html.ActionLink("Delete", "Delete", new { id = Model.MaPD })
     </span>
     </div>
 
@@ -44,5 +47,10 @@
     span a {
         color:black;
         text-decoration:none;
+        padding:1rem 2rem;
+        border-radius:10px;
+        color:white;
+        background:black;
+        cusor:pointer;
     }
 </style>
