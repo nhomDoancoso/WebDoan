@@ -20,7 +20,8 @@ namespace WebDoan.Areas.Admin.Controllers
             int pageSize = 8;
             int pageNum = page ?? 1;
             var search = db.CHINHANHs.OrderBy(s => s.HotLine);
-            var SearchAll = db.CHINHANHs.OrderBy(s => s.DiaChi);
+            var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN).Where(s => s.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
+            // var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN);
             var SearchSp = db.CHINHANHs.OrderBy(m => m.DiaChi).Where(sp => sp.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
             page = 1;
             if (SearchString == null || SearchString == "")

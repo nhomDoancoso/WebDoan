@@ -20,24 +20,27 @@
         @*<p>Tên nhân viên: @ViewBag.TenNV</p>*@
         <p>Thời gian tạo: @ViewBag.TGLAP</p>
         <p>Thời gian Hen: @ViewBag.TGHEN</p>
+        <p>ghi chú: @ViewBag.ghiChu</p>
+
         @if (Model.TrangThaiPhieuDat == true)
         {
-            <p>Thời gian Hen: <span>chưa xác nhận</span></p>
+            <p>Trạng thái: <span>chưa xác nhận</span></p>
 
         }
         else
         {
-            <p>Thời gian Hen: <span> xác nhận</span></p>
+             <p>Trạng thái:  <span> xác nhận</span></p>
 
         }
 
         @*<p>Địa chỉ: @ViewBag.CHINHANH</p>*@
-        <span>
-            @Html.ActionLink("Trở Lại", "Index", "Footer", new { @class="btn btn-success "})
-        </span>
     <span>
-        @Html.ActionLink("Delete", "Delete", new { id = Model.MaPD })
+        @Html.ActionLink("Trở Lại", "Index", "Footer", new { @class = "btn btn-success " })
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaPD })
     </span>
+        <span>
+            @Html.ActionLink("Delete", "Delete", new { id = Model.MaPD })
+        </span>
     </div>
 
 </body>

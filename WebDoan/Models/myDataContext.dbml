@@ -11,18 +11,6 @@
       <Association Name="COMBODICHVU_CTHOADON" Member="CTHOADONs" ThisKey="MaCB" OtherKey="MaCB" Type="CTHOADON" />
     </Type>
   </Table>
-  <Table Name="dbo.SANPHAM" Member="SANPHAMs">
-    <Type Name="SANPHAM">
-      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenSP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MaLoaiSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Hinh" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Association Name="SANPHAM_CTHOADON" Member="CTHOADONs" ThisKey="MaSP" OtherKey="MaSP" Type="CTHOADON" />
-      <Association Name="LOAISANPHAM_SANPHAM" Member="LOAISANPHAM" ThisKey="MaLoaiSP" OtherKey="MaLoaiSP" Type="LOAISANPHAM" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
   <Table Name="dbo.CTCOMBO" Member="CTCOMBOs">
     <Type Name="CTCOMBO">
       <Column Name="MaCB" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -54,8 +42,8 @@
       <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="COMBODICHVU_CTHOADON" Member="COMBODICHVU" ThisKey="MaCB" OtherKey="MaCB" Type="COMBODICHVU" IsForeignKey="true" />
-      <Association Name="SANPHAM_CTHOADON" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" />
       <Association Name="HOADON_CTHOADON" Member="HOADON" ThisKey="MaHD" OtherKey="MaHD" Type="HOADON" IsForeignKey="true" />
+      <Association Name="SANPHAM_CTHOADON" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CHINHANH" Member="CHINHANHs">
@@ -157,9 +145,22 @@
       <Column Name="SDT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="GioLamViec" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
       <Column Name="TrangThaiPhieuDat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Association Name="PHIEUDAT_CTPHIEUDAT" Member="CTPHIEUDATs" ThisKey="MaPD" OtherKey="MaPD" Type="CTPHIEUDAT" />
       <Association Name="CHINHANH_PHIEUDAT" Member="CHINHANH" ThisKey="MaCN" OtherKey="MaCN" Type="CHINHANH" IsForeignKey="true" />
       <Association Name="NHANVIEN_PHIEUDAT" Member="NHANVIEN" ThisKey="MaNV" OtherKey="MaNV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SANPHAM" Member="SANPHAMs">
+    <Type Name="SANPHAM">
+      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoaiSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hinh" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="SANPHAM_CTHOADON" Member="CTHOADONs" ThisKey="MaSP" OtherKey="MaSP" Type="CTHOADON" />
+      <Association Name="LOAISANPHAM_SANPHAM" Member="LOAISANPHAM" ThisKey="MaLoaiSP" OtherKey="MaLoaiSP" Type="LOAISANPHAM" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
 </Database>

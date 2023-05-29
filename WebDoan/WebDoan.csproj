@@ -1307,6 +1307,7 @@
     <Content Include="Content\images\section-3.jpg" />
     <Content Include="Content\images\section-4.jpg" />
     <Content Include="Content\images\section-product.jpg" />
+    <Content Include="Content\js\bookingForm.js" />
     <Content Include="Content\js\demo\chart-area-demo.js" />
     <Content Include="Content\js\demo\chart-bar-demo.js" />
     <Content Include="Content\js\demo\chart-pie-demo.js" />
@@ -3234,16 +3235,16 @@
     <Content Include="Areas\Admin\Views\SanPham\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ClientBooking\Index.cshtml" />
-    <Content Include="Models\myDataContext.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Areas\Admin\Views\CTLLV\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CTLLV\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CTLLV\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\CTLLV\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Combo\Create.cshtml" />
+    <Content Include="Models\myDataContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
@@ -3278,6 +3279,7 @@
     <Content Include="Views\product\Index.cshtml" />
     <Content Include="Views\Booking\BookingSucces.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
+    <Content Include="Views\Booking\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

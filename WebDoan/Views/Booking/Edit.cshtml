@@ -1,7 +1,7 @@
 ﻿@model WebDoan.Models.PHIEUDAT
+
 @{
     Layout = null;
-    <link href="~/Content/Images/haircut.ico" rel="shortcut icon" type="image/x-icon" />
 }
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Edit</title>
     <link href="~/Content/booking.css" rel="stylesheet" />
     <link href="~/Content/css/Global.css" rel="stylesheet" />
 </head>
@@ -17,11 +17,11 @@
     <section class="booking">
         <div class="wrap-title">
             <div class="title"> </div>
-            <span>Booking</span>
+            <span>Edit</span>
         </div>
-
         <h2 class="title-big" style="font-family: 'Playfair Display', serif;">Make An Appointment.</h2>
-        @using (Html.BeginForm("Index", "Booking", FormMethod.Post))
+
+        @using (Html.BeginForm())
         {
             <div class="booking-input">
                 <span>Tên khách hàng</span>
@@ -34,31 +34,34 @@
             <div class="booking-input">
                 <span>số điện thoại</span>
                 @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
-            <span style="color:red">
-                @ViewData["empty"]
-                @ViewData["sdt"]
-            </span>
-            </div>
-            <div>
-                <div class="wrap-input">
-                    <div class="booking-input">
-                        <span>Chọn  nhân viên</span>
-                        @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                    
-                </div>
-
+                <span style="color:red">
+                    @ViewData["empty"]
+                </span>
             </div>
             <div class="booking-input">
-                <span>Chọn địa điểm</span>
-                @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CHINHANH.MaCN, "", new { @class = "text-danger" })
+                <span>Ghi Chú</span>
+                @Html.TextBoxFor(model => model.GhiChu, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "ráy tai kĩ hơn cho anh, anh muốn chọn cắt tóc và ráy tai ..." })
+                <span style="color:red">
+                    @ViewData["empty"]
+                </span>
             </div>
-
+            <div class="wrap-input">
+                <div class="booking-input">
+                    <span>Chọn nhân viên</span>
+                    @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NHANVIEN.TenNV, "", new { @class = "text-danger" })
+                </div>
+                <div class="booking-input">
+                    <span>Chọn địa điểm</span>
+                    @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CHINHANH.MaCN, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="wrap-input">
                 <div class="booking-input">
                     <span>Chọn thời gian</span>
+                    @*@Html.DropDownList("Lich", null, htmlAttributes: new { @class = "form-control" })*@
                     @Html.TextBoxFor(model => model.GioLamViec, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
                     <span style="color:red">
                         @ViewData["error"]
@@ -73,20 +76,10 @@
                 </div>
             </div>
 
-            <input type="submit" class="btn-submit" value="Booking">
+            <input type="submit" value="Save" class="btn btn-default" />
         }
-        <a style="background:black; color:white; padding:1rem 2rem; border-radius:10px" href="@Url.Action("Index", "Footer")">Back to MainPage</a>
-    </section>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
 </body>
 </html>
-
-
-
-<style>
-    .booking form {
-        padding: 2rem 0;
-    }
-    #ddlMaNV option[value="1"] {
-        display: none;
-    }
-</style>

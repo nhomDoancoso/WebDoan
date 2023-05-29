@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using WebDoan.Models;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace WebDoan.Controllers
 {
@@ -18,7 +19,12 @@ namespace WebDoan.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+            var employees = db.NHANVIENs
+                   .Where(n => n.MaCV != 1)
+                   .ToList();
+            ViewBag.MaNV = new SelectList(employees, "MaNV", "TenNV");
+          //  ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+            //ViewBag.MaCV = new SelectList(db.CHUCVUs, "MaCV", "TenCV");
             ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
             ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
             ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
@@ -38,19 +44,30 @@ namespace WebDoan.Controllers
             var macn = collection["macn"];
             var tenkh = collection["tenkh"];
             var sdt = collection["sdt"];
-            
+            var ghichu = collection["GhiChu"];
+            Regex regexPhone = new Regex(@"^(84|0[3|5|7|8|9])+([0-9]{8})\b");
+            Match matchPhone = regexPhone.Match(sdt);
             pd.MaNV = int.Parse(manv);
             pd.ThoiGianLap = DateTime.Now;
-            //pd.ThoiGianHen = DateTime.Parse(timehen);
-            //pd.GioLamViec = TimeSpan.Parse(giolamviec);
-          
             pd.MaCN = int.Parse(macn);
             pd.TenKH = tenkh;
             pd.SDT = sdt;
-            var checkpd = db.PHIEUDATs.FirstOrDefault(x => x.MaPD.ToString() == mapd);
+            pd.GhiChu = ghichu;
+            pd.TrangThaiPhieuDat = true;
+
             if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
             {
                 ViewData["empty"] = "không được để trống";
+                ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+                ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
+                ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
+                ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
+                ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
+                return View(pd);
+            }
+            if(!matchPhone.Success)
+            {
+                ViewData["sdt"] = "Số Điện thoại không đúng định dạng";
                 ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
                 ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
                 ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
@@ -71,7 +88,7 @@ namespace WebDoan.Controllers
             {
                 ViewData["error"] = "Ngày cắt không hợp lệ";
                 // Trả về view với các SelectList và model đã được điền trước đó
-              
+
                 return View(pd);
             }
             pd.ThoiGianHen = thoiGianHen.Date;
@@ -81,6 +98,7 @@ namespace WebDoan.Controllers
             return RedirectToAction("BookingSucces",pd);
         }
       
+
         [HttpPost]
         public ActionResult GetThoiGian(int maTime)
         {
@@ -101,11 +119,10 @@ namespace WebDoan.Controllers
             ViewBag.MaPD = model.MaPD;
             ViewBag.TenKH = model.TenKH;
             ViewBag.SDT = model.SDT;
-            //ViewBag.TenNV = model.;
             ViewBag.TGLAP = model.ThoiGianLap;
             ViewBag.TGHEN = model.ThoiGianHen;
-            //ViewBag.CHINHANH = model.CHINHANH.DiaChi;
             ViewBag.GioLamViec = model.GioLamViec;
+            ViewBag.ghiChu = model.GhiChu;
             ViewBag.State = model.TrangThaiPhieuDat;
 
             return View(model);
@@ -123,6 +140,44 @@ namespace WebDoan.Controllers
             db.PHIEUDATs.DeleteOnSubmit(D_DV);
             db.SubmitChanges();
             return RedirectToAction("Index", "Footer");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            try
+            {
+                ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
+                ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+                var E_Sp = db.PHIEUDATs.First(m => m.MaPD == id);
+                return View(E_Sp);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection, PHIEUDAT phieudat)
+        {
+
+            var sp = db.PHIEUDATs.First(m => m.MaPD == id);
+
+            var e_tenkh = collection["TenKH"];
+            sp.MaPD = id;
+            phieudat.ThoiGianLap = DateTime.Now;
+
+            if (string.IsNullOrEmpty(e_tenkh))
+            {
+                ViewData["Error"] = "Don't empty!";
+            }
+            else
+            {
+                sp.TenKH = e_tenkh;
+                UpdateModel(sp);
+                db.SubmitChanges();
+                return RedirectToAction("Index", "Booking");
+            }
+            return this.Edit(id);
         }
     }
 }

@@ -34,6 +34,10 @@
             @Html.DisplayNameFor(model => model.TrangThaiPhieuDat)
 
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GhiChu)
+
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -71,14 +75,16 @@
             <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Chưa xác nhận Đặt lịch</button>
         }
     </td>
-
-        @*
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
-                @Html.ActionLink("Details", "Details", new { id = item.MaPD })
-                @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
-            </td>
-        *@
+    <td>
+        @Html.DisplayFor(modelItem => item.GhiChu)
+    </td>
+    @*
+        <td>
+           
+            @Html.ActionLink("Details", "Details", new { id = item.MaPD })
+            @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
+        </td>
+    *@
 </tr>
     }
 </table>
