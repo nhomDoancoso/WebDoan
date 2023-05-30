@@ -5,7 +5,6 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -24,40 +23,36 @@
                 <div class="title"> </div>
                 <span style="font-size: 1.7rem;">View Products</span>
             </div>
-
             <h2 class="title-big" style="font-family: 'Playfair Display', serif; font-size: 4rem;">All Products</h2>
-
-
             <div class="products-container">
-
                 @foreach (var item in Model)
                 {
                     <div class="box">
                         <div class="image-product">
-                            <img src="@item.Hinh" alt="">
+                            <img src="@item.Hinh" alt="Hình lỗi">
 
                             <div class="icons">
-                                <a href="" class="fa-solid fa-eye"></a>
-                                <a href="" class="fa-solid fa-bag-shopping"></a>
+                                <a href="@Url.Action("Detail", "product", new { id=item.MaSP})" class="fa-solid fa-eye"></a>
+                                <a class="fa-solid fa-bag-shopping" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL= Request.Url.ToString()})"></a>
+
                             </div>
                         </div>
 
                         <div class="content">
                             <h2>@item.TenSP</h2>
                             <span class="price">@item.Gia đ</span>
-                            <button id="heart-button">
+                            @*<button id="heart-button">
                                 <i id="heart-icon" class="far fa-heart"></i>
-                            </button>
+                            </button>*@
                         </div>
                     </div>
+                    
                 }
-
-
             </div>
         </section>
     </body>
     <script>
-    var heartButton = document.getElementById("heart-button");
+    @*var heartButton = document.getElementById("heart-button");
     var heartIcon = document.getElementById("heart-icon");
 
     heartButton.addEventListener("click", function() {
@@ -80,4 +75,4 @@
         #heart-icon.active {
             color: red;
         }
-</style>
+</style>*@

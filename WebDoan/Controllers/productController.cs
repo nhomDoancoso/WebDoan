@@ -11,10 +11,17 @@ namespace WebDoan.Controllers
     {
         // GET: SanPham
         myDataContextDataContext db = new myDataContextDataContext();
+
         public ActionResult Index()
         {
             var lstSp = from ss in db.SANPHAMs select ss;
             return View(lstSp);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var D_SP = db.SANPHAMs.Where(m => m.MaSP == id).First();
+            return View(D_SP);
         }
     }
 }

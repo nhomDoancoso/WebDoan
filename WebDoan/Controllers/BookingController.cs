@@ -19,17 +19,12 @@ namespace WebDoan.Controllers
 
         public ActionResult Index()
         {
-            var employees = db.NHANVIENs
-                   .Where(n => n.MaCV != 1)
-                   .ToList();
+            var employees = db.NHANVIENs.Where(n => n.MaCV != 1).ToList();
             ViewBag.MaNV = new SelectList(employees, "MaNV", "TenNV");
-          //  ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
-            //ViewBag.MaCV = new SelectList(db.CHUCVUs, "MaCV", "TenCV");
             ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
             ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
             ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
             ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
-
             return View();
         }
         [HttpPost]
@@ -54,32 +49,30 @@ namespace WebDoan.Controllers
             pd.SDT = sdt;
             pd.GhiChu = ghichu;
             pd.TrangThaiPhieuDat = true;
-
             if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
             {
                 ViewData["empty"] = "không được để trống";
-                ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
-                ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
-                ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
-                ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
-                ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
+                //ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+                //ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
+                //ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
+                //ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
+                //ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
                 return View(pd);
             }
-            if(!matchPhone.Success)
+            if (!matchPhone.Success)
             {
                 ViewData["sdt"] = "Số Điện thoại không đúng định dạng";
-                ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
-                ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
-                ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
-                ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
-                ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
+                //ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
+                //ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
+                //ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
+                //ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
+                //ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
                 return View(pd);
             }
             TimeSpan gioLamViec;
             if (!TimeSpan.TryParseExact(giolamviec, "hh\\:mm", CultureInfo.InvariantCulture, out gioLamViec))
             {
                 ViewData["error"] = "Giờ làm việc không hợp lệ";
-                // Trả về view với các SelectList và model đã được điền trước đó
                 return View(pd);
             }
 
@@ -87,17 +80,14 @@ namespace WebDoan.Controllers
             if (!DateTime.TryParseExact(timehen, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out thoiGianHen))
             {
                 ViewData["error"] = "Ngày cắt không hợp lệ";
-                // Trả về view với các SelectList và model đã được điền trước đó
-
                 return View(pd);
             }
             pd.ThoiGianHen = thoiGianHen.Date;
             pd.GioLamViec = thoiGianHen.TimeOfDay;
             db.PHIEUDATs.InsertOnSubmit(pd);
             db.SubmitChanges();
-            return RedirectToAction("BookingSucces",pd);
+            return RedirectToAction("BookingSucces", pd);
         }
-      
 
         [HttpPost]
         public ActionResult GetThoiGian(int maTime)

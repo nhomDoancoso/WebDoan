@@ -19,7 +19,6 @@
             <div class="title"> </div>
             <span>Booking</span>
         </div>
-
         <h2 class="title-big" style="font-family: 'Playfair Display', serif;">Make An Appointment.</h2>
         @using (Html.BeginForm("Index", "Booking", FormMethod.Post))
         {
@@ -30,32 +29,25 @@
             <span style="color:red">
                 @ViewData["empty"]
             </span>
-
             <div class="booking-input">
                 <span>số điện thoại</span>
                 @Html.TextBoxFor(model => model.SDT, new { @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
-            <span style="color:red">
-                @ViewData["empty"]
-                @ViewData["sdt"]
-            </span>
+                <span style="color:red">
+                    @ViewData["empty"]
+                    @ViewData["sdt"]
+                </span>
             </div>
-            <div>
-                <div class="wrap-input">
-                    <div class="booking-input">
-                        <span>Chọn  nhân viên</span>
-                        @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                    
+            <div class="wrap-input">
+                <div class="booking-input">
+                    <span>Chọn  nhân viên</span>
+                    @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
                 </div>
-
             </div>
             <div class="booking-input">
                 <span>Chọn địa điểm</span>
                 @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CHINHANH.MaCN, "", new { @class = "text-danger" })
             </div>
-
-
             <div class="wrap-input">
                 <div class="booking-input">
                     <span>Chọn thời gian</span>
@@ -72,7 +64,6 @@
                     </span>
                 </div>
             </div>
-
             <input type="submit" class="btn-submit" value="Booking">
         }
         <a style="background:black; color:white; padding:1rem 2rem; border-radius:10px" href="@Url.Action("Index", "Footer")">Back to MainPage</a>
@@ -86,6 +77,7 @@
     .booking form {
         padding: 2rem 0;
     }
+
     #ddlMaNV option[value="1"] {
         display: none;
     }

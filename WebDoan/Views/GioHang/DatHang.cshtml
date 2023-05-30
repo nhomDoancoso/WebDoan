@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WebDoan.Models.DonDatHang>
+
+
+@{
+    Layout = null;
+}
+
+<div class="box-container" style="font-size:2rem">
+    <h2 style="text-align: center">Đơn hàng</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Thành tiền
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SANPHAM.TenSP)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.SANPHAM.Hinh)" width="180" alt="Alternate Text" />
+                </td>
+                @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.MaSP }))
+                {
+                    <td>@item.SANPHAM.Gia VND</td>
+                    <td>@Html.DisplayFor(ModelItem => item.SoLuong)</td>
+                    <td>@Html.DisplayFor(ModelItem => item.ThanhTien)</td>
+                }
+
+            </tr>
+        }
+        <tr style="font-weight: bold; text-align: left; color: red">
+            <td colspan="">Số lượng sản phẩm: @ViewBag.TongSoLuong</td>
+            <td colspan="">Số loại sản phẩm: @ViewBag.TongSoLuongSanPham</td>
+            <td colspan="">Tổng tiền: @ViewBag.TongTien VND</td>
+        </tr>
+    </table>
+
+    @using WebDoan.Models
+    <h2 style="text-align: center;font-size:3rem">Thông tin đặt hàng</h2>
+    @{
+
+        KHACHHANG kh = (KHACHHANG)Session["FullTaiKhoan"];
+
+
+    }
+    <div style="display:flex; justify-content:space-around; font-size:2rem">
+        <table align="center">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <tr style="height: 40px">
+                    <td>Họ tên khách hàng:  </td>
+                    <td style="font-weight: bold">@kh.TenKH</td>
+                </tr>
+                <tr style="height: 40px">
+                    <td>Email:</td>
+                    <td style="font-weight: bold">@kh.Email</td>
+                </tr>
+                <tr style="height: 40px">
+                    <td>Điện thoại: </td>
+                    <td style="font-weight: bold">@kh.SDT</td>
+                </tr>
+                <tr style="height: 40px">
+                    <td>Ngày đặt: </td>
+                    <td style="font-weight: bold">@DateTime.Now.ToShortDateString()</td>
+                </tr>
+                <tr style="height: 40px">
+                    <td> </td>
+                    <td style="font-weight: bold">
+                        <input type="submit" value="Xác nhận" class="btn btn-success " style="font-size:2rem" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+

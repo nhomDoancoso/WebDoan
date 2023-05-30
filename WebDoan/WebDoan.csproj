@@ -389,6 +389,8 @@
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
+    <Compile Include="Controllers\HoaDonsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\productController.cs" />
     <Compile Include="Controllers\ViewServiceController.cs" />
@@ -3280,10 +3282,17 @@
     <Content Include="Views\Booking\BookingSucces.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
     <Content Include="Views\Booking\Edit.cshtml" />
+    <Content Include="Views\product\Detail.cshtml" />
+    <Content Include="Views\GioHang\DatHang.cshtml" />
+    <Content Include="Views\GioHang\GioHang.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\XacnhanDonhang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\HoaDons\" />
+    <Folder Include="Views\HoaDon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
