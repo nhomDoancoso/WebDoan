@@ -44,6 +44,11 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection, SANPHAM sp)
         {
+            if (Session["TaiKhoanAdmin"] == null || Session["TaiKhoanAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "LoginAdmin");
+            }
+            int maTK = (int)Session["TaiKhoanAdmin"];
             var masp = collection["MaSP"];
             var tensp = collection["TenSP"];
             var maloaiSp = collection["MaloaiSP"];
@@ -110,7 +115,7 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection, SANPHAM sanpham)
         {
-
+           
             var sp = db.SANPHAMs.First(m => m.MaSP == id);
 
             var E_tendv = collection["TenSP"];

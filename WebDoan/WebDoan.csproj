@@ -3277,7 +3277,6 @@
     <Content Include="Views\Login\DangNhap.cshtml" />
     <Content Include="Views\Login\DangKy.cshtml" />
     <Content Include="Views\ViewService\Index.cshtml" />
-    <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\product\Index.cshtml" />
     <Content Include="Views\Booking\BookingSucces.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
@@ -3287,12 +3286,11 @@
     <Content Include="Views\GioHang\GioHang.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\XacnhanDonhang.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\HoaDons\" />
-    <Folder Include="Views\HoaDon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

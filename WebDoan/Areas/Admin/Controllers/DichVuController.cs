@@ -37,6 +37,11 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection, DICHVU dichvu)
         {
+            if (Session["TaiKhoanAdmin"] == null || Session["TaiKhoanAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "LoginAdmin");
+            }
+            int maTK = (int)Session["TaiKhoanAdmin"];
             var madv = collection["MaDV"];
             var gia = collection["Gia"];
             var checkMaDV = db.DICHVUs.FirstOrDefault(x => x.MaLoaiDV == madv);

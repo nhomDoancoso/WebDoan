@@ -17,26 +17,24 @@
         <nav class="header-navbar">
             <a href="#Home">Home</a>
             <a href="@Url.Action("Index","Product")">Products</a>
-            <a href="#About-us">About us</a>
-            <a href="#Service">Service</a>
+
+            <a href="#Prices">Prices</a>
+            <a href="#Location">Location</a>
             <a href="#">
                 <img src="~/Content/images/logo.png" />
             </a>
-            <a href="#Prices">Prices</a>
-            <a href="#Location">Location</a>
 
             @if (Session["TaiKhoanKH"] == null)
             {
-                <a> @Html.ActionLink("Đăng nhập", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
-                <a> @Html.ActionLink("Đăng ký", "DangKy", "Login", new { area = "" }, new { @class = "cusor" })</a>
+                <a> @Html.ActionLink("Login", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
+                <a> @Html.ActionLink("Register", "DangKy", "Login", new { area = "" }, new { @class = "cusor" })</a>
             }
             else
             {
-
-                <a>@Html.ActionLink("Xin chào " + @Session["User"], "Index", "Footer", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "cusor" })</a>
-                <a>@Html.ActionLink("Đăng xuất", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
+                <a>@Html.ActionLink("Hello" + @Session["User"], "Index", "Footer", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "cusor" })</a>
+                <a>@Html.ActionLink("Logout", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
             }
-                <a href=" @Url.Action("GioHang", "GioHang")"><i class="fas fa-shopping-bag"></i></a>
+            <a href=" @Url.Action("GioHang", "GioHang")"><i class="fas fa-shopping-bag"></i></a>
         </nav>
     </header>
 

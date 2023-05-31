@@ -12,8 +12,6 @@ namespace WebDoan.Controllers
     public class GioHangController : Controller
     {
         myDataContextDataContext data = new myDataContextDataContext();
-        // GET: Admin/GioHang
-
         public List<DonDatHang> Laygiohang()
         {
             int maKH = (int)Session["TaiKhoanKH"];
@@ -45,36 +43,6 @@ namespace WebDoan.Controllers
                 }
             }
             return lstGiohang;
-            //int maKH = (int)Session["TaiKhoanKH"];
-            //List<DonDatHang> lstGiohang = Session["GioHang"] as List<DonDatHang>;
-            //var loadGH = data.DonDatHangs.Where(x => x.MaKH == maKH).ToList();
-            //lstGiohang = loadGH;
-            //if (lstGiohang == null)
-            //{
-            //    lstGiohang = new List<DonDatHang>();
-            //    Session["GioHang"] = lstGiohang;
-            //}
-            //else
-            //{
-            //    foreach (DonDatHang gh in loadGH)
-            //    {
-            //        gh.SANPHAM = (SANPHAM)data.SANPHAMs.FirstOrDefault(x => x.MaSP == gh.MaSP);
-            //        gh.KHACHHANG = (KHACHHANG)data.KHACHHANGs.FirstOrDefault(x => x.MaKH == gh.MaKH);
-            //        if (lstGiohang == null)
-            //        {
-            //            lstGiohang = new List<DonDatHang>();
-            //            lstGiohang.Add(gh);
-            //        }
-            //        else
-            //        {
-            //            if (!lstGiohang.Contains(gh))
-            //                lstGiohang.Add(gh);
-            //            else Session["GioHang"] = lstGiohang;
-            //        }
-            //    }
-            //}
-            ////Session["GioHang"] = lstGiohang;
-            //return lstGiohang;
 
         }
         public ActionResult ThemGioHang(int id, string strURL)
@@ -103,9 +71,6 @@ namespace WebDoan.Controllers
                 sanpham.SoLuong += 1;
                 lstGiohang.Add(sanpham);
                 donDatHang.SoLuong = sanpham.SoLuong;
-                //temp.SoLuong = sanpham.SoLuong; 
-                
-                //data.DonDatHangs.AddOrUpdate(temp);
                 data.SubmitChanges();
                 return Redirect(strURL);
             }

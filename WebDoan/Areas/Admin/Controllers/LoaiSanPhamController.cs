@@ -35,6 +35,11 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection, LOAISANPHAM lsp)
         {
+            if (Session["TaiKhoanAdmin"] == null || Session["TaiKhoanAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "LoginAdmin");
+            }
+            int maTK = (int)Session["TaiKhoanAdmin"];
             var maloaisp = collection["MaLoaiSP"];
             var TenLoaiSp = collection["TenLoaiSP"];
             var checkMalsp = db.LOAISANPHAMs.FirstOrDefault(x => x.MaLoaiSP.ToString() == maloaisp);

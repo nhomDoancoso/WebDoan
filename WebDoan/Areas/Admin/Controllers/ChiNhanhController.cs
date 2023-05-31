@@ -20,9 +20,9 @@ namespace WebDoan.Areas.Admin.Controllers
             int pageSize = 8;
             int pageNum = page ?? 1;
             var search = db.CHINHANHs.OrderBy(s => s.HotLine);
-            var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN).Where(s => s.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
-            // var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN);
-            var SearchSp = db.CHINHANHs.OrderBy(m => m.DiaChi).Where(sp => sp.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
+            //var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN).Where(s => s.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
+             var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN);
+         var SearchSp = db.CHINHANHs.OrderBy(m => m.DiaChi).Where(sp => sp.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
             page = 1;
             if (SearchString == null || SearchString == "")
                 return View(SearchAll.ToPagedList(pageNum, pageSize));
@@ -40,6 +40,11 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection, CHINHANH chinhanh)
         {
+            if (Session["TaiKhoanAdmin"] == null || Session["TaiKhoanAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "LoginAdmin");
+            }
+            int maTK = (int)Session["TaiKhoanAdmin"];
             var macn = collection["MaCN"];
             var DiaChi = collection["DiaChi"];
             var hotline = collection["HotLine"];

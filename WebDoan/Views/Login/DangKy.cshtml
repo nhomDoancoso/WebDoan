@@ -10,6 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Images/haircut.ico" rel="shortcut icon" type="image/x-icon" />
+
     <title>Login</title>
 </head>
 <body>
@@ -54,6 +56,8 @@
         <div class="inner form-outline mb-4">
             <span class="span-inner"> UserName</span>
             @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
         </div>
         <span style="color:red">
             @ViewData["tendangnhap"]
@@ -63,7 +67,7 @@
             <span class="span-inner">Password</span>
             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-          
+
         </div>
         <span style="color:red">
             @ViewData["PassWordWrong"]
@@ -73,9 +77,12 @@
         <div class="inner form-outline mb-4">
             <label class="form-label" style="font-size:1.5rem" for="MatKhauXacNhan">Mật khẩu xác nhận</label>
             <input type="password" id="MatKhauXacNhan" name="MatKhauXacNhan" class="form-control" />
+           
+        </div>
+        <span style="color:red">
             @ViewData["NhapMKXN"]
             @ViewData["MatKhauGiongNhau"]
-        </div>
+        </span>
         <button type="submit" class="btn btn-primary btn-lg">Register</button>
     </div>
     }

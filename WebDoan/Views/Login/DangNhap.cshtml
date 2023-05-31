@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="~/Content/Images/haircut.ico" rel="shortcut icon" type="image/x-icon" />
 
     <link rel="stylesheet" href="./css/Global.css">
     <link rel="stylesheet" href="./css/login.css">
@@ -24,7 +25,7 @@
 
 
             <div class="box-input">
-                <span>Email address</span>
+                <span>UserName</span>
                 @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" })
                 @ViewData["ErrorAccount"]
             </div>
@@ -43,3 +44,11 @@
 
 </body>
 </html>
+
+<style>
+    .box-input input {
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        margin: 1rem;
+    }
+</style>

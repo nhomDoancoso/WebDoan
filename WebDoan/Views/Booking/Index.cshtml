@@ -39,8 +39,10 @@
             </div>
             <div class="wrap-input">
                 <div class="booking-input">
-                    <span>Chọn  nhân viên</span>
+                    <span>Chọn nhân viên</span>
                     @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NHANVIEN.MaNV, "", new { @class = "text-danger" })
+
                 </div>
             </div>
             <div class="booking-input">

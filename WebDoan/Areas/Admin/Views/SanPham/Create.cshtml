@@ -11,7 +11,7 @@
 
     <div class="wrappres">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="wrapper-inner">
+       @*<div class="wrapper-inner">
             mã sản phẩm
             <div class="innner ">
                 @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "" } })
@@ -19,7 +19,7 @@
             </div>
                 <span style="color:red">@ViewData["masp"]</span>
                 <span style="color:red">@ViewData["ViewErr"]</span>
-        </div>
+        </div>*@
 
         <div class="wrapper-inner">
             Tên sản phẩm

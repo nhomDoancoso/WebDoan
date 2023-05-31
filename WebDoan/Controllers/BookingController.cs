@@ -28,7 +28,7 @@ namespace WebDoan.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult index(FormCollection collection, PHIEUDAT pd)
+        public ActionResult Index(FormCollection collection, PHIEUDAT pd)
         {
             var mapd = collection["mapd"];
             var makh = collection["makh"];
@@ -49,26 +49,9 @@ namespace WebDoan.Controllers
             pd.SDT = sdt;
             pd.GhiChu = ghichu;
             pd.TrangThaiPhieuDat = true;
-            if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
-            {
-                ViewData["empty"] = "không được để trống";
-                //ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
-                //ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
-                //ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
-                //ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
-                //ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
-                return View(pd);
-            }
-            if (!matchPhone.Success)
-            {
-                ViewData["sdt"] = "Số Điện thoại không đúng định dạng";
-                //ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV");
-                //ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
-                //ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
-                //ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
-                //ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
-                return View(pd);
-            }
+            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV", pd.MaNV);
+            ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi", pd.MaCN);
+
             TimeSpan gioLamViec;
             if (!TimeSpan.TryParseExact(giolamviec, "hh\\:mm", CultureInfo.InvariantCulture, out gioLamViec))
             {
@@ -80,6 +63,16 @@ namespace WebDoan.Controllers
             if (!DateTime.TryParseExact(timehen, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out thoiGianHen))
             {
                 ViewData["error"] = "Ngày cắt không hợp lệ";
+                return View(pd);
+            }
+            if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
+            {
+                ViewData["empty"] = "không được để trống";
+                return View(pd);
+            }
+            if (!matchPhone.Success)
+            {
+                ViewData["sdt"] = "Số Điện thoại không đúng định dạng";
                 return View(pd);
             }
             pd.ThoiGianHen = thoiGianHen.Date;
@@ -109,6 +102,14 @@ namespace WebDoan.Controllers
             ViewBag.MaPD = model.MaPD;
             ViewBag.TenKH = model.TenKH;
             ViewBag.SDT = model.SDT;
+            if (model.NHANVIEN != null)
+            {
+                ViewBag.TenNV = model.NHANVIEN.TenNV;
+            }
+            else
+            {
+                ViewBag.TenNV = "Không có thông tin nhân viên";
+            }
             ViewBag.TGLAP = model.ThoiGianLap;
             ViewBag.TGHEN = model.ThoiGianHen;
             ViewBag.GioLamViec = model.GioLamViec;
@@ -129,7 +130,7 @@ namespace WebDoan.Controllers
             var D_DV = db.PHIEUDATs.Where(m => m.MaPD == id).First();
             db.PHIEUDATs.DeleteOnSubmit(D_DV);
             db.SubmitChanges();
-            return RedirectToAction("Index", "Footer");
+            return RedirectToAction("Index", "Booking");
         }
 
         public ActionResult Edit(int id)

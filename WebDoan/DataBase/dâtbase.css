@@ -2,11 +2,9 @@
 
 public Double? ThanhTien {
     get
-
-{
-    return SoLuong * SANPHAM.Gia;
-}
-
+    {
+        return SoLuong * SANPHAM.Gia;
+    }
 }
 
 public DonDatHang(int idSP) {
@@ -20,3 +18,4 @@ public DonDatHang(int idSP, int maTK) {
     this .MaSP = idSP;
     this .MaKH = maTK;
 }
+//thêm vào donDatHang

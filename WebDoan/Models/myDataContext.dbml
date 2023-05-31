@@ -2,7 +2,7 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=HIEPHUYNHB279\SQLEXPRESS;Initial Catalog=QuanLyDatLichCatToc;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QuanLyDatLichCatTocConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.COMBODICHVU" Member="COMBODICHVUs">
     <Type Name="COMBODICHVU">
-      <Column Name="MaCB" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaCB" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenCB" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -11,21 +11,17 @@
       <Association Name="COMBODICHVU_CTHOADON" Member="CTHOADONs" ThisKey="MaCB" OtherKey="MaCB" Type="CTHOADON" />
     </Type>
   </Table>
-  <Table Name="dbo.PHIEUDAT" Member="PHIEUDATs">
-    <Type Name="PHIEUDAT">
-      <Column Name="MaPD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MaNV" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ThoiGianLap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ThoiGianHen" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="MaCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SDT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="GioLamViec" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
-      <Column Name="TrangThaiPhieuDat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
-      <Association Name="PHIEUDAT_CTPHIEUDAT" Member="CTPHIEUDATs" ThisKey="MaPD" OtherKey="MaPD" Type="CTPHIEUDAT" />
-      <Association Name="CHINHANH_PHIEUDAT" Member="CHINHANH" ThisKey="MaCN" OtherKey="MaCN" Type="CHINHANH" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="NHANVIEN_PHIEUDAT" Member="NHANVIEN" ThisKey="MaNV" OtherKey="MaNV" Type="NHANVIEN" IsForeignKey="true" />
+  <Table Name="dbo.SANPHAM" Member="SANPHAMs">
+    <Type Name="SANPHAM">
+      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenSP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoaiSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hinh" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="SANPHAM_CTHOADON" Member="CTHOADONs" ThisKey="MaSP" OtherKey="MaSP" Type="CTHOADON" />
+      <Association Name="SANPHAM_DonDatHang" Member="DonDatHangs" ThisKey="MaSP" OtherKey="MaSP" Type="DonDatHang" />
+      <Association Name="LOAISANPHAM_SANPHAM" Member="LOAISANPHAM" ThisKey="MaLoaiSP" OtherKey="MaLoaiSP" Type="LOAISANPHAM" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.CTCOMBO" Member="CTCOMBOs">
@@ -60,13 +56,13 @@
       <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongSanPham" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="COMBODICHVU_CTHOADON" Member="COMBODICHVU" ThisKey="MaCB" OtherKey="MaCB" Type="COMBODICHVU" IsForeignKey="true" />
-      <Association Name="HOADON_CTHOADON" Member="HOADON" ThisKey="MaHD" OtherKey="MaHD" Type="HOADON" IsForeignKey="true" />
       <Association Name="SANPHAM_CTHOADON" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="HOADON_CTHOADON" Member="HOADON" ThisKey="MaHD" OtherKey="MaHD" Type="HOADON" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CHINHANH" Member="CHINHANHs">
     <Type Name="CHINHANH">
-      <Column Name="MaCN" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaCN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="HotLine" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="CHINHANH_PHIEUDAT" Member="PHIEUDATs" ThisKey="MaCN" OtherKey="MaCN" Type="PHIEUDAT" />
@@ -94,8 +90,8 @@
       <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaKH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="KHACHHANG_DonDatHang" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
       <Association Name="SANPHAM_DonDatHang" Member="SANPHAM" ThisKey="MaSP" OtherKey="MaSP" Type="SANPHAM" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="KHACHHANG_DonDatHang" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HOADON" Member="HOADONs">
@@ -156,23 +152,27 @@
       <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="MaCV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RememberMe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="NHANVIEN_PHIEUDAT" Member="PHIEUDATs" ThisKey="MaNV" OtherKey="MaNV" Type="PHIEUDAT" />
       <Association Name="NHANVIEN_CTLLV" Member="CTLLVs" ThisKey="MaNV" OtherKey="MaNV" Type="CTLLV" />
       <Association Name="NHANVIEN_HOADON" Member="HOADONs" ThisKey="MaNV" OtherKey="MaNV" Type="HOADON" />
+      <Association Name="NHANVIEN_PHIEUDAT" Member="PHIEUDATs" ThisKey="MaNV" OtherKey="MaNV" Type="PHIEUDAT" />
       <Association Name="CHUCVU_NHANVIEN" Member="CHUCVU" ThisKey="MaCV" OtherKey="MaCV" Type="CHUCVU" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SANPHAM" Member="SANPHAMs">
-    <Type Name="SANPHAM">
-      <Column Name="MaSP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenSP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MaLoaiSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Hinh" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Association Name="SANPHAM_CTHOADON" Member="CTHOADONs" ThisKey="MaSP" OtherKey="MaSP" Type="CTHOADON" />
-      <Association Name="SANPHAM_DonDatHang" Member="DonDatHangs" ThisKey="MaSP" OtherKey="MaSP" Type="DonDatHang" />
-      <Association Name="LOAISANPHAM_SANPHAM" Member="LOAISANPHAM" ThisKey="MaLoaiSP" OtherKey="MaLoaiSP" Type="LOAISANPHAM" IsForeignKey="true" DeleteRule="CASCADE" />
+  <Table Name="dbo.PHIEUDAT" Member="PHIEUDATs">
+    <Type Name="PHIEUDAT">
+      <Column Name="MaPD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaNV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThoiGianLap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ThoiGianHen" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MaCN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TenKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="GioLamViec" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="TrangThaiPhieuDat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="PHIEUDAT_CTPHIEUDAT" Member="CTPHIEUDATs" ThisKey="MaPD" OtherKey="MaPD" Type="CTPHIEUDAT" />
+      <Association Name="CHINHANH_PHIEUDAT" Member="CHINHANH" ThisKey="MaCN" OtherKey="MaCN" Type="CHINHANH" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="NHANVIEN_PHIEUDAT" Member="NHANVIEN" ThisKey="MaNV" OtherKey="MaNV" Type="NHANVIEN" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

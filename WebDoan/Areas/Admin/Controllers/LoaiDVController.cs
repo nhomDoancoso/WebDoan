@@ -43,6 +43,11 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection, LOAIDICHVU loaidv)
         {
+            if (Session["TaiKhoanAdmin"] == null || Session["TaiKhoanAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "LoginAdmin");
+            }
+            int maTK = (int)Session["TaiKhoanAdmin"];
             var madv = collection["MaLoaiDV"];
             var checkLoaiDV = db.LOAIDICHVUs.FirstOrDefault(x => x.MaLoaiDV == madv);
             if (checkLoaiDV != null)
