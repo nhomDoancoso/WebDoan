@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.Entity.Migrations;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using WebDoan.Models;
 
 namespace WebDoan.Controllers
@@ -43,8 +44,37 @@ namespace WebDoan.Controllers
                     }
                 }
             }
-            //Session["GioHang"] = lstGiohang;
             return lstGiohang;
+            //int maKH = (int)Session["TaiKhoanKH"];
+            //List<DonDatHang> lstGiohang = Session["GioHang"] as List<DonDatHang>;
+            //var loadGH = data.DonDatHangs.Where(x => x.MaKH == maKH).ToList();
+            //lstGiohang = loadGH;
+            //if (lstGiohang == null)
+            //{
+            //    lstGiohang = new List<DonDatHang>();
+            //    Session["GioHang"] = lstGiohang;
+            //}
+            //else
+            //{
+            //    foreach (DonDatHang gh in loadGH)
+            //    {
+            //        gh.SANPHAM = (SANPHAM)data.SANPHAMs.FirstOrDefault(x => x.MaSP == gh.MaSP);
+            //        gh.KHACHHANG = (KHACHHANG)data.KHACHHANGs.FirstOrDefault(x => x.MaKH == gh.MaKH);
+            //        if (lstGiohang == null)
+            //        {
+            //            lstGiohang = new List<DonDatHang>();
+            //            lstGiohang.Add(gh);
+            //        }
+            //        else
+            //        {
+            //            if (!lstGiohang.Contains(gh))
+            //                lstGiohang.Add(gh);
+            //            else Session["GioHang"] = lstGiohang;
+            //        }
+            //    }
+            //}
+            ////Session["GioHang"] = lstGiohang;
+            //return lstGiohang;
 
         }
         public ActionResult ThemGioHang(int id, string strURL)
@@ -69,10 +99,13 @@ namespace WebDoan.Controllers
             }
             else
             {
+                var donDatHang = data.DonDatHangs.FirstOrDefault(x => x.MaKH == maTK);
                 sanpham.SoLuong += 1;
                 lstGiohang.Add(sanpham);
-                temp.SoLuong = sanpham.SoLuong; ;
-                data.DonDatHangs.InsertOnSubmit(temp);
+                donDatHang.SoLuong = sanpham.SoLuong;
+                //temp.SoLuong = sanpham.SoLuong; 
+                
+                //data.DonDatHangs.AddOrUpdate(temp);
                 data.SubmitChanges();
                 return Redirect(strURL);
             }
@@ -151,7 +184,7 @@ namespace WebDoan.Controllers
             {
                 int sl = int.Parse(collection["txtSolg"].ToString());
                 gioHang.SoLuong = sl;
-                data.DonDatHangs.First(s => s.MaSP == id);
+                data.DonDatHangs.FirstOrDefault(s => s.MaSP == id);
                 data.SubmitChanges();
                 return RedirectToAction("GioHang");
             }
