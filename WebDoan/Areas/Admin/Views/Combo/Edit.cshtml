@@ -29,7 +29,7 @@
             @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
         </div>
         <span style="color:red">
-            @ViewData["Price"]
+            @ViewData["sl"]
         </span>
     </div>
 
@@ -38,7 +38,6 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
-
         </div>
         <div class="img-wrap"  style="align-items:center">
             <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />

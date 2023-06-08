@@ -51,6 +51,11 @@ namespace WebDoan.Areas.Admin.Controllers
             Regex regexPhone = new Regex(@"(84|\+84|0)(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5|8|9]|9[0-4|6-9])[0-9]{7}");
             Match matchPhone = regexPhone.Match(hotline);
             var checkCombo = db.CHINHANHs.FirstOrDefault(x => x.MaCN.ToString() == macn);
+            if (string.IsNullOrEmpty(DiaChi) && string.IsNullOrEmpty(hotline) && string.IsNullOrEmpty(macn))
+            {
+                ViewData["ViewErr"] = "Không được để trống";
+                return this.Create();
+            }
             if (checkCombo != null)
             {
                 ViewData["userExits"] = "mã cn đã tồn tại";
@@ -66,11 +71,7 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewData["NumWrong"] = "số điện thoải phải đúng định dạng";
                 return this.Create();
             }
-            if (string.IsNullOrEmpty(DiaChi) && string.IsNullOrEmpty(hotline) && string.IsNullOrEmpty(macn))
-            {
-                ViewData["ViewErr"] = "Không được để trống";
-                return this.Create();
-            }
+           
             db.CHINHANHs.InsertOnSubmit(chinhanh);
             db.SubmitChanges();
             return RedirectToAction("Index");

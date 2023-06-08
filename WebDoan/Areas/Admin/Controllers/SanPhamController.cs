@@ -29,7 +29,15 @@ namespace WebDoan.Areas.Admin.Controllers
                 return View(SearchAll.ToPagedList(pageNum, pageSize));
         }
 
-      
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            if (file == null)
+            {
+                return "";
+            }
+            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
+            return "/Content/images/" + file.FileName;
+        }
 
         public ActionResult Create()
         {
@@ -90,15 +98,7 @@ namespace WebDoan.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public string ProcessUpload(HttpPostedFileBase file)
-        {
-            if (file == null)
-            {
-                return "";
-            }
-            file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
-            return "/Content/images/" + file.FileName;
-        }
+       
         public ActionResult Edit(int id)
         {
             try
@@ -121,22 +121,13 @@ namespace WebDoan.Areas.Admin.Controllers
             var E_tendv = collection["TenSP"];
             var e_gia = collection["Gia"];
             sp.MaSP = id;
-            double GIA;
-            if (!double.TryParse(e_gia, out GIA))
+                ViewBag.MaLoaiSP = new SelectList(db.LOAISANPHAMs, "MaLoaiSP", "TenLoaiSP");
+
+            if (sanpham.SoLuong <= 0 && sanpham.Gia <= 0)
             {
-                ViewData["Price2"] = "Giá không hợp lệ!";
-                return View(sp);
-            }
-            if (sp.Gia <= 0)
-            {
-                ViewData["Price"] = "không được để giá âm";
-                return this.Create();
-            }
-            if (sp.SoLuong <= 0)
-            {
-                ViewData["sl"] = "không được để sl âm";
-                return this.Create();
-            }
+                ViewData["sl"] = "không được để  âm";
+                return View();
+            } 
             else
             {
                 sp.TenSP = E_tendv;

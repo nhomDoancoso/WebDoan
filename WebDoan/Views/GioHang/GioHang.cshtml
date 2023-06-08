@@ -11,68 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }
 
-@*<h2>GioHang</h2>
-    <table class="table">
-        <tr>
-            <th>
-                Tên sản phẩm
-            </th>
-            <th>
-                Hình
-            </th>
-            <th>
-                Giá
-            </th>
-            <th>
-                Số Lượng
-            </th>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaSP)
-                </td>
-                <td>
-                    <img src="@item.SANPHAM.Hinh" width="180" />
-                </td>
-                @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.SANPHAM.MaSP }))
-                {
-                    <td>@item.SANPHAM.Gia VNĐ</td>
-                    <td><input type="number" min="1" max="@item.SANPHAM.SoLuong" name="txtSolg" value="@item.SoLuong" /></td>
-                    <td>@Html.DisplayFor(modelItem => item.ThanhTien)</td>
-                    <td>
-                        <a style="text-decoration:none; font-size:1.5rem; color:#000" href="@Url.Action("Detail", "MainPage", new {id = item.MaSP})">Chi tiết</a>
-                        |
-                    </td>
-                    <td><input type="submit" value="Cập nhật" class="btn btn-success" /></td>
-                }
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.ThanhTien)
-                </td>
-            </tr>
-        }
-        <tr style="font-weight:bold; text-align:left;color:red">
-            <td colspan="2">Số loại Sp: @ViewBag.Tongsoluongsanpham</td>
-            <td colspan="2">Số lượng Sp: @ViewBag.Tongsoluong</td>
-            <td colspan="4">Tổng tiền: @ViewBag.Tongtien VNĐ</td>
-        </tr>
-
-        <tr style="font-weight:bold;color:blue;text-align:right">
-            <td colspan="5">
-                @Html.ActionLink("Xoá giỏ hàng", "XoaTatCaGioHang")
-            </td>
-        </tr>
-
-        <tr style="font-weight:bold;color:yellow;text-align:right">
-            <td colspan="5">
-                @Html.ActionLink("Đặt hàng", "DatHang", "GioHang")
-            </td>
-        </tr>
-
-    </table>*@
-
 <section class="cart">
     <div class="wrap-title">
         <div class="title"> </div>
@@ -98,26 +36,24 @@
                         </div>
                         @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.SANPHAM.MaSP }))
                         {
-                            <div class="custom-totalProduct">
-                                <div class="total-curent">
-                                    Số lượng:
-                                    <div class="button-total">
-                                        <input type="number" min="1" max="@item.SANPHAM.SoLuong" name="txtSolg" value="@item.SoLuong" />
-                                    </div>
-                                </div>
-
-                                <input style="margin:0 1rem" type="submit" value="Cập nhật" class="btn btn-success" />
-                                @Html.ActionLink("Xoá", "XoaGioHang", new { @id = item.MaSP })
+                    <div class="custom-totalProduct">
+                        <div class="total-curent">
+                            Quantity:
+                            <div class="button-total">
+                                <input type="number" min="1" max="@item.SANPHAM.SoLuong" name="txtSolg" value="@item.SoLuong" />
                             </div>
+                        </div>
+
+                        <input style="margin:0 1rem" type="submit" value="Cập nhật" class="btn btn-success" />
+                        @Html.ActionLink("Delete", "XoaGioHang", new { @id = item.MaSP })
+                        <span class="edit" style="font-weight:bold;color:yellow;text-align:right">
+                            @Html.ActionLink("Order Now", "DatHang", "GioHang")
+                        </span>
+                    </div>
                         }
                         <span class="edit">Type: @ViewBag.Tongsoluongsanpham</span>
                         <span class="edit">Quantity: @ViewBag.Tongsoluong</span>
                         <span class="edit">amount: @ViewBag.Tongtien VNĐ</span>
-                        
-
-                        <span class="edit" style="font-weight:bold;color:yellow;text-align:right">
-                            @Html.ActionLink("Order Now", "DatHang", "GioHang")
-                        </span>
                     </div>
                 </div>
             }
@@ -139,7 +75,28 @@
     }
 
 
-    .edit a {
+    .custom-totalProduct .edit a {
         color: green;
+        background: #c5f0bd;
+        padding: 1rem 2rem;
+        border-radius: 22px;
+    }
+
+        .custom-totalProduct .edit a:hover {
+            background: green;
+            color: white;
+        }
+
+
+    .custom-totalProduct a {
+        background: #dba3a3;
+        color: black;
+        padding: 1rem 2rem;
+        border-radius: 22px;
+    }
+
+    .custom-totalProduct a:hover {
+        background: Red;
+        color: white;
     }
 </style>

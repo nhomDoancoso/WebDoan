@@ -108,17 +108,11 @@ namespace WebDoan.Areas.Admin.Controllers
             var E_gia = collection["Gia"];
             var E_HinhAh = collection["HinhAnh"];
             E_Combo.MaCB = id;
-            double GIA;
-            if (!double.TryParse(E_gia, out GIA))
+
+            if (combo.Gia <= 0)
             {
-                ViewData["Price"] = "Giá không hợp lệ!";
-                ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
-                return View(combo);
-            }
-            if (string.IsNullOrEmpty(E_tencb))
-            {
-                ViewData["Error"] = "Don't empty!";
-                return this.Create();
+                ViewData["sl"] = "không được để  âm";
+                return View();
             }
             else
             {

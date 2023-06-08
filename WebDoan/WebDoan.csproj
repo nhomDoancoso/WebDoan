@@ -3235,7 +3235,6 @@
     <Content Include="Areas\Admin\Views\LoaiSanPham\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiSanPham\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiSanPham\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ClientBooking\Index.cshtml" />
@@ -3249,6 +3248,7 @@
       <LastGenOutput>myDataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
