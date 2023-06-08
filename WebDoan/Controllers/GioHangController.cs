@@ -14,6 +14,10 @@ namespace WebDoan.Controllers
         myDataContextDataContext data = new myDataContextDataContext();
         public List<DonDatHang> Laygiohang()
         {
+            //if (Session["TaiKhoanKH"] == null || Session["TaiKhoanKH"].ToString() == "")
+            //{
+            //    return RedirectToAction("DangNhap", "Login");
+            //}
             int maKH = (int)Session["TaiKhoanKH"];
             List<DonDatHang> lstGiohang = Session["GioHang"] as List<DonDatHang>;
             var loadGH = data.DonDatHangs.Where(x => x.MaKH == maKH).ToList();

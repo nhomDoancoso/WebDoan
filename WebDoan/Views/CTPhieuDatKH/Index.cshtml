@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebDoan.Models.PHIEUDAT>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaNV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThoiGianLap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThoiGianHen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaCN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenKH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GioLamViec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThaiPhieuDat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GhiChu)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiGianLap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiGianHen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaCN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioLamViec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThaiPhieuDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.MaPD }) |
+                @Html.ActionLink("Details", "Details", new { id=item.MaPD }) |
+            </td>
+        </tr>
+    }
+    <p><a href="@Url.Action("Index", "Footer")">back to list</a></p>
+    </table>
+</body>
+</html>

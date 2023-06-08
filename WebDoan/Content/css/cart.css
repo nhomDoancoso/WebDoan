@@ -1,0 +1,78 @@
+@import url("Global.css");
+.cart .cart-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.cart .cart-container .cart-info {
+  flex: 1 1 75rem;
+}
+.cart .cart-container .cart-info .box {
+  padding: 2rem;
+  border-bottom: 0.1rem solid #dbdbdb;
+  margin-bottom: 0.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.cart .cart-container .cart-info .box .imgProduct-cart {
+  max-width: 17rem;
+}
+.cart .cart-container .cart-info .box .imgProduct-cart img {
+  width: 100%;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .flex-between {
+  display: inline-block;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .flex-between span {
+  font-size: 2rem;
+  color: #c29e75;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart p {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct {
+  display: flex;
+  align-items: center;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct .total-curent {
+  display: flex;
+  margin: 0;
+  font-size: 1.7rem;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct .total-curent .button-total {
+  margin-left: 0.7rem;
+  border: 0.1rem solid #dbdbdd;
+  border-radius: 1rem;
+  padding: 0 0.3rem;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct .total-curent .button-total input {
+  text-align: center;
+  width: 3rem;
+  font-size: 1.5rem;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct .total-curent .button-total input[type=number]::-webkit-inner-spin-button,
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct .total-curent .button-total input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct .total-curent .button-total button {
+  font-size: 1.7rem;
+  padding: 0 0.5rem;
+  background: none;
+  cursor: pointer;
+}
+.cart .cart-container .cart-info .box .infoProduct-cart .custom-totalProduct a {
+  margin-left: 2rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+.cart .cart-container .cart-checkout {
+  flex: 1 1 28rem;
+}
+.cart .cart-container .cart-checkout .box {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}/*# sourceMappingURL=cart.css.map */

@@ -51,7 +51,16 @@ namespace WebDoan.Controllers
             pd.TrangThaiPhieuDat = true;
             ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV", pd.MaNV);
             ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi", pd.MaCN);
-
+            if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
+            {
+                ViewData["empty"] = "không được để trống";
+                return View(pd);
+            }
+            if (!matchPhone.Success)
+            {
+                ViewData["sdt"] = "Số Điện thoại không đúng định dạng";
+                return View(pd);
+            }
             TimeSpan gioLamViec;
             if (!TimeSpan.TryParseExact(giolamviec, "hh\\:mm", CultureInfo.InvariantCulture, out gioLamViec))
             {
@@ -65,16 +74,7 @@ namespace WebDoan.Controllers
                 ViewData["error"] = "Ngày cắt không hợp lệ";
                 return View(pd);
             }
-            if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
-            {
-                ViewData["empty"] = "không được để trống";
-                return View(pd);
-            }
-            if (!matchPhone.Success)
-            {
-                ViewData["sdt"] = "Số Điện thoại không đúng định dạng";
-                return View(pd);
-            }
+            
             pd.ThoiGianHen = thoiGianHen.Date;
             pd.GioLamViec = thoiGianHen.TimeOfDay;
             db.PHIEUDATs.InsertOnSubmit(pd);

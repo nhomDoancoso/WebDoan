@@ -35,7 +35,7 @@
 
                             <div class="icons">
                                 <a href="@Url.Action("Detail", "product", new { id=item.MaSP})" class="fa-solid fa-eye"></a>
-                                <a class="fa-solid fa-bag-shopping" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL= Request.Url.ToString()})"></a>
+                                <a class="fa-solid fa-bag-shopping" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL= Request.Url.ToString()})" onclick="return confirm('move to cart ')"></a>
 
                             </div>
                         </div>
@@ -45,8 +45,10 @@
                             <span class="price">@item.Gia đ</span>
                         </div>
                     </div>
-                    
+
                 }
             </div>
+            <a style=" padding: 1rem 2rem; background: aqua; border-radius: 10px; text-decoration: none; color: black;" href="@Url.Action("Index","Footer")">Back to list</a>
+
         </section>
     </body>

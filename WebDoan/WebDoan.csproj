@@ -388,6 +388,7 @@
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CTPhieuDatKHController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HoaDonsController.cs" />
@@ -413,6 +414,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Card.css" />
+    <Content Include="Content\css\cart.css" />
     <Content Include="Content\css\chatbox.css" />
     <Content Include="Content\css\Global.css" />
     <Content Include="Content\css\login.css" />
@@ -3287,6 +3289,7 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\XacnhanDonhang.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\CTPhieuDatKH\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

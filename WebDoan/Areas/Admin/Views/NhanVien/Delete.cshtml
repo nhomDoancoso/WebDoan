@@ -72,7 +72,7 @@
             {
                 @Html.AntiForgeryToken()
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Delete</button>
-                <input type="submit" value="Delete" class="btn btn-default" />
+                <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('are you sure?')" />
             }
             <div class=" px-2 rounded mt-4 date ">
             </div>
