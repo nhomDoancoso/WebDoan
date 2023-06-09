@@ -115,19 +115,27 @@ namespace WebDoan.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection, SANPHAM sanpham)
         {
-           
             var sp = db.SANPHAMs.First(m => m.MaSP == id);
 
             var E_tendv = collection["TenSP"];
             var e_gia = collection["Gia"];
             sp.MaSP = id;
-                ViewBag.MaLoaiSP = new SelectList(db.LOAISANPHAMs, "MaLoaiSP", "TenLoaiSP");
-
-            if (sanpham.SoLuong <= 0 && sanpham.Gia <= 0)
+            ViewBag.MaLoaiSP = new SelectList(db.LOAISANPHAMs, "MaLoaiSP", "TenLoaiSP");
+            if (string.IsNullOrEmpty(E_tendv) && string.IsNullOrEmpty(e_gia))
             {
-                ViewData["sl"] = "không được để  âm";
-                return View();
-            } 
+                ViewData["SS"] = "khong duoc trong";
+                return this.Create();
+            }
+            if (sp.Gia <= 0)
+            {
+                ViewData["hww1"] = "Giá không được để âm hoặc bằng 0";
+                return this.Create();
+            }
+            if (sp.SoLuong <= 0)
+            {
+                ViewData["sssluong"] = "Số lượng không được để âm hoặc bằng 0";
+                return this.Create();
+            }
             else
             {
                 sp.TenSP = E_tendv;

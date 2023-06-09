@@ -18,15 +18,18 @@
     @Html.HiddenFor(model => model.MaSP)
 
     <div class="form-group">
-        tên sản phẩm
+        @Html.LabelFor(model => model.TenSP, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
         </div>
+        <span style="color:red">
+            @ViewData["SS"]
+        </span>
     </div>
 
     <div class="form-group">
-        Mã Loại sản phảm
+        @Html.LabelFor(model => model.MaLoaiSP, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("MaLoaiSP", ViewData["LoaiSP"] as SelectList, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.LOAISANPHAM.TenLoaiSP, "", new { @class = "text-danger" })
@@ -40,7 +43,8 @@
             @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
         </div>
         <span style="color:red">
-            @ViewData["sl"]
+            @ViewData["hww1"]
+            @ViewData["hww1"]
         </span>
     </div>
 
@@ -51,8 +55,11 @@
             @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
         </div>
         <span style="color:red">
-            @ViewData["sl"]
+            @ViewData["sssluong"]
+            @ViewData["SS"]
         </span>
+
+
     </div>
 
     <div class="form-group">
@@ -66,6 +73,7 @@
             <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
             <img class="wrapper-img" src="" id="pictureUpload" />
         </div>
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     @section upload
