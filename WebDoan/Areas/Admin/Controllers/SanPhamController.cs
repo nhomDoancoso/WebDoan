@@ -119,19 +119,24 @@ namespace WebDoan.Areas.Admin.Controllers
 
             var E_tendv = collection["TenSP"];
             var e_gia = collection["Gia"];
+            var e_soluong = collection["SoLuong"];
             sp.MaSP = id;
             ViewBag.MaLoaiSP = new SelectList(db.LOAISANPHAMs, "MaLoaiSP", "TenLoaiSP");
-            if (string.IsNullOrEmpty(E_tendv) && string.IsNullOrEmpty(e_gia))
+            if (string.IsNullOrEmpty(E_tendv) || string.IsNullOrEmpty(e_gia) || string.IsNullOrEmpty(e_soluong))
             {
-                ViewData["SS"] = "khong duoc trong";
+                ViewData["SS"] = "Không được để trống";
                 return this.Create();
             }
-            if (sp.Gia <= 0)
+            decimal gia;
+            bool isGiaValid = decimal.TryParse(e_gia, out gia);
+            int soluong;
+            bool isSoLuongValid = int.TryParse(e_soluong, out soluong);
+            if (!isGiaValid || gia <= 0)
             {
                 ViewData["hww1"] = "Giá không được để âm hoặc bằng 0";
                 return this.Create();
             }
-            if (sp.SoLuong <= 0)
+            if (!isSoLuongValid || soluong <= 0)
             {
                 ViewData["sssluong"] = "Số lượng không được để âm hoặc bằng 0";
                 return this.Create();

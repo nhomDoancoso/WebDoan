@@ -11,9 +11,10 @@ namespace WebDoan.Controllers
     public class CTPhieuDatKHController : Controller
     {
         // GET: CTPhieuDatKH
-        myDataContextDataContext data = new myDataContextDataContext();
+        myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index()
         {
+            var listPhieuDat = db.PHIEUDATs.Where(p => p.NHANVIEN.MaNV == (int)Session["TaiKhoanKH"]).ToList();
             return View();
         }
     }

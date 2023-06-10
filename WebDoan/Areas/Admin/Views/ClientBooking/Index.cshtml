@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebDoan.Models.PHIEUDAT>
+﻿@model PagedList.IPagedList<WebDoan.Models.PHIEUDAT>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -6,11 +7,17 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-
+@using (Html.BeginForm())
+{
+    <div class="form-group d-flex justify-content-center">
+        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;" })
+        <input type="submit" class="btn btn-default btnhover" style=" border: 1px solid #000; color: #000;" value="Search" />
+    </div>
+}
 <table class="table">
     <tr>
         <th>
-           Mã nhân viên
+            Mã nhân viên
         </th>
         <th>
             Thời gian lập phiếu
@@ -19,22 +26,22 @@
             Thời gian hẹn
         </th>
         <th>
-           Mã chi nhánh
+            Mã chi nhánh
         </th>
         <th>
             Tên khách hàng
         </th>
         <th>
-           Số điện thoại
+            Số điện thoại
         </th>
         <th>
             Giờ đăt
         </th>
         <th>
-           Status
+            Status
         </th>
         <th>
-           Ghi chú
+            Ghi chú
         </th>
         <th>
             Action
@@ -43,65 +50,311 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.MaNV)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ThoiGianLap)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ThoiGianHen)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MaCN)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TenKH)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SDT)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.GioLamViec)
-    </td>
-    <td>
-        @if (item.TrangThaiPhieuDat == false)
-        {
-            <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: green; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">Xác nhận đặt lịch</button>
-        }
-        else
-        {
-            <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Chưa xác nhận Đặt lịch</button>
-        }
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.GhiChu)
-    </td>
-    @if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() == "Quản Lý")
-    {
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
-            @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
-        </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaNV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiGianLap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiGianHen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaCN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioLamViec)
+            </td>
+            <td>
+                @if (item.TrangThaiPhieuDat == false)
+                {
+                    <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: green; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">Xác nhận đặt lịch</button>
+                }
+                else
+                {
+                    <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Chưa xác nhận Đặt lịch</button>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>
+            @if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() == "Quản Lý")
+            {
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
+                </td>
 
-    }
-    else if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() != "Quản Lý")
-    {
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
-            <span>đăng nhập bằng tài khoản admin để xóa</span>
-        </td>
-    }
-    else
-    {
-        <td>
-            <span>đăng nhập bằng tài khoản admin để xóa</span>
-        </td>
-    }
-    @*@Html.ActionLink("Delete", "Delete", new { id = item.MaPD })*@
-</tr>
+            }
+            else if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() != "Quản Lý")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
+                    <span>đăng nhập bằng tài khoản admin để xóa</span>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <span>đăng nhập bằng tài khoản admin để xóa</span>
+                </td>
+            }
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.MaPD })*@
+        </tr>
     }
 </table>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
+@*<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>*@
+<script>
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length); $(this).empty().html(newStr);
+                $(this).append(' <a href="javascript:void(0);" class="read more">đọc tiếp...</a>');
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
+</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>
+<style>
+    .btnhover:hover {
+        color: #000;
+        background: #fff;
+    }
+
+    .hoverc {
+        color: #000;
+    }
+
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+
+    .HH {
+        overflow: hidden;
+        display: block;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+    .btnhover:hover {
+        background-color: #808080;
+    }
+
+    .card-i:hover {
+        transition: 0.5s ease-in;
+        transform: rotate(0deg) translate(0rem, -2rem);
+    }
+
+    .line {
+        padding: 1rem 0;
+    }
+
+    .MenuTrang {
+        margin: 1rem 0;
+    }
+
+        .MenuTrang li {
+            display: inline;
+            margin: 0 1.7rem;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+            .MenuTrang li a {
+                background-color: #000000;
+                color: #fff;
+                font-size: 1.4rem;
+                text-decoration: none;
+            }
+
+    .line {
+        width: 26%;
+        min-width: 250px;
+        padding: 10px 20px;
+        border: 1px solid #cce7d0;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+        margin: 15px 0;
+        transition: 0.2s ease;
+        position: relative;
+    }
+
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+
+    .zoom-img > img {
+        object-fit: cover;
+        width: 20%;
+        height: 100%;
+        transition: all .3s ease-in-out;
+    }
+
+    .zoom-img:hover > img {
+        width: 40%;
+        transform: scale(1.2);
+    }
+
+    .zoom-img:hover ~ .button-24 {
+        transform: translate(4px, 30px);
+        transition: all .3s ease-in-out;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                font-weight: bold;
+                color: #009879;
+            }
+
+    /* CSS */
+    .button-24 a {
+        text-decoration: none;
+        background: #FF4742;
+        border: 1px solid #FF4742;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 14px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        margin: 0 1rem;
+    }
+
+        .button-24 a:hover,
+        .button-24 a:active {
+            background-color: initial;
+            background-position: 0 0;
+            color: #FF4742;
+        }
+
+        .button-24 a:active {
+            opacity: .5;
+        }
+
+        .button-24 a:nth-child(2) {
+            background: #198754;
+            border: 1px solid #198754;
+        }
+
+            .button-24 a:nth-child(2):hover {
+                color: #198754;
+                Background: #fff;
+            }
+
+        .button-24 a:nth-child(1) {
+            background: #0d6efd;
+            border: 1px solid #0d6efd;
+        }
+
+            .button-24 a:nth-child(1):hover {
+                color: #0d6efd;
+                Background: #fff;
+            }
+</style>

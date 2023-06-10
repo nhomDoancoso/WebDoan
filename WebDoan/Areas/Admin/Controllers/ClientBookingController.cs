@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,20 @@ namespace WebDoan.Areas.Admin.Controllers
         // GET: Admin/ClientBooking
         myDataContextDataContext db = new myDataContextDataContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int? page, string SearchString)
         {
-            var lst = from ss in db.PHIEUDATs select ss;
-            return View(lst);   
+            int pageSize = 8;
+            int pageNum = page ?? 1;
+            var SearchAll = db.PHIEUDATs.OrderBy(s => s.TenKH);
+            var SearchSp = db.PHIEUDATs.OrderBy(m => m.TenKH)
+                .Where(sp => sp.TenKH.ToUpper().Contains(SearchString.ToUpper()) || sp.SDT.Contains(SearchString));
+            page = 1;
+            if (string.IsNullOrEmpty(SearchString))
+                return View(SearchAll.ToPagedList(pageNum, pageSize));
+            else if (SearchSp.Any())
+                return View(SearchSp.ToPagedList(pageNum, pageSize));
+            else
+                return View(SearchAll.ToPagedList(pageNum, pageSize));
         }
 
         public ActionResult Confirm(int id)

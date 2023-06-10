@@ -27,14 +27,18 @@
             <div class="box-input">
                 <span>UserName</span>
                 @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" })
-                @ViewData["ErrorAccount"]
             </div>
+            <span style="color:red">
+                @ViewData["ErrorAccount"]
+            </span>
 
             <div class="box-input">
                 <span>Password</span>
                 @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                @ViewData["ErrorPass"]
             </div>
+            <span style="color:red">
+                @ViewData["ErrorPass"]
+            </span>
 
             <a href="#">Forgot Password ?</a>
 

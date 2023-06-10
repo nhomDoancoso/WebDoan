@@ -3290,12 +3290,12 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\XacnhanDonhang.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\CTPhieuDatKH\Index.cshtml" />
     <Content Include="Views\Booking\BookingSucces.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\CTPhieuDatKH\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
