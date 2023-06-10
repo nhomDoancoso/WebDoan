@@ -36,6 +36,8 @@ namespace WebDoan.Areas.Admin.Controllers
                 Session["User"] = nv.TenNV;
                 Session["CHucVU"] = nv.CHUCVU.MaCV;
                 Session["TaiKhoan"] = nv.MaNV;
+                Session["CHucVU1"] = nv.CHUCVU.TenCV;
+
                 Session["User"] = nv.UserName;
                 Session["Account"] = nv.MaCV;
                 Session["FullTaiKhoan"] = nv;

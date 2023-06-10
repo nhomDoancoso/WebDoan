@@ -1,0 +1,103 @@
+﻿@model WebDoan.Models.PHIEUDAT
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>PHIEUDAT</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaPD)
+
+        <div class="form-group">
+            Mã Nhân Viên
+            <div class="col-md-10">
+                @Html.DropDownList("MaNV", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NHANVIEN.MaNV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Thời gian lập
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThoiGianLap, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThoiGianLap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Thời gian hẹn
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ThoiGianHen, new { @type = "date", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number", @min = DateTime.Today.ToString("yyyy-MM-dd") })
+                @Html.ValidationMessageFor(model => model.ThoiGianHen, "", new { @class = "text-danger" })
+            </div>
+           
+        </div>
+
+        <div class="form-group">
+            Mã chi nhánh
+            <div class="col-md-10">
+                @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CHINHANH.MaCN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Tên Khách hàng
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Số Đt
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Giờ làm việc
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.GioLamViec, new { @type = "Time", @class = "form-control", @autofocus = "autofocus", @id = "value-number", @placeholder = "Phone number" })
+                @Html.ValidationMessageFor(model => model.GioLamViec, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Status
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrangThaiPhieuDat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TrangThaiPhieuDat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Ghi chú
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

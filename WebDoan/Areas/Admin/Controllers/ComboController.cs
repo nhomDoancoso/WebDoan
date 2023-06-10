@@ -65,10 +65,6 @@ namespace WebDoan.Areas.Admin.Controllers
                 ViewBag.TenDV = new SelectList(db.DICHVUs, "MaDV", "TenDV");
                 return View(combo);
             }
-
-
-
-
             db.COMBODICHVUs.InsertOnSubmit(combo);
             db.SubmitChanges();
             return RedirectToAction("Index");

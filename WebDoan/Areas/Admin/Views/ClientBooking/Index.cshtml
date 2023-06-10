@@ -10,33 +10,34 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MaNV)
+           Mã nhân viên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ThoiGianLap)
+            Thời gian lập phiếu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ThoiGianHen)
+            Thời gian hẹn
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaCN)
+           Mã chi nhánh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TenKH)
+            Tên khách hàng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SDT)
+           Số điện thoại
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GioLamViec)
+            Giờ đăt
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TrangThaiPhieuDat)
-
+           Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GhiChu)
-
+           Ghi chú
+        </th>
+        <th>
+            Action
         </th>
     </tr>
 
@@ -64,7 +65,6 @@
     <td>
         @Html.DisplayFor(modelItem => item.GioLamViec)
     </td>
-
     <td>
         @if (item.TrangThaiPhieuDat == false)
         {
@@ -78,13 +78,28 @@
     <td>
         @Html.DisplayFor(modelItem => item.GhiChu)
     </td>
-    @*
+    @if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() == "Quản Lý")
+    {
         <td>
-           
-            @Html.ActionLink("Details", "Details", new { id = item.MaPD })
             @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
         </td>
-    *@
+
+    }
+    else if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() != "Quản Lý")
+    {
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
+            <span>đăng nhập bằng tài khoản admin để xóa</span>
+        </td>
+    }
+    else
+    {
+        <td>
+            <span>đăng nhập bằng tài khoản admin để xóa</span>
+        </td>
+    }
+    @*@Html.ActionLink("Delete", "Delete", new { id = item.MaPD })*@
 </tr>
     }
 </table>

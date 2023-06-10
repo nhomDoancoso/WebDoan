@@ -4,6 +4,7 @@
     Layout = null;
 }
 
+
 <!DOCTYPE html>
 
 <html>
@@ -14,27 +15,23 @@
 <body>
     <div style="text-align:center">
         <h2>@ViewBag.Message</h2>
-        <p>Mã đặt phòng: @ViewBag.MaPD</p>
+        <p>Mã Phiếu hẹn: @ViewBag.MaPD</p>
         <p>Tên khách hàng: @ViewBag.TenKH</p>
         <p>Số điện thoại: @ViewBag.SDT</p>
-            <p>Tên khân viên: @ViewBag.TenNV</p>
-
+        <p>Tên khân viên: @ViewBag.TenNV</p>
         <p>Thời gian tạo: @ViewBag.TGLAP</p>
-        <p>Thời gian Hen: @ViewBag.TGHEN</p>
+        <p>Thời gian Hen: @ViewBag.ff</p>
+        <p>Ngay Hen: @ViewBag.ThoiGianHen</p>
         <p>ghi chú: @ViewBag.ghiChu</p>
-
         @if (Model.TrangThaiPhieuDat == true)
         {
             <p>Trạng thái: <span>chưa xác nhận</span></p>
-
         }
         else
         {
             <p>Trạng thái:  <span> xác nhận</span></p>
-
         }
-
-        @*<p>Địa chỉ: @ViewBag.CHINHANH</p>*@
+        <p>Địa chỉ: @ViewBag.CHINHANH</p>
         <span>
             @Html.ActionLink("Trở Lại", "Index", "Footer", new { @class = "btn btn-success " })
             @Html.ActionLink("Edit", "Edit", new { id = Model.MaPD })
@@ -49,12 +46,12 @@
 
 <style>
     span a {
-        color:black;
-        text-decoration:none;
-        padding:1rem 2rem;
-        border-radius:10px;
-        color:white;
-        background:black;
-        cusor:pointer;
+        color: black;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        color: white;
+        background: black;
+        cusor: pointer;
     }
 </style>

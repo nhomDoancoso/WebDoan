@@ -3249,6 +3249,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Admin\Views\SanPham\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ClientBooking\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ClientBooking\Edit.cshtml" />
     <None Include="Models\myDataContext.dbml.layout">
       <DependentUpon>myDataContext.dbml</DependentUpon>
     </None>
@@ -3280,7 +3282,6 @@
     <Content Include="Views\Login\DangKy.cshtml" />
     <Content Include="Views\ViewService\Index.cshtml" />
     <Content Include="Views\product\Index.cshtml" />
-    <Content Include="Views\Booking\BookingSucces.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
     <Content Include="Views\Booking\Edit.cshtml" />
     <Content Include="Views\product\Detail.cshtml" />
@@ -3290,6 +3291,7 @@
     <Content Include="Views\GioHang\XacnhanDonhang.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\CTPhieuDatKH\Index.cshtml" />
+    <Content Include="Views\Booking\BookingSucces.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

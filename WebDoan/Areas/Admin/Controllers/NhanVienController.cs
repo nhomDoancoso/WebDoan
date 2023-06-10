@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -74,10 +76,10 @@ namespace WebDoan.Areas.Admin.Controllers
             Match matchMail = regexMail.Match(email);
             Regex regexPhone = new Regex(@"^(84|0[3|5|7|8|9])+([0-9]{8})\b");
             Match matchPhone = regexPhone.Match(dienthoai);
-            Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[@!#%])[A-Za-z0-9!#%]{8,32}$");
+            Regex regexPass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[@!#%])[A-Za-z0-9!@#%]{8,32}$");
             Match matchPassword = regexPass.Match(Pass);
             var checkUserl = db.NHANVIENs.FirstOrDefault(x => x.UserName == User);
-            if(string.IsNullOrEmpty(dienthoai))
+            if (string.IsNullOrEmpty(dienthoai))
             {
                 ViewData["!sdt"] = "Số điện thoại không được trống";
                 return this.Create();

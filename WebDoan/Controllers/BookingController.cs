@@ -9,6 +9,7 @@ using WebDoan.Models;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Data.Entity;
 
 namespace WebDoan.Controllers
 {
@@ -49,6 +50,7 @@ namespace WebDoan.Controllers
             pd.SDT = sdt;
             pd.GhiChu = ghichu;
             pd.TrangThaiPhieuDat = true;
+            pd.NHANVIEN = db.NHANVIENs.FirstOrDefault(n => n.MaNV == pd.MaNV);
             ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV", pd.MaNV);
             ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi", pd.MaCN);
             if (string.IsNullOrEmpty(pd.TenKH) || string.IsNullOrEmpty(pd.SDT))
@@ -67,6 +69,14 @@ namespace WebDoan.Controllers
                 ViewData["error"] = "Giờ làm việc không hợp lệ";
                 return View(pd);
             }
+            DateTime thoiGianHienTai = DateTime.Now;
+            DateTime thoiGianKiemTra = thoiGianHienTai.Date + gioLamViec;
+
+            if (thoiGianKiemTra < thoiGianHienTai)
+            {
+                ViewData["error1"] = "Không được chọn thời gian trong quá khứ";
+                return View(pd);
+            }
 
             DateTime thoiGianHen;
             if (!DateTime.TryParseExact(timehen, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out thoiGianHen))
@@ -74,48 +84,55 @@ namespace WebDoan.Controllers
                 ViewData["error"] = "Ngày cắt không hợp lệ";
                 return View(pd);
             }
-            
-            pd.ThoiGianHen = thoiGianHen.Date;
-            pd.GioLamViec = thoiGianHen.TimeOfDay;
+
             db.PHIEUDATs.InsertOnSubmit(pd);
             db.SubmitChanges();
             return RedirectToAction("BookingSucces", pd);
+
         }
 
-        [HttpPost]
-        public ActionResult GetThoiGian(int maTime)
-        {
-            var lich = db.Liches.FirstOrDefault(x => x.MaLich == maTime);
-            if (lich != null)
-            {
-                return Content(lich.GioLamViec.ToString());
-            }
-            else
-            {
-                return Content("");
-            }
-        }
-     
         public ActionResult BookingSucces(FormCollection collection, PHIEUDAT model)
         {
+            ViewBag.MaNV = new SelectList(db.NHANVIENs, "MaNV", "TenNV", model.MaNV);
             ViewBag.Message = "Đặt chổ thành công!";
             ViewBag.MaPD = model.MaPD;
             ViewBag.TenKH = model.TenKH;
             ViewBag.SDT = model.SDT;
-            if (model.NHANVIEN != null)
+            PHIEUDAT pd = db.PHIEUDATs.FirstOrDefault(p => p.MaPD == model.MaPD);
+            if (pd != null && pd.NHANVIEN != null)
             {
-                ViewBag.TenNV = model.NHANVIEN.TenNV;
+                ViewBag.TenNV = pd.NHANVIEN.TenNV;
             }
             else
             {
                 ViewBag.TenNV = "Không có thông tin nhân viên";
             }
+            PHIEUDAT pd1 = db.PHIEUDATs.FirstOrDefault(p => p.MaPD == model.MaPD);
+            if (pd1 != null && pd.CHINHANH != null)
+            {
+                ViewBag.CHINHANH = pd.CHINHANH.DiaChi;
+            }
+            else
+            {
+                ViewBag.CHINHANH = "Không có thông tin địa Chỉ";
+            }
             ViewBag.TGLAP = model.ThoiGianLap;
-            ViewBag.TGHEN = model.ThoiGianHen;
-            ViewBag.GioLamViec = model.GioLamViec;
+            //ViewBag.TGHEN = model.ThoiGianHen;
+            DateTime? thoiGianHenNullable = pd.ThoiGianHen;
+            DateTime thoiGianHen = thoiGianHenNullable ?? DateTime.MinValue;
+            ViewBag.ThoiGianHen = thoiGianHen;
+            if (pd.ThoiGianHen.HasValue)
+            {
+                thoiGianHen = pd.ThoiGianHen.Value;
+            }
+            else
+            {
+                // Xử lý giá trị null ở đây nếu cần thiết
+                thoiGianHen = DateTime.MinValue;
+            }
+            ViewBag.ff = model.GioLamViec;
             ViewBag.ghiChu = model.GhiChu;
             ViewBag.State = model.TrangThaiPhieuDat;
-
             return View(model);
         }
 
