@@ -21,7 +21,7 @@ namespace WebDoan.Areas.Admin.Controllers
 
         public ActionResult LoaiDv(int? page, string SearchString)
         {
-            int pageSize = 2;
+            int pageSize = 5;
             int pageNum = page ?? 1;
             var SearchAll = db.LOAIDICHVUs.OrderBy(s => s.TenLoaiDV);
             var SearchSp = db.LOAIDICHVUs.OrderBy(m => m.TenLoaiDV).Where(sp => sp.TenLoaiDV.ToUpper().Contains(SearchString.ToUpper()));

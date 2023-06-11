@@ -248,7 +248,7 @@ namespace WebDoan.Models
 				return this.GetTable<PHIEUDAT>();
 			}
 		}
-	}
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COMBODICHVU")]
 	public partial class COMBODICHVU : INotifyPropertyChanging, INotifyPropertyChanged

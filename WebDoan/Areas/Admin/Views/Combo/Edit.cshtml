@@ -5,159 +5,165 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+
+
 @using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    {
+        @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.MaCB)
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaCB)
 
-    <div class="form-group">
-        Tên Combo
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
+        <div class="form-group">
+            Tên Combo
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        Giá
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+        <div class="form-group">
+            Giá
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+            </div>
+            <span style="color:red">
+                @ViewData["sl"]
+            </span>
         </div>
-        <span style="color:red">
-            @ViewData["sl"]
-        </span>
-    </div>
 
-    <div class="form-group">
-        HÌnh Ảnh
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+        <div class="form-group">
+            HÌnh Ảnh
+            <div class="inner">
+                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+            </div>
+            <div class="img-wrap"  style="align-items:center">
+                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+                <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
+                <img class="wrapper-img" src="" id="pictureUpload" />
+            </div>
         </div>
-        <div class="img-wrap"  style="align-items:center">
-            <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-            <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
-            <img class="wrapper-img" src="" id="pictureUpload" />
-        </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    @section upload
-            {
-        <script>
-                                            $(function () {
-                                                $('#btnUpload').click(function () {
-                                                    $('#fileUpload').trigger('click');
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        @section upload
+                {
+            <script>
+                                                $(function () {
+                                                    $('#btnUpload').click(function () {
+                                                        $('#fileUpload').trigger('click');
+                                                    });
                                                 });
-                                            });
-                                            $('#fileUpload').change(function () {
-                                                if (window.FormData !== undefined) {
-                                                    var fileUpload = $('#fileUpload').get(0);
-                                                    var files = fileUpload.files;
-                                                    var formData = new FormData();
-                                                    formData.append('file', files[0]);
+                                                $('#fileUpload').change(function () {
+                                                    if (window.FormData !== undefined) {
+                                                        var fileUpload = $('#fileUpload').get(0);
+                                                        var files = fileUpload.files;
+                                                        var formData = new FormData();
+                                                        formData.append('file', files[0]);
 
-                                                    $.ajax(
-                                                        {
-                                                            type: 'POST',
-                                                            url: '/Combo/ProcessUpload',
-                                                            contentType: false,
-                                                            processData: false,
-                                                            data: formData,
-                                                            success: function (urlImage) {
-                                                                $('#pictureUpload').attr('src', urlImage);
-                                                                $('#HinhAnh').val(urlImage);
-                                                            },
-                                                            error: function (err) {
-                                                                alert('Error ', err.statusText);
-                                                            }
-                                                        });
-                                                }
-                                            });
-        </script>
-    }
+                                                        $.ajax(
+                                                            {
+                                                                type: 'POST',
+                                                                url: '/Combo/ProcessUpload',
+                                                                contentType: false,
+                                                                processData: false,
+                                                                data: formData,
+                                                                success: function (urlImage) {
+                                                                    $('#pictureUpload').attr('src', urlImage);
+                                                                    $('#HinhAnh').val(urlImage);
+                                                                },
+                                                                error: function (err) {
+                                                                    alert('Error ', err.statusText);
+                                                                }
+                                                            });
+                                                    }
+                                                });
+            </script>
+        }
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
-}
-
-<div class="button-86">
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-<style>
-    .button-86 a {
-        all: unset;
-        width: 100px;
-        height: 30px;
-        font-size: 16px;
-        background: transparent;
-        border: none;
-        position: relative;
-        color: #f0f0f0;
-        cursor: pointer;
-        z-index: 1;
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
     }
 
-        .button-86 a::after,
-        .button-86 a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            z-index: -99999;
-            transition: all .4s;
+    <div class="button-86">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <style>
+        .button-86 a {
+            all: unset;
+            width: 100px;
+            height: 30px;
+            font-size: 16px;
+            background: transparent;
+            border: none;
+            position: relative;
+            color: #f0f0f0;
+            cursor: pointer;
+            z-index: 1;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
         }
 
-        .button-86 a::before {
-            transform: translate(0%, 0%);
-            width: 100%;
-            height: 100%;
-            background: #28282d;
-            border-radius: 10px;
-        }
+            .button-86 a::after,
+            .button-86 a::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                z-index: -99999;
+                transition: all .4s;
+            }
 
-        .button-86 a::after {
-            transform: translate(10px, 10px);
-            width: 35px;
-            height: 35px;
-            background: #ffffff15;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border-radius: 50px;
-        }
+            .button-86 a::before {
+                transform: translate(0%, 0%);
+                width: 100%;
+                height: 100%;
+                background: #28282d;
+                border-radius: 10px;
+            }
 
-        .button-86 a:hover::before {
-            transform: translate(5%, 20%);
-            width: 110%;
-            height: 110%;
-        }
+            .button-86 a::after {
+                transform: translate(10px, 10px);
+                width: 35px;
+                height: 35px;
+                background: #ffffff15;
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                border-radius: 50px;
+            }
 
-        .button-86 a:hover::after {
-            border-radius: 10px;
-            transform: translate(0, 0);
-            width: 100%;
-            height: 100%;
-        }
+            .button-86 a:hover::before {
+                transform: translate(5%, 20%);
+                width: 110%;
+                height: 110%;
+            }
 
-        .button-86 a:active::after {
-            transition: 0s;
-            transform: translate(0, 5%);
+            .button-86 a:hover::after {
+                border-radius: 10px;
+                transform: translate(0, 0);
+                width: 100%;
+                height: 100%;
+            }
+
+            .button-86 a:active::after {
+                transition: 0s;
+                transform: translate(0, 5%);
+            }
+
+        .inner  {
+            width:100%;
         }
-</style>
+    </style>

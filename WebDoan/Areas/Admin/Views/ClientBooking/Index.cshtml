@@ -10,38 +10,38 @@
 @using (Html.BeginForm())
 {
     <div class="form-group d-flex justify-content-center">
-        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;" })
+        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;", @placeholder = "name or phonenum....." })
         <input type="submit" class="btn btn-default btnhover" style=" border: 1px solid #000; color: #000;" value="Search" />
     </div>
 }
-<table class="table">
+<table class="table table-bordered table-hover">
     <tr>
         <th>
-            Mã nhân viên
+            Employee ID
         </th>
         <th>
-            Thời gian lập phiếu
+            Create Booking
         </th>
         <th>
-            Thời gian hẹn
+            Appointment
         </th>
         <th>
-            Mã chi nhánh
+           Branch ID
         </th>
         <th>
-            Tên khách hàng
+            customer ID
         </th>
         <th>
-            Số điện thoại
+            Phone Number
         </th>
         <th>
-            Giờ đăt
+            registration
         </th>
         <th>
             Status
         </th>
         <th>
-            Ghi chú
+            Note
         </th>
         <th>
             Action
@@ -75,11 +75,11 @@
             <td>
                 @if (item.TrangThaiPhieuDat == false)
                 {
-                    <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: green; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">Xác nhận đặt lịch</button>
+                <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: green; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">confirm</button>
                 }
                 else
                 {
-                    <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Chưa xác nhận Đặt lịch</button>
+            <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Unconfirm</button>
                 }
             </td>
             <td>

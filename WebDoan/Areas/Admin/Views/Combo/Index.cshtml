@@ -3,11 +3,12 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Card.css" rel="stylesheet" />
 }
 
-<span style="padding:1rem" class="button-24">
-    @Html.ActionLink("Create New", "Create")
-</span>
 
 <div class="container">
     <div class="row">
@@ -18,10 +19,10 @@
                     <table class="table user-list">
                         <thead>
                             <tr>
-                                <th class="text-center text-capitalize"><span> Mã combo </span></th>
-                                <th class="text-center text-capitalize"><span> Tên combo </span></th>
-                                <th class="text-center text-capitalize"><span> Giá</span></th>
-                                <th class="text-center text-capitalize"><span> Hình ảnh </span></th>
+                                <th class="text-center text-capitalize"><span> ID</span></th>
+                                <th class="text-center text-capitalize"><span>Combo Name</span></th>
+                                <th class="text-center text-capitalize"><span>Price</span></th>
+                                <th class="text-center text-capitalize"><span>Images</span></th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -29,27 +30,20 @@
                         {
                             <tbody>
                                 <tr>
+                                    <td>@item.MaCB</td>
+                                    <td>@item.TenCB</td>
+                                    <td>@item.Gia</td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.MaCB)
+                                        <img src="@item.HinhAnh" width="100" height="100" alt="Alternate Text" />
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TenCB)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Gia)
-                                    </td>
-                                    <td class="text-center">
-                                        <a href='@Url.Action("Detail", "Combo", new { id = item.MaCB})' class="zoom-img">
-                                            <img style="width:25%" src="@Html.DisplayFor(modelItem => item.HinhAnh)" alt="Alternate Text" />
 
-                                        </a>
-                                    </td>
                                     <td class="button-24 d-flex d-sm-flex d-lg-flex justify-content-center align-items-lg-center align-items-sm-center ">
-
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.MaCB })
-                                        @Html.ActionLink("Details", "Detail", new { id = item.MaCB })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.MaCB })
-
+                                        <a href="@Url.Action("Edit", "Combo", new { id = item.MaCB })" class="btn btn-sm btn-info">Edit</a>
+                                        <a href="@Url.Action("Detail", "Combo", new {id = item.MaCB})" class="btn btn-sm btn-default">Details</a>
+                                        <form action="@Url.Action("Delete", "Combo", new { id = item.MaCB })" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.MaCB" />
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('are you sure?')">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
@@ -61,102 +55,66 @@
         </div>
     </div>
 </div>
-<style>
+<div>
 
-.styled-table {
-    border-collapse: collapse;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
+    <a href="@Url.Action("Create", "Combo")" class="btn btn-primary">Add New</a>
+    <style>
+        /* CSS */
+        .button-24 a {
+            text-decoration: none;
+            background: #FF4742;
+            border: 1px solid #FF4742;
+            border-radius: 6px;
+            box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 16px;
+            min-height: 40px;
+            outline: 0;
+            padding: 12px 14px;
+            text-align: center;
+            text-rendering: geometricprecision;
+            text-transform: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            margin: 0 1rem;
+        }
 
-.styled-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-}
+            .button-24 a:hover,
+            .button-24 a:active {
+                background-color: initial;
+                background-position: 0 0;
+                color: #FF4742;
+            }
 
-.styled-table th,
-.styled-table td {
-    padding: 12px 15px;
-}
+            .button-24 a:active {
+                opacity: .5;
+            }
 
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
+            .button-24 a:nth-child(2) {
+                background: #198754;
+                border: 1px solid #198754;
+            }
 
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
+                .button-24 a:nth-child(2):hover {
+                    color: #198754;
+                    Background: #fff;
+                }
 
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
+            .button-24 a:nth-child(1) {
+                background: #0d6efd;
+                border: 1px solid #0d6efd;
+            }
 
-.styled-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
-
-    /* CSS */
-.button-24 a {
-    text-decoration: none;
-    background: #FF4742;
-    border: 1px solid #FF4742;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-    margin: 0 1rem;
-}
-
-.button-24 a:hover,
-.button-24 a:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #FF4742;
-}
-
-.button-24 a:active {
-    opacity: .5;
-}
-
-.button-24 a:nth-child(2) {
-    background: #198754;
-    border: 1px solid #198754;
-}
-
-.button-24 a:nth-child(2):hover {
-    color: #198754;
-    Background: #fff;
-}
-
-.button-24 a:nth-child(1) {
-    background: #0d6efd;
-    border: 1px solid #0d6efd;
-}
-
-.button-24 a:nth-child(1):hover {
-    color: #0d6efd;
-    Background: #fff;
-}
-</style>
-
-
+                .button-24 a:nth-child(1):hover {
+                    color: #0d6efd;
+                    Background: #fff;
+                }
+    </style>

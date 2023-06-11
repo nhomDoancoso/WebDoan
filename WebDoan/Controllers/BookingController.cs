@@ -26,6 +26,7 @@ namespace WebDoan.Controllers
             ViewBag.MaCN = new SelectList(db.CHINHANHs, "MaCN", "DiaChi");
             ViewBag.MaKH = new SelectList(db.KHACHHANGs, "MaKH", "TenKH");
             ViewBag.Lich = new SelectList(db.Liches, "MaLich", "GioLamViec");
+
             return View();
         }
         [HttpPost]

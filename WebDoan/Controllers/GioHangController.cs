@@ -73,6 +73,13 @@ namespace WebDoan.Controllers
             {
                 var donDatHang = data.DonDatHangs.FirstOrDefault(x => x.MaKH == maTK);
                 sanpham.SoLuong += 1;
+                // Kiểm tra số lượng sản phẩm
+                var sp = data.SANPHAMs.FirstOrDefault(s => s.MaSP == id);
+                if (sp.SoLuong <= 0)
+                {
+                    ViewData["Message"] = "Sản phẩm đã hết hàng";
+                    return Redirect(strURL);
+                }
                 lstGiohang.Add(sanpham);
                 donDatHang.SoLuong = sanpham.SoLuong;
                 data.SubmitChanges();
@@ -149,6 +156,11 @@ namespace WebDoan.Controllers
             List<DonDatHang> lstGiohang = Laygiohang();
             DonDatHang gioHang = lstGiohang.SingleOrDefault(s => s.MaSP == id);
             SANPHAM sanPham = data.SANPHAMs.SingleOrDefault(sp => sp.MaSP == id);
+            if (sanPham.SoLuong == 0)
+            {
+                ViewBag.Message = "Sản phẩm đã hết hàng";
+                return View("GioHang");
+            }
             if (gioHang != null)
             {
                 int sl = int.Parse(collection["txtSolg"].ToString());

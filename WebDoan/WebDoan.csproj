@@ -3291,6 +3291,7 @@
     <Content Include="Views\GioHang\XacnhanDonhang.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\BookingSucces.cshtml" />
+    <Content Include="Views\ViewService\location.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,7 +14,8 @@ namespace WebDoan.Controllers
 
         public ActionResult Index()
         {
-            var lstSp = from ss in db.SANPHAMs select ss;
+            //var lstSp = from ss in db.SANPHAMs select ss;
+            var lstSp = db.SANPHAMs.Where(ss => ss.SoLuong > 0).ToList();
             return View(lstSp);
         }
 

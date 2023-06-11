@@ -29,14 +29,19 @@
             <div class="products-container">
                 @foreach (var item in Model)
                 {
-                    <div class="box">
+                    if(item.SoLuong <= 0)
+                    {
+                        <span>sản phẩm hết hàng</span>
+                    } else
+                    {
+                        <div class="box">
                         <div class="image-product">
                             <img src="@item.Hinh" alt="Hình lỗi">
 
                             <div class="icons">
                                 <a href="@Url.Action("Detail", "product", new { id=item.MaSP})" class="fa-solid fa-eye"></a>
                                 <a class="fa-solid fa-bag-shopping" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.MaSP, @strURL= Request.Url.ToString()})" onclick="return confirm('move to cart ')"></a>
-
+                              
                             </div>
                         </div>
 
@@ -45,6 +50,7 @@
                             <span class="price">@item.Gia đ</span>
                         </div>
                     </div>
+                    }
 
                 }
             </div>

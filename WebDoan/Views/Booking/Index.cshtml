@@ -50,6 +50,7 @@
                 <span>Ghi chú</span>
                 @Html.TextBoxFor(model => model.GhiChu, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Ghi chú...." })
             </div>
+          
             <div class="booking-input">
                 <span>Chọn địa điểm</span>
                 @Html.DropDownList("MaCN", null, htmlAttributes: new { @class = "form-control" })

@@ -11,15 +11,15 @@
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         @if (Session["TaiKhoan"] == null)
         {
-            @Html.ActionLink("Đăng nhập", "DangNhap", "Admin/LoginAdmin", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Login", "DangNhap", "Admin/LoginAdmin", new { area = "" }, new { @class = "navbar-brand" })
         }
         else if (Session["Account"].ToString() == "1")
         {
-            @Html.ActionLink("Xin chào " + @Session["User"], "Edit", "Admin/NhanVien", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Hello " + @Session["User"], "Edit", "Admin/NhanVien", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "navbar-brand" })
         }
         else
         {
-            @Html.ActionLink("Xin chào " + @Session["User"], "Index", "Admin/NhanVien", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Hello " + @Session["User"], "Index", "Admin/NhanVien", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "navbar-brand" })
         }
     </form>
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -41,12 +41,12 @@
                     }
                     else if (Session["Account"].Equals("Quản Lý"))
                     {
-                        @Html.ActionLink("Xin chào " + @Session["User"], "LstNhanVien", "Admin/LstNhanVien", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "hoverc navbar-brand dropdown-item " })
+                        @Html.ActionLink("Hello " + @Session["User"], "LstNhanVien", "Admin/LstNhanVien", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "hoverc navbar-brand dropdown-item " })
                     }
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                    @Html.ActionLink("Đăng xuất", "Logout", "Admin/LoginAdmin", new { area = "" }, new { @class = "hoverc navbar-brand dropdown-item " , @style ="color:black"})
+                    @Html.ActionLink("Logout ", "Logout", "Admin/LoginAdmin", new { area = "" }, new { @class = "hoverc navbar-brand dropdown-item " , @style ="color:black"})
                 </li>
             </ul>
         </li>

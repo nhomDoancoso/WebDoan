@@ -16,5 +16,10 @@ namespace WebDoan.Controllers
             var dv = from ss in db.DICHVUs select ss;
             return View(dv);
         }
+
+        public ActionResult location()
+        {
+            return View();
+        }
     }
 }

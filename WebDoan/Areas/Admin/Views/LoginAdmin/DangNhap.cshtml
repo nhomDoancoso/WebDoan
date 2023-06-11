@@ -42,25 +42,17 @@
                                 <!-- Email input -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example23">UserName</label>
-                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" })
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Username....." })
                                     @ViewData["ErrorAccount"]
                                 </div>
 
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form1Example23">PassWord</label>
-                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password....." })
                                     @ViewData["ErrorPass"] 
                                 </div>
 
-                                <div class="d-flex justify-content-around align-items-center mb-4">
-                                    <!-- Checkbox -->
-                                    <div class="form-check">
-                                        @Html.LabelFor(model => model.RememberMe)
-                                        @Html.CheckBoxFor(model => model.RememberMe.HasValue)
-                                    </div>
-                                    <a href="#!">Forgot password?</a>
-                                </div>
 
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>

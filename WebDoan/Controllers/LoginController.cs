@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 using WebDoan.Models;
 using System.Security.Cryptography;
 using System.Text;
+using System.Data;
+using System.Data.Entity;
 
 namespace WebDoan.Controllers
 {
@@ -35,10 +35,11 @@ namespace WebDoan.Controllers
 
             if (khachang != null)
             {
-                ViewBag.ThongBao = "Chúc mừng đăng nhập thà nh công";
+                ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
                 Session["User"] = khachang.UserName;
                 Session["TaiKhoanKH"] = khachang.MaKH;
                 Session["FullTaiKhoan"] = khachang;
+                Session["UserID"] = db.KHACHHANGs.Where(x => x.UserName == tendangnhap).Single().MaKH;
 
             }
             else if (khachang == null)
@@ -154,7 +155,7 @@ namespace WebDoan.Controllers
             }
             return RedirectToAction("DangNhap", "Login");
         }
-
+        
         public ActionResult Logout()
         {
             Session["User"] = null;
