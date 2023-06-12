@@ -18,7 +18,6 @@ namespace WebDoan.Controllers
             var lstSp = db.SANPHAMs.Where(ss => ss.SoLuong > 0).ToList();
             return View(lstSp);
         }
-
         public ActionResult Detail(int id)
         {
             var D_SP = db.SANPHAMs.Where(m => m.MaSP == id).First();

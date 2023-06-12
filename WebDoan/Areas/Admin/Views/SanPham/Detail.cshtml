@@ -9,12 +9,12 @@
 <table class="table user-list">
     <thead>
         <tr>
-            <th class="text-capitalize"><span>Mã sản phẩm</span></th>
-            <th class="text-capitalize"><span>tên sản phẩm</span></th>
-            <th class="text-capitalize"><span> loại sản phẩm</span></th>
-            <th class="text-capitalize"><span>giá</span></th>
-            <th class="text-capitalize"><span>Số lượng</span></th>
-            <th class="text-capitalize"><span>Hình</span></th>
+            <th class="text-capitalize"><span>Product ID</span></th>
+            <th class="text-capitalize"><span>Product Name</span></th>
+            <th class="text-capitalize"><span>Product Type</span></th>
+            <th class="text-capitalize"><span>Price</span></th>
+            <th class="text-capitalize"><span>Quantity</span></th>
+            <th class="text-capitalize"><span>Images</span></th>
 
             <th>&nbsp;</th>
         </tr>
@@ -37,7 +37,7 @@
                 @Html.DisplayFor(model => model.SoLuong)
             </td>
             <td>
-                <img src=" @Html.DisplayFor(model => model.Hinh)" alt="Alternate Text" />
+                <img style="width:100px; height:100px" src=" @Html.DisplayFor(model => model.Hinh)" alt="Alternate Text" />
             </td>
             <td class="button-24 d-flex d-sm-flex d-lg-flex justify-content-center align-items-lg-center align-items-sm-center ">
                 @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) 

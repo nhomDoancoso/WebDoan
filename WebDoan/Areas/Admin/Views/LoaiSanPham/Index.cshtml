@@ -13,7 +13,7 @@
 @using (Html.BeginForm())
 {
     <div class="form-group d-flex justify-content-center">
-        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;" })
+        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;", @placeholder= "product type name...." })
         <input type="submit" class="btn btn-default btnhover" style=" border: 1px solid #000; color: #000;" value="Search" />
     </div>
 }
@@ -27,8 +27,8 @@
                     <table class="table user-list">
                         <thead>
                             <tr>
-                                <th class="text-center text-capitalize"><span>Mã loại sản phẩm</span></th>
-                                <th class="text-center text-capitalize"><span>Tên loại sản phẩm</span></th>
+                                <th class="text-center text-capitalize"><span>product type ID</span></th>
+                                <th class="text-center text-capitalize"><span>product type name</span></th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -47,8 +47,10 @@
 
                                         @Html.ActionLink("Edit", "Edit", new { id = item.MaLoaiSP })
                                         @Html.ActionLink("Details", "Detail", new { id = item.MaLoaiSP })
-                                           @Html.ActionLink("Delete", "Delete", new { id = item.MaLoaiSP })
-
+                                        <form action="@Url.Action("Delete", "LoaiSanPham", new { id = item.MaLoaiSP })" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.MaLoaiSP" />
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('are you sure?')">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>

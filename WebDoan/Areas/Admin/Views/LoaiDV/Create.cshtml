@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 }
 
-<h1 style="font-size:1.5rem;padding:1rem 1rem">Thêm Loại Dịch Vụ</h1>
+<h1 style="font-size:1.5rem;padding:1rem 1rem">Create</h1>
 <hr />
 
 @using (Html.BeginForm())
@@ -16,7 +16,7 @@
     <div class="wrappres">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="wrapper-inner">
-            Mã Loại Dịch Vụ
+            Services ID
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.MaLoaiDV, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
@@ -29,7 +29,7 @@
         </div>
 
         <div class="wrapper-inner">
-            Tên Loại Dịch
+            services Name
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.TenLoaiDV, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenLoaiDV, "", new { @class = "text-danger" })

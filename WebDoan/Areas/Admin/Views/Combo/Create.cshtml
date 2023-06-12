@@ -26,7 +26,7 @@
 
 
         <div class="wrapper-inner">
-            Tên Combo
+            Combo Name
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
@@ -38,7 +38,7 @@
         </div>
 
         <div class="wrapper-inner">
-            Gía
+            Price
             <div class="inner col-md-10">
                 @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
@@ -51,14 +51,14 @@
         </div>
 
         <div class="wrapper-inner">
-            Hình Ảnh
+            Images
             <div class=" inner col-md-10">
                 <a href="" style="display:none">
                     @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "" } })
                 </a>
                 @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
                 <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-                <input style=" width: 10%; margin: 1rem 0;" type="button" id="btnUpload" value="Chọn ảnh đê" class="btn btn-danger" />
+                <input style=" width: 10%; margin: 1rem 0;" type="button" id="btnUpload" value="Choose images" class="btn btn-danger" />
                 <img src="" id="pictureUpload" />
             </div>
         </div>

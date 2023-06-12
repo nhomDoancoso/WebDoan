@@ -22,7 +22,7 @@ namespace WebDoan.Areas.Admin.Controllers
             var search = db.CHINHANHs.OrderBy(s => s.HotLine);
             //var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN).Where(s => s.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
              var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN);
-         var SearchSp = db.CHINHANHs.OrderBy(m => m.DiaChi).Where(sp => sp.DiaChi.ToUpper().Contains(SearchString.ToUpper()));
+         var SearchSp = db.CHINHANHs.OrderBy(m => m.DiaChi).Where(sp => sp.DiaChi.ToUpper().Contains(SearchString.ToUpper()) || sp.HotLine.Contains(SearchString.ToUpper()));
             page = 1;
             if (SearchString == null || SearchString == "")
                 return View(SearchAll.ToPagedList(pageNum, pageSize));

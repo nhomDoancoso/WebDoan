@@ -12,13 +12,13 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>SANPHAM</h4>
+    <h4>product</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MaSP)
 
     <div class="form-group">
-        Tên Sản Phẩm
+        product name
         <div class="col-md-10">
             @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-group">
-        Mã Loại sản Phẩm
+        product type
         <div class="col-md-10">
             @Html.DropDownList("MaLoaiSP", ViewData["LoaiSP"] as SelectList, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.LOAISANPHAM.TenLoaiSP, "", new { @class = "text-danger" })
@@ -37,7 +37,7 @@
     </div>
 
     <div class="form-group">
-        Giá
+        price
         <div class="col-md-10">
             @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
@@ -49,7 +49,7 @@
     </div>
 
     <div class="form-group">
-        Số Lượng
+        quantity
         <div class="col-md-10">
             @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
@@ -61,14 +61,14 @@
     </div>
 
     <div class="form-group">
-        HÌnh Ảnh
+       images
 
         <a href="" style="display: none">
             @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
         </a>
         <div class="img-wrap" style="align-items:center">
             <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-            <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
+            <input type="button" id="btnUpload" value="choose image" class="btn btn-danger" />
             <img class="wrapper-img" src="" id="pictureUpload" />
         </div>
 

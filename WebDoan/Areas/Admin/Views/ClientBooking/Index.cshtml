@@ -87,16 +87,19 @@
             </td>
             @if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() == "Quản Lý")
             {
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MaPD })
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
-                </td>
+        <td style="display:flex">
+            <form action="@Url.Action("Delete", "ClientBooking", new { id = item.MaPD })" class="delete-link" method="post" style="display:inline">
+                <input type="hidden" name="id" value="@item.MaPD" />
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('are you sure?')">Delete</button>
+            </form>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaPD }, new { @class = "edit-link" })
+        </td>
 
             }
             else if (Session["TaiKhoanAdmin"] != null && Session["CHucVU1"].ToString() != "Quản Lý")
             {
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MaPD })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaPD }, new { @class = "edit-link" })
                     <span>đăng nhập bằng tài khoản admin để xóa</span>
                 </td>
             }
@@ -157,6 +160,26 @@
     .show-read-more .more-text {
         display: none;
     }
+
+    .delete-link {
+        padding: 0.5rem 2rem;
+        background: red;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .delete-link:hover {
+        color:white;
+    }
+
+    .edit-link {
+        padding: 0.5rem 2rem;
+        background: green;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+    }
 </style>
 <style>
     .btnhover:hover {
@@ -174,10 +197,10 @@
         color: snow;
     }
 
-        #mau-nut a:hover {
-            background-color: darkcyan;
-            color: snow;
-        }
+    #mau-nut a:hover {
+        background-color: darkcyan;
+        color: snow;
+    }
 
     .HH {
         overflow: hidden;
@@ -204,23 +227,23 @@
         margin: 1rem 0;
     }
 
-        .MenuTrang li {
-            display: inline;
-            margin: 0 1.7rem;
-            padding: 10px 20px;
-            background-color: #000000;
-            color: #fff;
-            font-size: 1.4rem;
-            cursor: pointer;
-            border-radius: 10px;
-        }
+    .MenuTrang li {
+        display: inline;
+        margin: 0 1.7rem;
+        padding: 10px 20px;
+        background-color: #000000;
+        color: #fff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        border-radius: 10px;
+    }
 
-            .MenuTrang li a {
-                background-color: #000000;
-                color: #fff;
-                font-size: 1.4rem;
-                text-decoration: none;
-            }
+    .MenuTrang li a {
+        background-color: #000000;
+        color: #fff;
+        font-size: 1.4rem;
+        text-decoration: none;
+    }
 
     .line {
         width: 26%;
@@ -241,10 +264,10 @@
         color: snow;
     }
 
-        #mau-nut a:hover {
-            background-color: darkcyan;
-            color: snow;
-        }
+    #mau-nut a:hover {
+        background-color: darkcyan;
+        color: snow;
+    }
 
     .zoom-img > img {
         object-fit: cover;
@@ -271,90 +294,31 @@
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
-        .styled-table thead tr {
-            background-color: #009879;
-            color: #ffffff;
-            text-align: left;
-        }
-
-        .styled-table th,
-        .styled-table td {
-            padding: 12px 15px;
-        }
-
-        .styled-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-
-            .styled-table tbody tr:nth-of-type(even) {
-                background-color: #f3f3f3;
-            }
-
-            .styled-table tbody tr:last-of-type {
-                border-bottom: 2px solid #009879;
-            }
-
-            .styled-table tbody tr.active-row {
-                font-weight: bold;
-                color: #009879;
-            }
-
-    /* CSS */
-    .button-24 a {
-        text-decoration: none;
-        background: #FF4742;
-        border: 1px solid #FF4742;
-        border-radius: 6px;
-        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-block;
-        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
-        font-size: 16px;
-        font-weight: 800;
-        line-height: 16px;
-        min-height: 40px;
-        outline: 0;
-        padding: 12px 14px;
-        text-align: center;
-        text-rendering: geometricprecision;
-        text-transform: none;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        vertical-align: middle;
-        margin: 0 1rem;
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
     }
 
-        .button-24 a:hover,
-        .button-24 a:active {
-            background-color: initial;
-            background-position: 0 0;
-            color: #FF4742;
-        }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
 
-        .button-24 a:active {
-            opacity: .5;
-        }
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
 
-        .button-24 a:nth-child(2) {
-            background: #198754;
-            border: 1px solid #198754;
-        }
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
 
-            .button-24 a:nth-child(2):hover {
-                color: #198754;
-                Background: #fff;
-            }
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
 
-        .button-24 a:nth-child(1) {
-            background: #0d6efd;
-            border: 1px solid #0d6efd;
-        }
-
-            .button-24 a:nth-child(1):hover {
-                color: #0d6efd;
-                Background: #fff;
-            }
+    .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
 </style>

@@ -16,7 +16,7 @@
 @using (Html.BeginForm())
 {
     <div class="form-group d-flex justify-content-center">
-        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;" })
+        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;", @placeholder="product name ..." })
         <input type="submit" class="btn btn-default btnhover" style=" border: 1px solid #000; color: #000;" value="Search" />
     </div>
 }
@@ -67,7 +67,10 @@
 
                                         @Html.ActionLink("Edit", "Edit", new { id = item.MaSP })
                                         @Html.ActionLink("Details", "Detail", new { id = item.MaSP })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
+                                        <form action="@Url.Action("Delete", "SanPham", new { id = item.MaSP })" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.MaSP" />
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('are you sure?')">Delete</button>
+                                        </form>
 
                                     </td>
                                 </tr>

@@ -16,7 +16,7 @@
 @using (Html.BeginForm())
 {
     <div class="form-group d-flex justify-content-center">
-        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;" })
+        @Html.TextBox("SearchString", "", new { @class = "form-control", @style = "width:350px; margin:0 1rem;",@placeholder = "PhoneNumber, ID..." })
         <input type="submit" class="btn btn-default btnhover" style=" border: 1px solid #000; color: #000;" value="Search" />
     </div>
 }
@@ -26,13 +26,12 @@
         <div class="col-lg-12">
             <div class="main-box clearfix">
                 <div class="table-responsive">
-
                     <table class="table user-list">
                         <thead>
                             <tr>
-                                <th class="text-center text-capitalize"><span> Mã chi nhánh</span></th>
+                                <th class="text-center text-capitalize"><span> Brnach ID</span></th>
                                 <th class="text-center text-capitalize"><span>Hotline</span></th>
-                                <th class="text-center text-capitalize"><span>Địa Chỉ</span></th>
+                                <th class="text-center text-capitalize"><span>Address</span></th>
                                 <th>&nbsp;</th>
                             </tr>
                         </thead>
@@ -50,9 +49,12 @@
                                         @Html.DisplayFor(modelItem => item.DiaChi)
                                     </td>
                                     <td class="button-24 d-flex d-sm-flex d-lg-flex justify-content-center align-items-lg-center align-items-sm-center ">
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.MaCN }) 
-                                        @Html.ActionLink("Details", "Detail", new { id = item.MaCN }) 
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.MaCN })
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.MaCN })
+                                        @Html.ActionLink("Details", "Detail", new { id = item.MaCN })
+                                        <form action="@Url.Action("Delete", "ChiNhanh", new { id = item.MaCN })" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.MaCN" />
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('are you sure?')">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
