@@ -17,7 +17,7 @@ namespace WebDoan.Areas.Admin.Controllers
         // GET: Admin/ChiNhanh
         public ActionResult Index(int? page, string SearchString)
         {
-            int pageSize = 8;
+            int pageSize = 3;
             int pageNum = page ?? 1;
             var search = db.CHINHANHs.OrderBy(s => s.HotLine);
             //var SearchAll = db.CHINHANHs.OrderBy(s => s.MaCN).Where(s => s.DiaChi.ToUpper().Contains(SearchString.ToUpper()));

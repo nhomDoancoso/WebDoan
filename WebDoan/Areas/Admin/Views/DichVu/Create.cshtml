@@ -11,40 +11,60 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="wrappres">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="wrapper-inner">
-            Tên Dịch Vụ
-            <div class="inner col-md-10">
-                @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "" } })
-                @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
+<div class="wrappres">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="wrapper-inner">
+        Services Name
+        <div class="inner col-md-10">
+            @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "" } })
+            @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
+        </div>
+            <span style="color:red">
                 @ViewData["ViewErr"]
-            </div>
-        </div>
+            </span>
+    </div>
 
-        <div class="wrapper-inner">
-            Giá
-            <div class="inner col-md-10">
-                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "" } })
-                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-                @ViewData["Price"]
-            </div>
-        </div>
+    <div class="wrapper-inner">
+        Price
+        <div class="inner col-md-10">
+            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "number-input", @onchange = "checkInput(this)" } })
 
-        <div class="wrapper-inner">
-            Mã Loại Dịch Dụ
-            <div class="inner col-md-10">
-                @Html.DropDownList("MaLoaiDV", null, htmlAttributes: new { @class = "" })
-                @Html.ValidationMessageFor(model => model.LOAIDICHVU.MaLoaiDV, "", new { @class = "text-danger" })
-            </div>
         </div>
-
-        <div class="inner">
-            <div style=" text-align: left; margin: 0 1rem;" class="col-md-offset-2 col-md-10">
-                <input style=" width: 10%; margin: 1rem 0;" type="submit" value="Create" class="btn btn-default" />
-            </div>
+        <span style="color:red" id="GiaErr">
+            @ViewData["ViewErr"]
+        </span>
+    </div>
+    @section scripts {
+        <script>
+            function checkInput(input) {
+                var value = input.value;
+                var regex = /^\d+(\.\d{1,2})?$/;
+                var isValid = regex.test(value);
+                if (input.id == "Gia") {
+                    if (!isValid) {
+                        document.getElementById("GiaErr").innerHTML = "Giá phải là số nguyên không âm, có thể có tối đa 2 chữ số thập phân";
+                        input.value = "";
+                    } else {
+                        document.getElementById("GiaErr").innerHTML = "";
+                    }
+                }
+            }
+        </script>
+    }
+    <div class="wrapper-inner">
+        Services type ID
+        <div class="inner col-md-10">
+            @Html.DropDownList("MaLoaiDV", null, htmlAttributes: new { @class = "" })
+            @Html.ValidationMessageFor(model => model.LOAIDICHVU.MaLoaiDV, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="inner">
+        <div style=" text-align: left; margin: 0 1rem;" class="col-md-offset-2 col-md-10">
+            <input style=" width: 10%; margin: 1rem 0;" type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
 }
 <div class="button-86">
     @Html.ActionLink("Back to List", "Index")

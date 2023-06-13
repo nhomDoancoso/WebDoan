@@ -63,15 +63,12 @@ namespace WebDoan.Areas.Admin.Controllers
             var gia = collection["Gia"];
             var soluong = collection["SoLuong"];
             var hinhanh = collection["HinhAnh"];
-
             var checkMaDV = db.SANPHAMs.FirstOrDefault(x => x.MaSP.ToString() == masp);
+            var listLoaiSP = db.LOAISANPHAMs.ToList();
+            var selectListLoaiSP = new SelectList(listLoaiSP, "MaLoaiSP", "TenLoaiSP");
+            ViewData["LoaiSP"] = selectListLoaiSP;
 
 
-            if(checkMaDV != null)
-            {
-                ViewData["masp"] = "mã sp đã tồn tại ";
-                return this.Create();
-            }
             if (sp.Gia <= 0)
             {
                 ViewData["Price"] = "không được để giá âm";
@@ -91,6 +88,11 @@ namespace WebDoan.Areas.Admin.Controllers
             if (!double.TryParse(gia, out GIA))
             {
                 ViewData["Price2"] = "Giá không hợp lệ!";
+                return View(sp);
+            } // Gán danh sách loại sản phẩm vào ViewData
+            if (string.IsNullOrEmpty(maloaiSp))
+            {
+                ViewData["MaLoaiSPErr"] = "Mã loại sản phẩm không được để trống";
                 return View(sp);
             }
             db.SANPHAMs.InsertOnSubmit(sp);
@@ -125,20 +127,6 @@ namespace WebDoan.Areas.Admin.Controllers
             if (string.IsNullOrEmpty(E_tendv) || string.IsNullOrEmpty(e_gia) || string.IsNullOrEmpty(e_soluong))
             {
                 ViewData["SS"] = "Không được để trống";
-                return this.Create();
-            }
-            decimal gia;
-            bool isGiaValid = decimal.TryParse(e_gia, out gia);
-            int soluong;
-            bool isSoLuongValid = int.TryParse(e_soluong, out soluong);
-            if (!isGiaValid || gia <= 0)
-            {
-                ViewData["hww1"] = "Giá không được để âm hoặc bằng 0";
-                return this.Create();
-            }
-            if (!isSoLuongValid || soluong <= 0)
-            {
-                ViewData["sssluong"] = "Số lượng không được để âm hoặc bằng 0";
                 return this.Create();
             }
             else

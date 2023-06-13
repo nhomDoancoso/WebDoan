@@ -51,8 +51,10 @@
 
                                         @Html.ActionLink("Edit", "Edit", new { id = item.MaLoaiDV })
                                         @Html.ActionLink("Details", "Detail", new { id = item.MaLoaiDV })
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.MaLoaiDV })
-
+                                        <form action="@Url.Action("Delete", "LoaiDV", new { id = item.MaLoaiDV })" method="post" style="display:inline">
+                                            <input type="hidden" name="id" value="@item.MaLoaiDV" />
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('are you sure?')">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>

@@ -9,13 +9,13 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div style="text-align:center">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaDV)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenDV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <strong> Services Name</strong>
+            <div class="col-md-10" style="width: 100%; padding: 0 12%;">
                 @Html.EditorFor(model => model.TenDV, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenDV, "", new { @class = "text-danger" })
                 @ViewData["Error"]
@@ -23,23 +23,26 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Gia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <strong>Price</strong>
+            <div class="col-md-10" style="width: 100%; padding: 0 12%;">
                 @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
                 @ViewData["Price"]
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.MaLoaiDV, "MaLoaiDV", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <strong>
+                Service Type ID
+
+            </strong>
+            <div class="col-md-10" style="width: 100%; padding: 0 12%;">
                 @Html.DropDownList("MaLoaiDV", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaLoaiDV, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-10" style="width: 100%; padding: 0 12%; margin: 1rem 0">
                 <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </div>

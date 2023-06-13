@@ -1,4 +1,5 @@
 ﻿using Microsoft.Ajax.Utilities;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,22 @@ namespace WebDoan.Areas.Admin.Controllers
     {
         // GET: Admin/Combo
         myDataContextDataContext db = new myDataContextDataContext();
-        public ActionResult Index()
+        public ActionResult Index(int? page, string SearchString)
         {
-            var lstCombo = from ss in db.COMBODICHVUs select ss;
-            return View(lstCombo);
+            //var lstCombo = from ss in db.COMBODICHVUs select ss;
+            //return View(lstCombo);
+            int pageSize = 8;
+            int pageNum = page ?? 1;
+            var SearchAll = db.COMBODICHVUs.OrderBy(s => s.TenCB);
+            var SearchSp = db.COMBODICHVUs.OrderBy(m => m.TenCB)
+                .Where(sp => sp.TenCB.ToUpper().Contains(SearchString.ToUpper()) || sp.MaCB.ToString().Contains(SearchString));
+            page = 1;
+            if (string.IsNullOrEmpty(SearchString))
+                return View(SearchAll.ToPagedList(pageNum, pageSize));
+            else if (SearchSp.Any())
+                return View(SearchSp.ToPagedList(pageNum, pageSize));
+            else
+                return View(SearchAll.ToPagedList(pageNum, pageSize));
         }
 
         public string ProcessUpload(HttpPostedFileBase file)

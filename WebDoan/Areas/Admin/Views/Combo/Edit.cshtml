@@ -11,42 +11,48 @@
     {
         @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div style="text-align:center">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaCB)
 
-    <div style="text-align:center">
-        Combo Name
-        <div style="padding: 0 5rem; width: 100%; text-align: center;">
+    <div class="form-group">
+        <strong>
+            Combo Name
+        </strong>
+        <div class="col-md-10" style="width: 100%; padding: 0 12%;">
             @Html.EditorFor(model => model.TenCB, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.TenCB, "", new { @class = "text-danger" })
         </div>
     </div>
 
-        <div style="text-align:center">
-           Price
-            <div style="padding: 0 5rem; width: 100%; text-align: center;">
-                @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
-            </div>
-            <span style="color:red">
-                @ViewData["sl"]
-            </span>
+    <div class="form-group">
+        <strong>
+            Price
+        </strong>
+        <div class="col-md-10" style="width: 100%; padding: 0 12%;">
+            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
         </div>
+        <span style="color:red">
+            @ViewData["sl"]
+        </span>
+    </div>
 
-        <div style="text-align:center">
+    <div class="form-group">
+        <strong>
             Images
-            <div style="padding: 0 5rem; width: 100%; text-align: center;">
-                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
-            </div>
-            <div class="img-wrap"  style="align-items:center">
-                <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-                <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
-                <img class="wrapper-img" src="" id="pictureUpload" />
-            </div>
+        </strong>
+        <div class="col-md-10" style="width: 100%; padding: 0 12%;">
+            @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
         </div>
+        <div class="img-wrap" style="align-items:center; margin:1rem 0">
+            <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
+            <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
+            <img class="wrapper-img" src="" id="pictureUpload" />
+        </div>
+    </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         @section upload
                 {
@@ -83,11 +89,11 @@
             </script>
         }
 
-        <div style="text-align:center">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="width: 100%; padding: 0 12%;">
+            <input type="submit" value="Save" class="btn btn-primary" />
         </div>
+    </div>
     </div>
     }
 

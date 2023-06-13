@@ -20,7 +20,7 @@
 
                                 <form>
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example1cg">Hình Nhân Viên</label>
+                                        <label class="form-label" for="form3Example1cg">Images</label>
                                         <a href="" style="display: none">
                                             @Html.EditorFor(model => model.HinhNV, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
                                         </a>
@@ -67,21 +67,21 @@
                                     }
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example1cg">Tên Nhân Viên</label>
+                                        <label class="form-label" for="form3Example1cg">Employee Name</label>
                                         @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
                                         @ViewData["Error"]
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example3cg">Số Điện Thoại</label>
+                                        <label class="form-label" for="form3Example3cg">Phone</label>
                                         @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
                                         @ViewData["NotNull"]
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example4cg">Địa Chỉ</label>
+                                        <label class="form-label" for="form3Example4cg">Address</label>
                                         @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
                                     </div>
@@ -94,23 +94,23 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example4cg">Tên Tài Khoản</label>
+                                        <label class="form-label" for="form3Example4cg">Username</label>
                                         @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example4cg">Mât Khẩu</label>
+                                        <label class="form-label" for="form3Example4cg">Password</label>
                                         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                     </div>
 
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="MatKhauXacNhan">Mật khẩu xác nhận</label>
+                                    @*<div class="form-outline mb-4">
+                                        <label class="form-label" for="MatKhauXacNhan">Vertification PassWord</label>
                                         <input class="form-control" data-val="true" data-val-required="Phải nhập xác nhận mật khẩu" id="MatKhauXacNhan" name="MatKhauXacNhan" type="password" value="" aria-describedby="MatKhauXacNhan-error" aria-invalid="true" />
                                         @ViewData["NhapMKXN"]
                                         @ViewData["MatKhauGiongNhau"]
-                                    </div>
+                                    </div>*@
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form3Example4cg">Chuc vu</label>

@@ -10,21 +10,20 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
-    <h4>product</h4>
+    <h4>SANPHAM</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MaSP)
 
     <div class="form-group">
-        product name
+        Product name
         <div class="col-md-10">
             @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
         </div>
         <span style="color:red">
-            @ViewData["SS"]
         </span>
     </div>
 
@@ -37,38 +36,52 @@
     </div>
 
     <div class="form-group">
-        price
+        Price
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Gia, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "number-input", @onchange = "checkInput(this)" } })
         </div>
-        <span style="color:red">
-            @ViewData["hww1"]
-            @ViewData["SS"]
-        </span>
+        <span style="color:red" id="GiaErr"></span>
     </div>
-
     <div class="form-group">
         quantity
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "number-input", @onchange = "checkInput(this)" } })
         </div>
-        <span style="color:red">
-            @ViewData["sssluong"]
-            @ViewData["SS"]
-        </span>
+        <span style="color:red" id="SoLuongErr"></span>
     </div>
-
+    @section scripts {
+        <script>
+            function checkInput(input) {
+                var value = input.value;
+                var regex = /^\d+(\.\d{1,2})?$/;
+                var isValid = regex.test(value);
+                if (input.id == "Gia") {
+                    if (!isValid) {
+                        document.getElementById("GiaErr").innerHTML = "Giá phải là số nguyên không âm, có thể có tối đa 2 chữ số thập phân";
+                        input.value = "";
+                    } else {
+                        document.getElementById("GiaErr").innerHTML = "";
+                    }
+                } else if (input.id == "SoLuong") {
+                    if (!isValid) {
+                        document.getElementById("SoLuongErr").innerHTML = "Số lượng phải là số nguyên không âm";
+                        input.value = "";
+                    } else {
+                        document.getElementById("SoLuongErr").innerHTML = "";
+                    }
+                }
+            }
+        </script>
+    }
     <div class="form-group">
-       images
+        Images
 
         <a href="" style="display: none">
             @Html.EditorFor(model => model.Hinh, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
         </a>
         <div class="img-wrap" style="align-items:center">
             <input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="display:none;" />
-            <input type="button" id="btnUpload" value="choose image" class="btn btn-danger" />
+            <input type="button" id="btnUpload" value="Chọn ảnh" class="btn btn-danger" />
             <img class="wrapper-img" src="" id="pictureUpload" />
         </div>
 
@@ -76,6 +89,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     @section upload
             {
+
+
+
         <script>
             $(function () {
                 $('#btnUpload').click(function () {
@@ -110,7 +126,7 @@
     }
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Save" class="btn btn-primary" />
         </div>
     </div>
 </div>

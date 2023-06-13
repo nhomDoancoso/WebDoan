@@ -20,7 +20,7 @@
             Employee ID
         </th>
         <th>
-            Create Booking
+            Create Booking Time
         </th>
         <th>
             Appointment
@@ -75,11 +75,11 @@
             <td>
                 @if (item.TrangThaiPhieuDat == false)
                 {
-                <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: green; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">confirm</button>
+                    <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: green; color: white; border: none; padding: 1rem 3.3rem; border-radius: 10px">confirm</button>
                 }
                 else
                 {
-            <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Unconfirm</button>
+                    <button type="button" onclick="location.href='@Url.Action("Confirm", "ClientBooking", new { id = item.MaPD })'" style="background-color: black; color: white; border: none; padding: 1rem 2rem; border-radius: 10px ">Unconfirm</button>
                 }
             </td>
             <td>

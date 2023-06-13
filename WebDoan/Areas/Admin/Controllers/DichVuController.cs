@@ -16,10 +16,10 @@ namespace WebDoan.Areas.Admin.Controllers
         myDataContextDataContext db = new myDataContextDataContext();
         public ActionResult Index(int? page, string SearchString)
         {
-            int pageSize = 2;
+            int pageSize = 8;
             int pageNum = page ?? 1;
             var SearchAll = db.DICHVUs.OrderBy(s => s.TenDV);
-            var SearchSp = db.DICHVUs.OrderBy(m => m.TenDV).Where(sp => sp.TenDV.ToUpper().Contains(SearchString.ToUpper()));
+            var SearchSp = db.DICHVUs.OrderBy(m => m.TenDV).Where(sp => sp.TenDV.ToUpper().Contains(SearchString.ToUpper()) || sp.MaDV.ToString().Contains(SearchString.ToUpper()));
             page = 1;
             if (SearchString == null || SearchString == "")
                 return View(SearchAll.ToPagedList(pageNum, pageSize));
@@ -42,15 +42,11 @@ namespace WebDoan.Areas.Admin.Controllers
                 return RedirectToAction("DangNhap", "LoginAdmin");
             }
             int maTK = (int)Session["TaiKhoanAdmin"];
+            var tendv = collection["TenDV"];
             var madv = collection["MaDV"];
             var gia = collection["Gia"];
             var checkMaDV = db.DICHVUs.FirstOrDefault(x => x.MaLoaiDV == madv);
-            if (dichvu.Gia <= 0)
-            {
-                ViewData["Price"] = "không được để giá âm";
-                return this.Create();
-            }
-            if (dichvu.TenDV.IsNullOrWhiteSpace() && dichvu.MaLoaiDV.IsNullOrWhiteSpace())
+            if (string.IsNullOrEmpty(tendv) || string.IsNullOrEmpty(gia))
             {
                 ViewData["ViewErr"] = "Không được để trống";
                 return this.Create();

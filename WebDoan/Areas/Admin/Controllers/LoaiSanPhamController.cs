@@ -18,7 +18,7 @@ namespace WebDoan.Areas.Admin.Controllers
             int pageSize = 8;
             int pageNum = page ?? 1;
             var SearchAll = db.LOAISANPHAMs.OrderBy(s => s.TenLoaiSP);
-            var SearchSp = db.LOAISANPHAMs.OrderBy(m => m.TenLoaiSP).Where(sp => sp.TenLoaiSP.ToUpper().Contains(SearchString.ToUpper()));
+            var SearchSp = db.LOAISANPHAMs.OrderBy(m => m.TenLoaiSP).Where(sp => sp.TenLoaiSP.ToUpper().Contains(SearchString.ToUpper()) || sp.MaLoaiSP.ToString().Contains(SearchString));
             page = 1;
             if (SearchString == null || SearchString == "")
                 return View(SearchAll.ToPagedList(pageNum, pageSize));
