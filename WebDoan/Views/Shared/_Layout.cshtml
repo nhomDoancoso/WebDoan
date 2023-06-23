@@ -23,7 +23,6 @@
             <a href="#">
                 <img src="~/Content/images/logo.png" />
             </a>
-
             @if (Session["TaiKhoanKH"] == null)
             {
                 <a> @Html.ActionLink("Login", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
@@ -32,9 +31,11 @@
             else
             {
                 <a>@Html.ActionLink("Hello" + @Session["User"], "Index", "Footer", new { area = "", @id = Session["TaiKhoan"] }, new { @class = "cusor" })</a>
-                <a href=" @Url.Action("GioHang", "GioHang")"><i class="fas fa-shopping-bag"></i></a>
-                @*<a> @Html.ActionLink("PD", "Index", "CTPhieuDatKH", new { area = "" }, new { @class = "cusor" })</a>*@
-                <a>@Html.ActionLink("Logout", "DangNhap", "Login", new { area = "" }, new { @class = "cusor" })</a>
+                if (Session["TaiKhoanKH"] != null && Session["TaiKhoanKH"].ToString() != "")
+                {
+                    <a href=" @Url.Action("GioHang", "GioHang")"><i class="fas fa-shopping-bag"></i></a>
+                }
+                <a href="@Url.Action("Logout", "Login")" class="cusor">Logout</a>
             }
         </nav>
     </header>

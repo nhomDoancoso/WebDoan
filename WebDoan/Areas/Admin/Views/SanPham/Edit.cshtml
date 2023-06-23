@@ -37,14 +37,14 @@
 
     <div class="form-group">
         Price
-        <div class="col-md-10">
+        <div class="col-md-10 inputs">
             @Html.EditorFor(model => model.Gia, new { htmlAttributes = new { @class = "number-input", @onchange = "checkInput(this)" } })
         </div>
         <span style="color:red" id="GiaErr"></span>
     </div>
     <div class="form-group">
         quantity
-        <div class="col-md-10">
+        <div class="col-md-10 inputs" >
             @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "number-input", @onchange = "checkInput(this)" } })
         </div>
         <span style="color:red" id="SoLuongErr"></span>
@@ -135,3 +135,12 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<style>
+    .inputs input, 
+    .inputs select{
+        width: 100%;
+        border-radius: 10px;
+        padding: 0.5rem;
+        border: 1px solid;
+    }
+</style>

@@ -43,8 +43,8 @@ namespace WebDoan.Areas.Admin.Controllers
             int pageSize = 8;
             int pageNum = page ?? 1;
             var search = db.NHANVIENs.OrderBy(s => s.TenNV);
-             var SearchAll = db.NHANVIENs.OrderBy(s => s.MaNV);
-            var SearchSp = db.NHANVIENs.OrderBy(m => m.MaNV).Where(sp => sp.TenNV.ToUpper().Contains(SearchString.ToUpper()));
+             var SearchAll = db.NHANVIENs.OrderBy(s => s.TenNV);
+            var SearchSp = db.NHANVIENs.OrderBy(m => m.TenNV).Where(sp => sp.TenNV.ToUpper().Contains(SearchString.ToUpper()) || sp.MaNV.ToString().Contains(SearchString.ToUpper()));
             page = 1;
             if (SearchString == null || SearchString == "")
                 return View(SearchAll.ToPagedList(pageNum, pageSize));

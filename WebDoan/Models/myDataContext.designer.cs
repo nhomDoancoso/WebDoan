@@ -2457,7 +2457,8 @@ namespace WebDoan.Models
 		private string _Email;
 		
 		private string _UserName;
-		
+
+
 		private string _Password;
 		
 		private System.Nullable<bool> _IsValid;

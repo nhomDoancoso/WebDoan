@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Data;
 using System.Data.Entity;
+using System.Web.Security;
 
 namespace WebDoan.Controllers
 {
@@ -30,9 +31,12 @@ namespace WebDoan.Controllers
             var tendangnhap = collection["UserName"];
             var matkhau = collection["Password"];
             var email = collection["Email"];
+            var md5 = MD5.Create();
+            byte[] inputBytes = Encoding.ASCII.GetBytes(matkhau);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+            string passwordHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
 
-            KHACHHANG khachang = db.KHACHHANGs.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == matkhau);
-
+            KHACHHANG khachang = db.KHACHHANGs.FirstOrDefault(x => x.UserName == tendangnhap && x.Password == passwordHash);
             if (khachang != null)
             {
                 ViewBag.ThongBao = "Chúc mừng đăng nhập thành công";
@@ -135,19 +139,15 @@ namespace WebDoan.Controllers
                 }
                 else
                 {
-                    //mã hóa bằng SHA
-                    byte[] salt = new byte[16]; //  tạo ra một đối tượng byte array có độ dài 16 để tạo ra một giá trị ngẫu nhiên
-                    new RNGCryptoServiceProvider().GetBytes(salt);// Salt này sẽ được kết hợp với mật khẩu của người dùng trước khi được băm, để tăng tính bảo mật của mật khẩu.
-                    byte[] passwordBytes = Encoding.UTF8.GetBytes(matkhau);// chúng ta lấy mật khẩu của người dùng và chuyển đổi thành một đối tượng byte array (passwordBytes) sử dụng mã hóa UTF-8.
-                    byte[] saltedPassword = new byte[salt.Length + passwordBytes.Length];
-                    salt.CopyTo(saltedPassword, 0);
-                    passwordBytes.CopyTo(saltedPassword, salt.Length);
-                    byte[] hashBytes = new SHA256Managed().ComputeHash(saltedPassword);
-                    string hashedPassword = Convert.ToBase64String(hashBytes);
+                    var md5 = MD5.Create();
+                    byte[] inputBytes = Encoding.ASCII.GetBytes(matkhau);
+                    byte[] hashBytes = md5.ComputeHash(inputBytes);
+                    string passwordHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
 
+                    kh.Password = passwordHash;
                     kh.Email = email;
                     kh.UserName = tendangnhap;
-                    kh.Password = hashedPassword;
+                    //kh.Password = matkhau;
                     db.KHACHHANGs.InsertOnSubmit(kh);
                     db.SubmitChanges();
                     return RedirectToAction("DangNhap", "Login");
@@ -158,8 +158,9 @@ namespace WebDoan.Controllers
         
         public ActionResult Logout()
         {
-            Session["User"] = null;
-            return RedirectToAction("DangNhap", "Login");
+
+            Session.Clear();
+            return RedirectToAction("Index", "Footer");
         }
     }
 }
